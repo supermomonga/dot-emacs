@@ -1,11 +1,12 @@
 
-
-secret.*
+*~
+*.dat
 *.elc
 
+secret.*
 ac-comphist.dat
+tramp
 
 eshell/
 elpa/
 el-get/
-tramp
