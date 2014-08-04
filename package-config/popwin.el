@@ -1,0 +1,16 @@
+
+(el-get 'sync 'popwin)
+(bundle 'popwin
+	(popwin-mode 1)
+	(push '("helm" :regexp t) popwin:special-display-config)
+	(push '("*Help*" :noselect t) popwin:special-display-config)
+	(push '("*ruby*") popwin:special-display-config)
+	(push '("*quickrun*") popwin:special-display-config)
+	(push '("*twittering-edit*") popwin:special-display-config)
+	(push '("*coffee-compiled*" :noselect t :height 0.5) popwin:special-display-config)
+	(push '("*el-get packages*" :height 0.7) popwin:special-display-config)
+	(push '(" *auto-async-byte-compile*" :noselect t :height 10) popwin:special-display-config)
+	(push '("^\*go-direx:" :regexp t :position left :width 30 :dedicated t :stick t)
+	      popwin:special-display-config)
+	;; (evil-define-key 'normal popwin:keymap (kbd "C-q") 'popwin:close-popup-window)
+)

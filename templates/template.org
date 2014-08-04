@@ -1,0 +1,4 @@
+#+TITLE: 
+#+AUTHOR: Masato Hasegawa
+#+STYLE: <link rel="stylesheet" type="text/css" href="./org-resources/default.css" />
+#+LANGUAGE: ja

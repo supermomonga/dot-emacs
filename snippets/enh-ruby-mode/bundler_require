@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: for require gems by bundler
+# key: bundler_require
+# contributor : @atotto
+# --
+require 'bundler'
+Bundler.require
+
+$0
