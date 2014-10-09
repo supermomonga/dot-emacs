@@ -37,15 +37,16 @@
 ;; Dont highlight trailing whitespace in eshell
 (add-hook 'eshell-mode-hook
           (lambda ()
-						(setq ac-sources
+						(setq-local ac-sources
 									'(ac-source-pcomplete
 										ac-source-filename
-										ac-source-files-in-current-dir
-										ac-source-words-in-buffer
-										ac-source-dictionary))
+										;; ac-source-files-in-current-dir
+										;; ac-source-words-in-buffer
+										ac-source-dictionary
+										))
 						(setq-local ac-auto-start nil)
-						;; (evil-define-key 'insert ac-mode-map (kbd "TAB") 'auto-complete)
-            (setq show-trailing-whitespace nil)))
+						(evil-define-key 'insert ac-mode-map (kbd "TAB") 'auto-complete)
+            (setq-local show-trailing-whitespace nil)))
 
 ;; Launch eshell after initialize emacs
 (add-hook 'after-init-hook (lambda() (eshell)))

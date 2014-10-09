@@ -56,6 +56,7 @@
 (load-package-config "auto-async-byte-compile")
 (load-package-config "e2wm")
 (load-package-config "powerline")
+(load-package-config "open-junk-file")
 ;; (load-package-config "") ;; TODO
 (load-package-config "popwin") ;; Handle temporally
 ;;; Ruby
