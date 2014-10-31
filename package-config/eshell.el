@@ -48,6 +48,13 @@
 						(evil-define-key 'insert ac-mode-map (kbd "TAB") 'auto-complete)
             (setq-local show-trailing-whitespace nil)))
 
+(add-hook 'eshell-preoutput-filter-functions
+					'ansi-color-filter-apply)
+
+(require 'ansi-color)
+(add-hook 'eshell-load-hook 'ansi-color-for-comint-mode-on)
+
+
 ;; Launch eshell after initialize emacs
 (add-hook 'after-init-hook (lambda() (eshell)))
 

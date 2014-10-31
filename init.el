@@ -57,6 +57,7 @@
 (load-package-config "e2wm")
 (load-package-config "powerline")
 (load-package-config "open-junk-file")
+(load-package-config "gist")
 ;; (load-package-config "") ;; TODO
 (load-package-config "popwin") ;; Handle temporally
 ;;; Ruby
@@ -67,6 +68,8 @@
 (load-package-config "golang")
 ;;; Coffee Script
 (load-package-config "coffee_script")
+;;; Markdown
+(load-package-config "markdown")
 ;; Applications
 (load-package-config "mailer")
 (load-package-config "lingr")
