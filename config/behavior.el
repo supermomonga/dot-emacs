@@ -1,8 +1,8 @@
 
 ;; Emacsclient
 (bundle 'server
-	(unless (server-running-p)
-	  (server-start)))
+        (unless (server-running-p)
+          (server-start)))
 
 ;; Highlight current line
 (global-hl-line-mode 1)
