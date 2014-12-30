@@ -1,2 +1,0 @@
-
-(el-get 'sync 'direx)
