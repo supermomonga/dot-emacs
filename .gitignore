@@ -2,6 +2,7 @@
 *~
 *.dat
 *.elc
+*#
 
 secret.*
 ac-comphist.dat
@@ -11,3 +12,5 @@ eshell/
 elpa/
 el-get/
 var
+
+benri.el
