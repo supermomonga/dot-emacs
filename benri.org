@@ -24,7 +24,7 @@ This is my kanari sugoi =.init.el= file(kanari).
   (setenv "PATH" (concat (getenv "PATH") ":" (file-truename path)))
   (apply-path))
 
-(defun apply-path
+(defun apply-path ()
   ;;; eshell
   (setq eshell-path-env (getenv "PATH"))
   ;;; exec path
