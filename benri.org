@@ -14,19 +14,25 @@ This is my kanari sugoi =.init.el= file(kanari).
 
 * User-defined macro and function
 
+** Handle path variables benrily
 #+BEGIN_SRC emacs-lisp
-;; bundle macro
-(defmacro bundle (name &rest body)
-  `(when (require ,name nil t) ,@body))
-
-;; Handle path variables benrily
 (defun append-path (path)
   (setenv "PATH" (concat (file-truename path) ":" (getenv "PATH")))
-  (setq eshell-path-env (getenv "PATH"))
-  (setq exec-path (split-string (getenv "PATH") ":"))
-  (print exec-path))
+  (apply-path))
 
-;; Notification center
+(defun prepend-path (path)
+  (setenv "PATH" (concat (getenv "PATH") ":" (file-truename path)))
+  (apply-path))
+
+(defun apply-path
+  ;;; eshell
+  (setq eshell-path-env (getenv "PATH"))
+  ;;; exec path
+  (setq exec-path (split-string (getenv "PATH") ":")))
+#+END_SRC
+
+** Mac OS X Notification Center
+#+BEGIN_SRC emacs-lisp
 (defun notif (title message)
   (shell-command
    (concat
@@ -40,7 +46,6 @@ This is my kanari sugoi =.init.el= file(kanari).
 
 
 * Add some pathes
-
 #+BEGIN_SRC emacs-lisp
 ;; rbenv
 (append-path "~/.rbenv/bin/")
