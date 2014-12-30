@@ -1,8 +1,8 @@
-#+TITLE: init.org
+#+TITLE: benri.org
 #+OPTIONS: toc:2 num:nil ^:nil
 #+LANGUAGE: ja
 
-This is my kanari sugoi =.init.el= file(kanari).
+This is my kanari sugoi =benri.el= file (kanari).
 
 * Use common lisp package
 
