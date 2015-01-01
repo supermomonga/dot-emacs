@@ -189,22 +189,22 @@ This is my kanari sugoi =benri.el= file (kanari).
 
 * Font
 
-	|----------------+------------------------------------|
-	| Language       | Sample Text                        |
-	|----------------+------------------------------------|
-	| Japanese       | あのイーハトーヴォの               |
-	|                | すきとおった風、                   |
-	|                | 夏でも底に冷たさをもつ青いそら、   |
-	|                | うつくしい森で飾られたモーリオ市、 |
-	|                | 郊外のぎらぎらひかる草の波。       |
-	| Chinese        | 祇辻飴葛蛸鯖鰯噌庖箸               |
-	| English        | ABCDEFGHIJKLM                      |
-	|                | abcdefghijklm                      |
-	| Digit          | 1234567890                         |
-	| Zenkaku Symbol | ┏┓┗┛                           |
-	| Symbol         | Dingbats: [❯][☯][♞][☎]             |
-	| Russian        | русский язык            |
-	|----------------+------------------------------------|
+  |----------------+------------------------------------|
+  | Language       | Sample Text                        |
+  |----------------+------------------------------------|
+  | Japanese       | あのイーハトーヴォの               |
+  |                | すきとおった風、                   |
+  |                | 夏でも底に冷たさをもつ青いそら、   |
+  |                | うつくしい森で飾られたモーリオ市、 |
+  |                | 郊外のぎらぎらひかる草の波。       |
+  | Chinese        | 祇辻飴葛蛸鯖鰯噌庖箸               |
+  | English        | ABCDEFGHIJKLM                      |
+  |                | abcdefghijklm                      |
+  | Digit          | 1234567890                         |
+  | Zenkaku Symbol | ┏┓┗┛                           |
+  | Symbol         | Dingbats: [❯][☯][♞][☎]             |
+  | Russian        | русский язык            |
+  |----------------+------------------------------------|
 
 
   #+BEGIN_SRC emacs-lisp
@@ -331,10 +331,10 @@ This is my kanari sugoi =benri.el= file (kanari).
 (el-get 'sync 'dropdown-list)
 
 (when (require 'yasnippet nil t)
-				(require 'dropdown-list nil t)
-				(setq yas-prompt-functions '(yas-dropdown-prompt yas-completing-prompt yas-ido-prompt yas-no-prompt))
-				(add-to-list 'yas-snippet-dirs "~/.emacs.d/el-get/yasnippet-golang")
-				(yas-global-mode 1))
+        (require 'dropdown-list nil t)
+        (setq yas-prompt-functions '(yas-dropdown-prompt yas-completing-prompt yas-ido-prompt yas-no-prompt))
+        (add-to-list 'yas-snippet-dirs "~/.emacs.d/el-get/yasnippet-golang")
+        (yas-global-mode 1))
 #+END_SRC
 ** helm
 
@@ -342,11 +342,11 @@ This is my kanari sugoi =benri.el= file (kanari).
 (el-get 'sync 'helm)
 (el-get 'sync 'helm-descbinds)
 (when (require 'helm nil t)
-	    (define-key evil-normal-state-map (kbd "SPC f") 'helm-mini)
-	    (define-key evil-normal-state-map (kbd "SPC b") 'helm-buffers-list)
-	    (define-key evil-normal-state-map (kbd "SPC SPC") 'helm-M-x)
-			(define-key evil-normal-state-map (kbd "SPC s") 'helm-yas-complete)
-	    )
+      (define-key evil-normal-state-map (kbd "SPC f") 'helm-mini)
+      (define-key evil-normal-state-map (kbd "SPC b") 'helm-buffers-list)
+      (define-key evil-normal-state-map (kbd "SPC SPC") 'helm-M-x)
+      (define-key evil-normal-state-map (kbd "SPC s") 'helm-yas-complete)
+      )
 
 (when (require 'helm-descbinds nil t)
 )
@@ -358,36 +358,36 @@ This is my kanari sugoi =benri.el= file (kanari).
 
 
 (when (require 'auto-complete nil t)
-	(require 'auto-complete-config)
-	(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-	(ac-config-default)
-	(setq ac-use-menu-map t)
-	(setq ac-menu-height 20)
-	;; (print ac-modes)
-	;; (set-face-background 'ac-candidate-face "lightgray")
-	;; (set-face-underline 'ac-candidate-face "darkgray")
-	;; (set-face-background 'ac-selection-face "steelblue")
-	;; (print ac-use-quick-help)
-	;; (setq ac-quick-help-prefer-x t)
-	(setq ac-quick-help-delay 0.0)
-	(ac-define-source pcomplete
-	  '((candidates . pcomplete-completions)))
-	;; ac-sources
-	(defvar my-ac-sources
-		'(ac-source-yasnippet
-			ac-source-abbrev
-			ac-source-dictionary
-			ac-source-words-in-same-mode-buffers))
-	(add-to-list 'ac-sources 'ac-source-yasnippet)
-	(add-to-list 'ac-modes 'eshell-mode)
-	(add-to-list 'ac-modes 'coffee-mode)
-	(add-to-list 'ac-modes 'clojure-mode)
-	(add-to-list 'ac-modes 'go-mode)
-	(add-to-list 'ac-modes 'ruby-mode)
-	;; (print ac-sources)
-	;; (evil-define-key 'normal eshell-mode-map (kbd "C-M-i") 'auto-complete)
-	;; (evil-define-key 'insert eshell-mode-map (kbd "C-M-i") 'auto-complete)
-	)
+  (require 'auto-complete-config)
+  (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+  (ac-config-default)
+  (setq ac-use-menu-map t)
+  (setq ac-menu-height 20)
+  ;; (print ac-modes)
+  ;; (set-face-background 'ac-candidate-face "lightgray")
+  ;; (set-face-underline 'ac-candidate-face "darkgray")
+  ;; (set-face-background 'ac-selection-face "steelblue")
+  ;; (print ac-use-quick-help)
+  ;; (setq ac-quick-help-prefer-x t)
+  (setq ac-quick-help-delay 0.0)
+  (ac-define-source pcomplete
+    '((candidates . pcomplete-completions)))
+  ;; ac-sources
+  (defvar my-ac-sources
+    '(ac-source-yasnippet
+      ac-source-abbrev
+      ac-source-dictionary
+      ac-source-words-in-same-mode-buffers))
+  (add-to-list 'ac-sources 'ac-source-yasnippet)
+  (add-to-list 'ac-modes 'eshell-mode)
+  (add-to-list 'ac-modes 'coffee-mode)
+  (add-to-list 'ac-modes 'clojure-mode)
+  (add-to-list 'ac-modes 'go-mode)
+  (add-to-list 'ac-modes 'ruby-mode)
+  ;; (print ac-sources)
+  ;; (evil-define-key 'normal eshell-mode-map (kbd "C-M-i") 'auto-complete)
+  ;; (evil-define-key 'insert eshell-mode-map (kbd "C-M-i") 'auto-complete)
+  )
 #+END_SRC
 
 ** smartrep
@@ -397,27 +397,27 @@ This is my kanari sugoi =benri.el= file (kanari).
 (el-get 'sync 'tabbar)
 
 (defun smart-forward-buffer ()
-	(cond ((tabbar-mode-on-p) (tabbar-forward-tab))
-				((e2wm:managed-p) (e2wm:pst-history-back-command))))
+  (cond ((tabbar-mode-on-p) (tabbar-forward-tab))
+        ((e2wm:managed-p) (e2wm:pst-history-back-command))))
 
 (defun smart-backward-buffer ()
-	(cond ((tabbar-mode-on-p) (tabbar-backward-tab))
-				((e2wm:managed-p) (e2wm:pst-history-forward-command))))
+  (cond ((tabbar-mode-on-p) (tabbar-backward-tab))
+        ((e2wm:managed-p) (e2wm:pst-history-forward-command))))
 
 (when (require 'smartrep nil t)
-	(smartrep-define-key evil-normal-state-map "C-w"
-	  '((">" . 'evil-window-increase-width)
-	    ("<" . 'evil-window-decrease-width)
-			("+" . 'evil-window-increase-height)
-			("-" . 'evil-window-decrease-height)))
-	(smartrep-define-key evil-normal-state-map "C-c"
-	  '(("+" . 'evil-numbers/inc-at-pt)
-	    ("-" . 'evil-numbers/dec-at-pt)))
-	(when (require 'tabbar nil t)
-		(smartrep-define-key evil-normal-state-map "g"
-		  '(("t" . 'smart-forward-buffer)
-		    ("T" . 'smart-backward-buffer)))
-		)
+  (smartrep-define-key evil-normal-state-map "C-w"
+    '((">" . 'evil-window-increase-width)
+      ("<" . 'evil-window-decrease-width)
+      ("+" . 'evil-window-increase-height)
+      ("-" . 'evil-window-decrease-height)))
+  (smartrep-define-key evil-normal-state-map "C-c"
+    '(("+" . 'evil-numbers/inc-at-pt)
+      ("-" . 'evil-numbers/dec-at-pt)))
+  (when (require 'tabbar nil t)
+    (smartrep-define-key evil-normal-state-map "g"
+      '(("t" . 'smart-forward-buffer)
+        ("T" . 'smart-backward-buffer)))
+    )
 )
 #+END_SRC
 
@@ -428,60 +428,60 @@ This is my kanari sugoi =benri.el= file (kanari).
 
 
 (when (require 'tabbar nil t)
-	(tabbar-mode 1)
-	(tabbar-mwheel-mode -1)
-	(setq tabbar-buffer-groups-function nil)
-	(dolist (btn '(tabbar-buffer-home-button tabbar-scroll-left-button tabbar-scroll-right-button))
-	  (set btn (cons (cons "" nil) (cons "" nil))))
-	;; (setq tabbar-auto-scroll-flag nil)
-	(setq tabbar-separator '(1.0))
-	;;;
-	(custom-set-variables
-	 ;; custom-set-variables was added by Custom.
-	 ;; If you edit it by hand, you could mess it up, so be careful.
-	 ;; Your init file should contain only one such instance.
-	 ;; If there is more than one, they won't work right.
-	 '(tabbar-background-color "#323232")
-	 '(tabbar-cycle-scope (quote tabs)))
-	(custom-set-faces
-	 ;; custom-set-faces was added by Custom.
-	 ;; If you edit it by hand, you could mess it up, so be careful.
-	 ;; Your init file should contain only one such instance.
-	 ;; If there is more than one, they won't work right.
-	 '(tabbar-default ((t (:background "#424242" :foreground "#999" :height 0.9))))
-	 '(tabbar-unselected ((t (:background "#424242" :foreground "#999" :height 0.9))))
-	 '(tabbar-selected ((t (:background "#424242" :foreground "#fff" :height 0.9))))
-	 '(tabbar-button ((t (:background "#424242" :foreground "#999"))))
-	 '(tabbar-button-highlight ((t (:background "#424242" :foreground "#999"))))
-	 '(tabbar-modified ((t (:background "#424242" :foreground "#999" :height 0.9))))
-	 '(tabbar-separator ((t (:background "#424242" :height 1.0)))))
-	;;;
-	;; (set-face-attribute 'tabbar-default    nil :background "#323232" :foreground "#999999" :family "September" :height 0.9 :box nil)
-	;; (set-face-attribute 'tabbar-default    nil :background "#323232" :foreground "#999999" :height 0.9 :box nil)
-	;; (set-face-attribute 'tabbar-unselected nil :background "#424242" :foreground "#999999" :box nil)
-	;; (set-face-attribute 'tabbar-selected   nil :background "#424242" :foreground "#ffffff" :box nil)
-	;; (set-face-attribute 'tabbar-button nil :box nil)
-	;; (set-face-attribute 'tabbar-separator nil :height 1.0 :background "#424242")
-	(defvar my-tabbar-show-buffers
-	  '("*Faces*" "*vc-" "*eshell*" "*Lingr Status*"))
-	(defvar my-tabbar-hide-buffers
-	  '("*" "Lingr["))
-	(defun my-tabbar-buffer-list ()
-	  ;; (let* ((hides (list ?\  ?\*))
-	  (let* ((hides (regexp-opt my-tabbar-hide-buffers))
-		 (shows (regexp-opt my-tabbar-show-buffers))
-		 (cur-buf (current-buffer))
-		 (tabs (delq
-			nil
-			(mapcar (lambda (buf)
-				  (let ((name (buffer-name buf)))
-				    (when (or (string-match shows name)
-					      (not (string-match hides name)))
-				      buf)))
-				(buffer-list)))))
-	    (if (memq cur-buf tabs) tabs (cons cur-buf tabs))))
-	(setq tabbar-buffer-list-function 'my-tabbar-buffer-list)
-	)
+  (tabbar-mode 1)
+  (tabbar-mwheel-mode -1)
+  (setq tabbar-buffer-groups-function nil)
+  (dolist (btn '(tabbar-buffer-home-button tabbar-scroll-left-button tabbar-scroll-right-button))
+    (set btn (cons (cons "" nil) (cons "" nil))))
+  ;; (setq tabbar-auto-scroll-flag nil)
+  (setq tabbar-separator '(1.0))
+  ;;;
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(tabbar-background-color "#323232")
+   '(tabbar-cycle-scope (quote tabs)))
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(tabbar-default ((t (:background "#424242" :foreground "#999" :height 0.9))))
+   '(tabbar-unselected ((t (:background "#424242" :foreground "#999" :height 0.9))))
+   '(tabbar-selected ((t (:background "#424242" :foreground "#fff" :height 0.9))))
+   '(tabbar-button ((t (:background "#424242" :foreground "#999"))))
+   '(tabbar-button-highlight ((t (:background "#424242" :foreground "#999"))))
+   '(tabbar-modified ((t (:background "#424242" :foreground "#999" :height 0.9))))
+   '(tabbar-separator ((t (:background "#424242" :height 1.0)))))
+  ;;;
+  ;; (set-face-attribute 'tabbar-default    nil :background "#323232" :foreground "#999999" :family "September" :height 0.9 :box nil)
+  ;; (set-face-attribute 'tabbar-default    nil :background "#323232" :foreground "#999999" :height 0.9 :box nil)
+  ;; (set-face-attribute 'tabbar-unselected nil :background "#424242" :foreground "#999999" :box nil)
+  ;; (set-face-attribute 'tabbar-selected   nil :background "#424242" :foreground "#ffffff" :box nil)
+  ;; (set-face-attribute 'tabbar-button nil :box nil)
+  ;; (set-face-attribute 'tabbar-separator nil :height 1.0 :background "#424242")
+  (defvar my-tabbar-show-buffers
+    '("*Faces*" "*vc-" "*eshell*" "*Lingr Status*"))
+  (defvar my-tabbar-hide-buffers
+    '("*" "Lingr["))
+  (defun my-tabbar-buffer-list ()
+    ;; (let* ((hides (list ?\  ?\*))
+    (let* ((hides (regexp-opt my-tabbar-hide-buffers))
+     (shows (regexp-opt my-tabbar-show-buffers))
+     (cur-buf (current-buffer))
+     (tabs (delq
+      nil
+      (mapcar (lambda (buf)
+          (let ((name (buffer-name buf)))
+            (when (or (string-match shows name)
+                (not (string-match hides name)))
+              buf)))
+        (buffer-list)))))
+      (if (memq cur-buf tabs) tabs (cons cur-buf tabs))))
+  (setq tabbar-buffer-list-function 'my-tabbar-buffer-list)
+  )
 #+END_SRC
 
 ** theme
@@ -489,35 +489,35 @@ This is my kanari sugoi =benri.el= file (kanari).
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'el-get-sources
              '(:name railscasts-theme
-										 :type github
-										 :website "https://github.com/itiut/railscasts-theme"
-										 :description "Railscasts color theme for GNU Emacs 24"
-										 :pkgname "itiut/railscasts-theme")
+                     :type github
+                     :website "https://github.com/itiut/railscasts-theme"
+                     :description "Railscasts color theme for GNU Emacs 24"
+                     :pkgname "itiut/railscasts-theme")
 
-						 )
+             )
 (add-to-list 'el-get-sources
              '(:name replace-colorthemes
-		     :type github
-		     :website "https://github.com/emacs-jp/replace-colorthemes"
-		     :description "Replace color-theme with Emacs theme framework"
-		     :pkgname "emacs-jp/replace-colorthemes")
+         :type github
+         :website "https://github.com/emacs-jp/replace-colorthemes"
+         :description "Replace color-theme with Emacs theme framework"
+         :pkgname "emacs-jp/replace-colorthemes")
 
-	     )
+       )
 
 
 (when (require 'helm-themes nil t)
 )
 (el-get 'sync 'replace-colorthemes)
 (when (require 'replace-colorthemes nil t)
-	(add-to-list 'custom-theme-load-path
-		     (file-name-as-directory "~/.emacs.d/el-get/replace-colorthemes/"))
-	(load-theme 'desert t nil))
+  (add-to-list 'custom-theme-load-path
+         (file-name-as-directory "~/.emacs.d/el-get/replace-colorthemes/"))
+  (load-theme 'desert t nil))
 
 (el-get 'sync 'railscasts-theme)
 (when (require 'railscasts-theme nil t)
-	(add-to-list 'custom-theme-load-path
-		     (file-name-as-directory "~/.emacs.d/el-get/railscasts-theme/"))
-	(load-theme 'railscasts t nil))
+  (add-to-list 'custom-theme-load-path
+         (file-name-as-directory "~/.emacs.d/el-get/railscasts-theme/"))
+  (load-theme 'railscasts t nil))
 
 
 
@@ -572,19 +572,19 @@ This is my kanari sugoi =benri.el= file (kanari).
 ;; Dont highlight trailing whitespace in eshell
 (add-hook 'eshell-mode-hook
           (lambda ()
-						(setq-local ac-sources
-									'(ac-source-pcomplete
-										ac-source-filename
-										;; ac-source-files-in-current-dir
-										;; ac-source-words-in-buffer
-										ac-source-dictionary
-										))
-						(setq-local ac-auto-start nil)
-						(evil-define-key 'insert ac-mode-map (kbd "TAB") 'auto-complete)
+            (setq-local ac-sources
+                  '(ac-source-pcomplete
+                    ac-source-filename
+                    ;; ac-source-files-in-current-dir
+                    ;; ac-source-words-in-buffer
+                    ac-source-dictionary
+                    ))
+            (setq-local ac-auto-start nil)
+            (evil-define-key 'insert ac-mode-map (kbd "TAB") 'auto-complete)
             (setq-local show-trailing-whitespace nil)))
 
 (add-hook 'eshell-preoutput-filter-functions
-					'ansi-color-filter-apply)
+          'ansi-color-filter-apply)
 
 (require 'ansi-color)
 (add-hook 'eshell-load-hook 'ansi-color-for-comint-mode-on)
@@ -603,16 +603,16 @@ This is my kanari sugoi =benri.el= file (kanari).
 ;; Prompt
 (setq eshell-prompt-regexp "^[~/].* ❯ ")
 (setq eshell-prompt-function (lambda ()
-			       (concat
-				(abbreviate-file-name (eshell/pwd))
-				" ❯ ")))
+             (concat
+        (abbreviate-file-name (eshell/pwd))
+        " ❯ ")))
 
 ;; ;; (setq eshell-prompt-regexp "^\\([~/]?*$\\|❯ \\)")
 ;; (setq eshell-prompt-function (lambda ()
-;; 			       (concat
-;; 				(abbreviate-file-name (eshell/pwd))
-;; 				"\n"
-;; 				"❯ ")))
+;;              (concat
+;;         (abbreviate-file-name (eshell/pwd))
+;;         "\n"
+;;         "❯ ")))
 
 ;; (defcustom eshell-prompt-regexp-lastline "^❯ "
 ;;   "A regexp pattern of the last line of multi-line prompt"
@@ -654,8 +654,8 @@ This is my kanari sugoi =benri.el= file (kanari).
 (el-get 'sync 'quickrun)
 
 (when (require 'quickrun nil t)
-	(define-key evil-normal-state-map (kbd "SPC r") 'quickrun)
-	)
+  (define-key evil-normal-state-map (kbd "SPC r") 'quickrun)
+  )
 #+END_SRC
 
 ** direx
@@ -671,7 +671,7 @@ This is my kanari sugoi =benri.el= file (kanari).
 (el-get 'sync 'flycheck-pos-tip)
 
 (when (require 'flycheck nil t)
-	(add-hook 'go-mode-hook 'flycheck-mode))
+  (add-hook 'go-mode-hook 'flycheck-mode))
 
 (with-eval-after-load 'flycheck
   (custom-set-variables
@@ -685,70 +685,70 @@ This is my kanari sugoi =benri.el= file (kanari).
 
 
 (when (require 'e2wm nil t)
-				;; keybinds
-				;;; Toggle e2wm
-				(define-key evil-normal-state-map (kbd "SPC m")
-					#'(lambda ()
-							(interactive)
-							(if (e2wm:managed-p)
-									(e2wm:stop-management)
-								  (e2wm:start-management))))
-				(evil-define-key nil e2wm:pst-minor-mode-keymap (kbd "<M-left>") 'e2wm:dp-code)
-				(evil-define-key nil e2wm:pst-minor-mode-keymap (kbd "<M-right>") 'e2wm:dp-two)
-				(evil-define-key nil e2wm:pst-minor-mode-keymap (kbd "<M-up>") 'e2wm:dp-dashboard)
-				(evil-define-key nil e2wm:pst-minor-mode-keymap (kbd "<M-down>") 'e2wm:dp-doc)
+        ;; keybinds
+        ;;; Toggle e2wm
+        (define-key evil-normal-state-map (kbd "SPC m")
+          #'(lambda ()
+              (interactive)
+              (if (e2wm:managed-p)
+                  (e2wm:stop-management)
+                  (e2wm:start-management))))
+        (evil-define-key nil e2wm:pst-minor-mode-keymap (kbd "<M-left>") 'e2wm:dp-code)
+        (evil-define-key nil e2wm:pst-minor-mode-keymap (kbd "<M-right>") 'e2wm:dp-two)
+        (evil-define-key nil e2wm:pst-minor-mode-keymap (kbd "<M-up>") 'e2wm:dp-dashboard)
+        (evil-define-key nil e2wm:pst-minor-mode-keymap (kbd "<M-down>") 'e2wm:dp-doc)
 
 
 ;; its 80 chars
 ; ------------------------------------------------------------------------------
-				(setq e2wm:c-code-recipe
-							'(| (:left-max-size 30)
-									(- (:upper-size-ratio 0.7) files history)
-									(- (:upper-size-ratio 0.7)
-										 (| (:right-max-size 35) main imenu)
-										 sub)))
-				(add-hook 'e2wm:def-plugin-files-mode-hook '(lambda ()
-																											(buffer-face-set (font-face-attributes "Source Code Pro Light-12:weight=normal:slant=normal"))
-																											))
-				(add-hook 'e2wm:def-plugin-imenu-mode-hook '(lambda ()
-																											(buffer-face-set (font-face-attributes "Source Code Pro Light-12:weight=normal:slant=normal"))
-																											))
+        (setq e2wm:c-code-recipe
+              '(| (:left-max-size 30)
+                  (- (:upper-size-ratio 0.7) files history)
+                  (- (:upper-size-ratio 0.7)
+                     (| (:right-max-size 35) main imenu)
+                     sub)))
+        (add-hook 'e2wm:def-plugin-files-mode-hook '(lambda ()
+                                                      (buffer-face-set (font-face-attributes "Source Code Pro Light-12:weight=normal:slant=normal"))
+                                                      ))
+        (add-hook 'e2wm:def-plugin-imenu-mode-hook '(lambda ()
+                                                      (buffer-face-set (font-face-attributes "Source Code Pro Light-12:weight=normal:slant=normal"))
+                                                      ))
 
-				(add-hook 'e2wm:pre-start-hook '(lambda () (tabbar-mode 0)))
-				(add-hook 'e2wm:post-stop-hook '(lambda () (tabbar-mode t)))
+        (add-hook 'e2wm:pre-start-hook '(lambda () (tabbar-mode 0)))
+        (add-hook 'e2wm:post-stop-hook '(lambda () (tabbar-mode t)))
 
         ;;; Plugin: Files
-				;;; e2wm:def-plugin-files-mode-map
+        ;;; e2wm:def-plugin-files-mode-map
         (evil-define-key 'normal e2wm:def-plugin-files-mode-map
-					(kbd "RET") 'e2wm:def-plugin-files-select-command)
+          (kbd "RET") 'e2wm:def-plugin-files-select-command)
         (evil-define-key 'normal e2wm:def-plugin-files-mode-map
-					(kbd "SPC") 'e2wm:def-plugin-files-show-command)
+          (kbd "SPC") 'e2wm:def-plugin-files-show-command)
         (evil-define-key 'normal e2wm:def-plugin-files-mode-map
-					(kbd "+") 'e2wm:def-plugin-files-mkdir-command)
+          (kbd "+") 'e2wm:def-plugin-files-mkdir-command)
         (evil-define-key 'normal e2wm:def-plugin-files-mode-map
-					(kbd "D") 'e2wm:def-plugin-files-open-dired-command)
+          (kbd "D") 'e2wm:def-plugin-files-open-dired-command)
         (evil-define-key 'normal e2wm:def-plugin-files-mode-map
-					(kbd "^") 'e2wm:def-plugin-files-updir-command)
+          (kbd "^") 'e2wm:def-plugin-files-updir-command)
         (evil-define-key 'normal e2wm:def-plugin-files-mode-map
-					(kbd "d") 'e2wm:def-plugin-files-delete-command)
+          (kbd "d") 'e2wm:def-plugin-files-delete-command)
         (evil-define-key 'normal e2wm:def-plugin-files-mode-map
-					(kbd "g") 'e2wm:def-plugin-files-update-by-command)
+          (kbd "g") 'e2wm:def-plugin-files-update-by-command)
         (evil-define-key 'normal e2wm:def-plugin-files-mode-map
-					(kbd "h") 'e2wm:def-plugin-files-toggle-hidden-files-command)
+          (kbd "h") 'e2wm:def-plugin-files-toggle-hidden-files-command)
         (evil-define-key 'normal e2wm:def-plugin-files-mode-map
-					(kbd "r") 'e2wm:def-plugin-files-rename-command)
+          (kbd "r") 'e2wm:def-plugin-files-rename-command)
         (evil-define-key 'normal e2wm:def-plugin-files-mode-map
-					(kbd "s") 'e2wm:def-plugin-files-sort-name-command)
+          (kbd "s") 'e2wm:def-plugin-files-sort-name-command)
         (evil-define-key 'normal e2wm:def-plugin-files-mode-map
-					(kbd "t") 'e2wm:def-plugin-files-sort-time-command)
+          (kbd "t") 'e2wm:def-plugin-files-sort-time-command)
         (evil-define-key 'normal e2wm:def-plugin-files-mode-map
-					(kbd "z") 'e2wm:def-plugin-files-sort-size-command)
-				;;; e2wm:def-plugin-imenu-mode-map
-				(evil-define-key 'normal e2wm:def-plugin-imenu-mode-map
-					(kbd "RET") 'e2wm:def-plugin-imenu-jump-command)
-				(evil-define-key 'normal e2wm:def-plugin-imenu-mode-map
-					(kbd "SPC") 'e2wm:def-plugin-imenu-show-command)
-				;;; (print e2wm:def-plugin-history-list-mode-map)
+          (kbd "z") 'e2wm:def-plugin-files-sort-size-command)
+        ;;; e2wm:def-plugin-imenu-mode-map
+        (evil-define-key 'normal e2wm:def-plugin-imenu-mode-map
+          (kbd "RET") 'e2wm:def-plugin-imenu-jump-command)
+        (evil-define-key 'normal e2wm:def-plugin-imenu-mode-map
+          (kbd "SPC") 'e2wm:def-plugin-imenu-show-command)
+        ;;; (print e2wm:def-plugin-history-list-mode-map)
 )
 #+END_SRC
 
@@ -758,7 +758,7 @@ This is my kanari sugoi =benri.el= file (kanari).
 (el-get 'sync 'powerline)
 
 (when (require 'powerline nil t)
-				(powerline-center-evil-theme))
+        (powerline-center-evil-theme))
 #+END_SRC
 
 ** open-junk-file
@@ -784,18 +784,18 @@ This is my kanari sugoi =benri.el= file (kanari).
 #+BEGIN_SRC emacs-lisp
 (el-get 'sync 'popwin)
 (when (require 'popwin nil t)
-	(popwin-mode 1)
-	(push '("helm" :regexp t) popwin:special-display-config)
-	(push '("*Help*" :noselect t) popwin:special-display-config)
-	(push '("*ruby*") popwin:special-display-config)
-	(push '("*quickrun*") popwin:special-display-config)
-	(push '("*twittering-edit*") popwin:special-display-config)
-	(push '("*coffee-compiled*" :noselect t :height 0.5) popwin:special-display-config)
-	(push '("*el-get packages*" :height 0.7) popwin:special-display-config)
-	(push '(" *auto-async-byte-compile*" :noselect t :height 10) popwin:special-display-config)
-	(push '("^\*go-direx:" :regexp t :position left :width 30 :dedicated t :stick t)
-	      popwin:special-display-config)
-	;; (evil-define-key 'normal popwin:keymap (kbd "C-q") 'popwin:close-popup-window)
+  (popwin-mode 1)
+  (push '("helm" :regexp t) popwin:special-display-config)
+  (push '("*Help*" :noselect t) popwin:special-display-config)
+  (push '("*ruby*") popwin:special-display-config)
+  (push '("*quickrun*") popwin:special-display-config)
+  (push '("*twittering-edit*") popwin:special-display-config)
+  (push '("*coffee-compiled*" :noselect t :height 0.5) popwin:special-display-config)
+  (push '("*el-get packages*" :height 0.7) popwin:special-display-config)
+  (push '(" *auto-async-byte-compile*" :noselect t :height 10) popwin:special-display-config)
+  (push '("^\*go-direx:" :regexp t :position left :width 30 :dedicated t :stick t)
+        popwin:special-display-config)
+  ;; (evil-define-key 'normal popwin:keymap (kbd "C-q") 'popwin:close-popup-window)
 )
 #+END_SRC
 
@@ -817,28 +817,29 @@ This is my kanari sugoi =benri.el= file (kanari).
 ;; Highlight pair blocks
 (el-get 'sync 'ruby-block)
 
-(when (require 'rbenv)
+(when (require 'rbenv nil t)
+   )
 
 (when (require 'Enhanced-Ruby-Mode nil t)
-	(add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
-	(add-to-list 'auto-mode-alist '("Gemfile$" . enh-ruby-mode))
-	(add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))
-	)
+  (add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
+  (add-to-list 'auto-mode-alist '("Gemfile$" . enh-ruby-mode))
+  (add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))
+  )
 
 (when (require 'ruby-block nil t)
-	(ruby-block-mode t)
-	(setq ruby-block-highlight-toggle t))
+  (ruby-block-mode t)
+  (setq ruby-block-highlight-toggle t))
 
-;; (when (require 'ruby-end t)
+;; (when (require 'ruby-end t))
 
 (add-hook 'enh-ruby-mode-hook '(lambda ()
-																 (when (require 'ruby-electric nil t)
+                                 (when (require 'ruby-electric nil t)
                                    (ruby-electric-mode t))
-																 (add-to-list 'ac-sources 'ac-source-yasnippet)))
+                                 (add-to-list 'ac-sources 'ac-source-yasnippet)))
 
 
 (when (require 'auto-complete nil t)
-	(add-to-list 'ac-modes 'enh-ruby-mode))
+  (add-to-list 'ac-modes 'enh-ruby-mode))
 
 
 ;; template
@@ -862,12 +863,12 @@ This is my kanari sugoi =benri.el= file (kanari).
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'el-get-sources
              '(
-							 :name yasnippet-golang
-										 :type github
-										 :website "https://github.com/atotto/yasnippet-golang"
-										 :description "emacs snippet (yasnippets) for golang"
-										 :pkgname "atotto/yasnippet-golang")
-						 )
+               :name yasnippet-golang
+                     :type github
+                     :website "https://github.com/atotto/yasnippet-golang"
+                     :description "emacs snippet (yasnippets) for golang"
+                     :pkgname "atotto/yasnippet-golang")
+             )
 
 (el-get 'sync 'go-mode)
 (el-get 'sync 'go-autocomplete)
@@ -881,22 +882,22 @@ This is my kanari sugoi =benri.el= file (kanari).
 ;; yas-snippet-dirs
 
 (when (require 'auto-complete nil t)
-	(add-to-list 'ac-modes 'go-mode))
+  (add-to-list 'ac-modes 'go-mode))
 
 (add-hook 'go-mode-hook '(lambda ()
-													 (add-to-list 'ac-sources 'ac-source-yasnippet)
-													 (setq tab-width 2)))
+                           (add-to-list 'ac-sources 'ac-source-yasnippet)
+                           (setq tab-width 2)))
 
 (add-hook 'before-save-hook 'gofmt-before-save)
 
 (when (require 'go-direx nil t)
-	(evil-define-key 'normal go-mode-map (kbd "SPC e") 'go-direx-pop-to-buffer))
+  (evil-define-key 'normal go-mode-map (kbd "SPC e") 'go-direx-pop-to-buffer))
 
 (when (require 'go-eldoc nil t)
-	;; (set-face-attribute 'eldoc-highlight-function-argument nil
+  ;; (set-face-attribute 'eldoc-highlight-function-argument nil
         ;;             :underline t :foreground "green"
         ;;             :weight 'bold)
-	(add-hook 'go-mode-hook 'go-eldoc-setup))
+  (add-hook 'go-mode-hook 'go-eldoc-setup))
 #+END_SRC
 
 ** coffee_script
@@ -914,9 +915,8 @@ This is my kanari sugoi =benri.el= file (kanari).
 ;; generating sourcemap
 (add-hook 'coffee-after-compile-hook 'sourcemap-goto-corresponding-point)
 
-(eval-after-load "coffee-mode"
-	'(progn
-		 (evil-define-key 'normal coffee-mode-map (kbd "SPC r") 'coffee-compile-buffer)))
+(with-eval-after-load "coffee-mode"
+  (evil-define-key 'normal coffee-mode-map (kbd "SPC r") 'coffee-compile-buffer))
 #+END_SRC
 
 ** markdown
@@ -945,34 +945,34 @@ This is my kanari sugoi =benri.el= file (kanari).
 #+BEGIN_SRC emacs-lisp
 (el-get 'sync 'lingr)
 (when (require 'lingr nil t)
-	(setq lingr-username secret-lingr-username
-	      lingr-password secret-lingr-password
-	      lingr-icon-mode t
-	      lingr-image-convert-program "/usr/local/bin/convert"
-	      lingr-icon-fix-size 24
-	      )
-	(evil-define-key 'normal lingr-room-map (kbd "j") 'lingr-room-next-nick)
-	(evil-define-key 'normal lingr-room-map (kbd "k") 'lingr-room-previous-nick)
-	(evil-define-key 'normal lingr-room-map (kbd "s") 'lingr-say-command)
-	(evil-define-key 'normal lingr-room-map (kbd "r") 'lingr-refresh-room)
-	(evil-define-key 'normal lingr-room-map (kbd "S-s") 'lingr-show-status)
-	(evil-define-key 'normal lingr-room-map (kbd "C-j") 'lingr-room-next-message)
-	(evil-define-key 'normal lingr-room-map (kbd "C-k") 'lingr-room-previous-message)
-	;; (evil-define-key 'normal lingr-status-buffer-map (kbd "C-RET") 'lingr-status-switch-room)
-	(evil-define-key 'normal lingr-status-buffer-map (kbd "RET") 'lingr-status-switch-room)
-	;; (evil-define-key 'normal lingr-status-buffer-map (kbd "RET") 'lingr-status-switch-room-other-window)
-	(evil-define-key 'normal lingr-status-buffer-map (kbd "n") 'lingr-room-next-message)
-	(evil-define-key 'normal lingr-status-buffer-map (kbd "p") 'lingr-room-previous-message)
-	(evil-define-key 'normal lingr-status-buffer-map (kbd "j") 'lingr-status-next-room)
-	(evil-define-key 'normal lingr-status-buffer-map (kbd "k") 'lingr-status-previous-room)
-	(evil-define-key 'normal lingr-status-buffer-map (kbd "f") 'lingr-status-jump-message)
-	;; (evil-define-key 'insert lingr-status-buffer-map (kbd "C-RET") ')
-	;; (print lingr-say-buffer-map)
-	(defun lingr-notif-message (message)
-	  (notif (concat "Lingr " (lingr-message-room message))
-		 (concat (lingr-message-nick message) ":" (lingr-message-text message))))
-	(add-hook 'lingr-message-hook 'lingr-notif-message)
-	)
+  (setq lingr-username secret-lingr-username
+        lingr-password secret-lingr-password
+        lingr-icon-mode t
+        lingr-image-convert-program "/usr/local/bin/convert"
+        lingr-icon-fix-size 24
+        )
+  (evil-define-key 'normal lingr-room-map (kbd "j") 'lingr-room-next-nick)
+  (evil-define-key 'normal lingr-room-map (kbd "k") 'lingr-room-previous-nick)
+  (evil-define-key 'normal lingr-room-map (kbd "s") 'lingr-say-command)
+  (evil-define-key 'normal lingr-room-map (kbd "r") 'lingr-refresh-room)
+  (evil-define-key 'normal lingr-room-map (kbd "S-s") 'lingr-show-status)
+  (evil-define-key 'normal lingr-room-map (kbd "C-j") 'lingr-room-next-message)
+  (evil-define-key 'normal lingr-room-map (kbd "C-k") 'lingr-room-previous-message)
+  ;; (evil-define-key 'normal lingr-status-buffer-map (kbd "C-RET") 'lingr-status-switch-room)
+  (evil-define-key 'normal lingr-status-buffer-map (kbd "RET") 'lingr-status-switch-room)
+  ;; (evil-define-key 'normal lingr-status-buffer-map (kbd "RET") 'lingr-status-switch-room-other-window)
+  (evil-define-key 'normal lingr-status-buffer-map (kbd "n") 'lingr-room-next-message)
+  (evil-define-key 'normal lingr-status-buffer-map (kbd "p") 'lingr-room-previous-message)
+  (evil-define-key 'normal lingr-status-buffer-map (kbd "j") 'lingr-status-next-room)
+  (evil-define-key 'normal lingr-status-buffer-map (kbd "k") 'lingr-status-previous-room)
+  (evil-define-key 'normal lingr-status-buffer-map (kbd "f") 'lingr-status-jump-message)
+  ;; (evil-define-key 'insert lingr-status-buffer-map (kbd "C-RET") ')
+  ;; (print lingr-say-buffer-map)
+  (defun lingr-notif-message (message)
+    (notif (concat "Lingr " (lingr-message-room message))
+     (concat (lingr-message-nick message) ":" (lingr-message-text message))))
+  (add-hook 'lingr-message-hook 'lingr-notif-message)
+  )
 #+END_SRC
 
 ** twitter
@@ -1003,11 +1003,12 @@ This is my kanari sugoi =benri.el= file (kanari).
 
 (el-get 'sync 'twittering-mode)
 (when (require 'twittering-mode nil t)
-	(require 'epa-file)
-	(setq twittering-use-master-password t)
-	(setq twittering-icon-mode t)
-	(setq twittering-timer-interval 300)
-	(add-hook 'twittering-mode-hook
-						'(lambda () (setq-local show-trailing-whitespace nil))))
+  (require 'epa-file)
+  (setq twittering-use-master-password t)
+  (setq twittering-icon-mode t)
+  (setq twittering-timer-interval 300)
+  (add-hook 'twittering-mode-hook
+            '(lambda () (setq-local show-trailing-whitespace nil))))
+
 #+END_SRC
 
