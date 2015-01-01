@@ -10,8 +10,6 @@ This is my kanari sugoi =benri.el= file (kanari).
 (require 'cl)
 #+END_SRC
 
-
-
 * User-defined macro and function
 
 ** Handle path variables benrily
@@ -44,7 +42,6 @@ This is my kanari sugoi =benri.el= file (kanari).
   )
 #+END_SRC
 
-
 * Add some pathes
 #+BEGIN_SRC emacs-lisp
 ;; rbenv
@@ -64,7 +61,6 @@ This is my kanari sugoi =benri.el= file (kanari).
 #+BEGIN_SRC emacs-lisp
 (load "~/.emacs.d/secret.el" nil t)
 #+END_SRC
-
 
 * Behavior
 #+BEGIN_SRC emacs-lisp
@@ -90,7 +86,6 @@ This is my kanari sugoi =benri.el= file (kanari).
 (setq auto-save-default nil)
 (setq auto-save-list-file-prefix nil)
 #+END_SRC
-
 
 * Appearance
 #+BEGIN_SRC emacs-lisp
@@ -149,6 +144,7 @@ This is my kanari sugoi =benri.el= file (kanari).
 #+END_SRC
 
 * Language
+
 #+BEGIN_SRC emacs-lisp
 ;; Use japanese
 (set-language-environment 'Japanese)
@@ -156,7 +152,6 @@ This is my kanari sugoi =benri.el= file (kanari).
 ;; Use UTF-8 as possible as can
 (prefer-coding-system 'utf-8)
 #+END_SRC
-
 
 * Edit
 
@@ -192,28 +187,27 @@ This is my kanari sugoi =benri.el= file (kanari).
 (setq auto-insert-directory "~/.emacs.d/templates/")
 #+END_SRC
 
-
 * Font
 
-|----------------+------------------------------------|
-| Language       | Sample Text                        |
-|----------------+------------------------------------|
-| Japanese       | あのイーハトーヴォの               |
-|                | すきとおった風、           |
-|                | 夏でも底に冷たさをもつ青いそら、 |
-|                | うつくしい森で飾られたモーリオ市、 |
-|                | 郊外のぎらぎらひかる草の波。 |
-| Chinese        | 祇辻飴葛蛸鯖鰯噌庖箸     |
-| English        | ABCDEFGHIJKLM                      |
-|                | abcdefghijklm                      |
-| Digit          | 1234567890                         |
-| Zenkaku Symbol | ┏┓┗┛                       |
-| Symbol         | Dingbats: [❯][☯][♞][☎]             |
-| Russian        | русский язык |
-|----------------+------------------------------------|
+	|----------------+------------------------------------|
+	| Language       | Sample Text                        |
+	|----------------+------------------------------------|
+	| Japanese       | あのイーハトーヴォの               |
+	|                | すきとおった風、                   |
+	|                | 夏でも底に冷たさをもつ青いそら、   |
+	|                | うつくしい森で飾られたモーリオ市、 |
+	|                | 郊外のぎらぎらひかる草の波。       |
+	| Chinese        | 祇辻飴葛蛸鯖鰯噌庖箸               |
+	| English        | ABCDEFGHIJKLM                      |
+	|                | abcdefghijklm                      |
+	| Digit          | 1234567890                         |
+	| Zenkaku Symbol | ┏┓┗┛                           |
+	| Symbol         | Dingbats: [❯][☯][♞][☎]             |
+	| Russian        | русский язык            |
+	|----------------+------------------------------------|
 
 
-#+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC emacs-lisp
 (when (fboundp 'global-font-lock-mode)
   (global-font-lock-mode t)
   (setq font-lock-support-mode 'jit-lock-mode))
@@ -226,3 +220,106 @@ This is my kanari sugoi =benri.el= file (kanari).
 (set-fontset-font "fontset-september" 'katakana-jisx0201 (font-spec :family "September" :size 14) nil 'append) ;; hankaku kana
 (add-to-list 'default-frame-alist '(font . "fontset-september"))
 #+END_SRC
+
+* Package config
+** el-get
+#+BEGIN_SRC emacs-lisp
+;; package manager config for el-get.
+;; Note that el-get depends on package.el.
+(require 'package)
+
+;;; Add MELPA repository
+(add-to-list 'package-archives
+ '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+;; Update load-path to load plugins which managed by el-get
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+;; Install el-get if it's not installed.
+(unless (require 'el-get nil t)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
+    (let (el-get-master-branch)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+    (el-get-elpa-build-local-recipes)
+    (el-get-emacswiki-build-local-recipes))
+#+END_SRC
+
+** evil
+
+#+BEGIN_SRC emacs-lisp
+;; Behavior
+(setq evil-search-module 'evil-search)
+;; Don't use emacs-state in any modes
+(setq evil-emacs-state-modes nil)
+
+(el-get 'sync 'evil)
+(el-get 'sync 'evil-indent-textobject)
+;; (el-get 'sync 'evil-leader)
+(el-get 'sync 'evil-matchit)
+(el-get 'sync 'evil-nerd-commenter)
+(el-get 'sync 'evil-numbers)
+(el-get 'sync 'evil-paredit)
+(el-get 'sync 'evil-surround)
+
+(when (require 'evil nil t)
+      (evil-mode 1)
+      ;; keymap
+      (define-key evil-normal-state-map (kbd "C-h") #'(lambda ()
+                    (interactive)
+                    (evil-insert-state)
+                    (insert-string " ")
+                    (evil-normal-state)))
+      (define-key evil-normal-state-map (kbd "C-l") #'(lambda ()
+                    (interactive)
+                    (evil-insert-state)
+                    (insert-string " ")
+                    (evil-normal-state)
+                    (evil-forward-char)
+                    ))
+      (define-key evil-normal-state-map (kbd "|") 'evil-window-vsplit)
+      (define-key evil-normal-state-map (kbd "_") 'evil-window-split)
+      (define-key evil-motion-state-map (kbd ";") 'evil-ex)
+      (define-key evil-insert-state-map (kbd "C-k") 'kill-line)
+      (define-key evil-insert-state-map (kbd "C-e") 'end-of-line)
+
+      ;;; bind escape key to cancel or go back to normal state
+      (defun evil-escape-or-quit (&optional prompt)
+        (interactive)
+        (cond
+         ((or (evil-normal-state-p) (evil-insert-state-p) (evil-visual-state-p)
+              (evil-replace-state-p) (evil-visual-state-p)) (kbd "<escape>"))
+         (t (kbd "C-g"))))
+      (define-key key-translation-map (kbd "s-w") #'evil-escape-or-quit)
+      (define-key evil-operator-state-map (kbd "s-w") #'evil-escape-or-quit)
+      (keyboard-translate ?\e ?\s-w)
+      ;; (define-key key-translation-map (kbd "ESC") #'evil-escape-or-quit)
+      ;; (define-key evil-operator-state-map (kbd "ESC") #'evil-escape-or-quit)
+
+
+      ;; specific mode
+      ;; (evil-set-initial-state 'eshell-mode 'emacs)
+      ;; Fix cursor color
+      (setq evil-default-cursor t)
+      (set-cursor-color "#FFFFFF")
+      )
+
+(when (require 'evil-nerd-commenter nil t)
+  (define-key evil-normal-state-map (kbd "C-- C--") 'evilnc-comment-or-uncomment-lines))
+
+(when (require 'surround nil t)
+      (global-surround-mode 1))
+
+(when (require 'evil-matchit nil t)
+  (global-evil-matchit-mode 1))
+
+(when (require 'evil-elscreen nil t))
+#+END_SRC
+
+** org
+#+BEGIN_SRC emacs-lisp
+(setq org-src-fontify-natively t)
+#+END_SRC
+
