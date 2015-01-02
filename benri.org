@@ -586,9 +586,18 @@ This is my kanari sugoi =benri.el= file (kanari).
 (add-hook 'eshell-preoutput-filter-functions
           'ansi-color-filter-apply)
 
-(require 'ansi-color)
+;; Escape sequence
+(autoload 'ansi-color-for-comint-mode-on "ansi-color"
+          "Set `ansi-color-for-comint-mode' to t." t)
 (add-hook 'eshell-load-hook 'ansi-color-for-comint-mode-on)
 
+;; ANSI color
+(require 'ansi-color)
+(require 'eshell)
+(defun eshell-handle-ansi-color ()
+      (ansi-color-apply-on-region eshell-last-output-start
+                                  eshell-last-output-end))
+    (add-to-list 'eshell-output-filter-functions 'eshell-handle-ansi-color)
 
 ;; Launch eshell after initialize emacs
 (add-hook 'after-init-hook (lambda() (eshell)))
