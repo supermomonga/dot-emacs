@@ -608,6 +608,11 @@ This is my kanari sugoi =benri.el= file (kanari).
 (add-to-list 'eshell-command-aliases-list (list "ls" "ls -la"))
 (add-to-list 'eshell-command-aliases-list (list "e" "find-file $1"))
 (add-to-list 'eshell-command-aliases-list (list "be" "bundle exec $1"))
+(add-to-list 'eshell-command-aliases-list (list "gs" "git status"))
+(add-to-list 'eshell-command-aliases-list (list "ga" "git add"))
+(add-to-list 'eshell-command-aliases-list (list "gd" "git diff"))
+(add-to-list 'eshell-command-aliases-list (list "gc" "git commit"))
+(add-to-list 'eshell-command-aliases-list (list "gcm" "git commit -m"))
 
 ;; Prompt
 (setq eshell-prompt-regexp "^[~/].* ❯ ")
