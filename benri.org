@@ -690,11 +690,14 @@ This is my kanari sugoi =benri.el= file (kanari).
 (add-to-list 'eshell-command-aliases-list (list "bi" "bundle install"))
 (add-to-list 'eshell-command-aliases-list (list "bu" "bundle update"))
 ;; Git
+(add-to-list 'eshell-command-aliases-list (list "git" "gh $1"))
+(add-to-list 'eshell-command-aliases-list (list "gb" "git browse"))
 (add-to-list 'eshell-command-aliases-list (list "gs" "git status"))
-(add-to-list 'eshell-command-aliases-list (list "ga" "git add"))
+(add-to-list 'eshell-command-aliases-list (list "ga" "git add $1"))
 (add-to-list 'eshell-command-aliases-list (list "gd" "git diff"))
-(add-to-list 'eshell-command-aliases-list (list "gc" "git commit"))
-(add-to-list 'eshell-command-aliases-list (list "gcm" "git commit -m"))
+(add-to-list 'eshell-command-aliases-list (list "gc" "git commit $1"))
+(add-to-list 'eshell-command-aliases-list (list "gcm" "git commit -m $1"))
+(add-to-list 'eshell-command-aliases-list (list "gcam" "git commit -am $1"))
 #+END_SRC
 
 *** Prompt
