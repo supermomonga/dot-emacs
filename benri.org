@@ -1,6 +1,7 @@
 #+TITLE: benri.org
-#+OPTIONS: toc:2 num:nil ^:nil
+#+AUTHOR: supermomonga
 #+LANGUAGE: ja
+#+OPTIONS: toc:2 num:nil ^:nil
 
 This is my kanari sugoi =benri.el= file (kanari).
 
