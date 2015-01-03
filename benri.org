@@ -664,9 +664,13 @@ This is my kanari sugoi =benri.el= file (kanari).
             (setq-local ac-auto-start nil)
             (evil-define-key 'insert ac-mode-map (kbd "TAB") 'auto-complete)
             (setq-local show-trailing-whitespace nil)))
+#+END_SRC
 
-(add-hook 'eshell-preoutput-filter-functions
-          'ansi-color-filter-apply)
+*** set some env variables
+
+#+BEGIN_SRC emacs-lisp
+(setenv "PAGER" "")
+(setenv "TERM" "xterm-256color")
 #+END_SRC
 
 *** Treat escape sequence and ANSI color
@@ -677,6 +681,9 @@ This is my kanari sugoi =benri.el= file (kanari).
 (autoload 'ansi-color-for-comint-mode-on "ansi-color"
           "Set `ansi-color-for-comint-mode' to t." t)
 (add-hook 'eshell-load-hook 'ansi-color-for-comint-mode-on)
+
+(add-hook 'eshell-preoutput-filter-functions
+          'ansi-color-filter-apply)
 
 ;; ANSI color
 (require 'ansi-color)
