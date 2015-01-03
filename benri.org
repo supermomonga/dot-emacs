@@ -518,10 +518,9 @@ This is my kanari sugoi =benri.el= file (kanari).
 (when (require 'helm-themes nil t)
 )
 (el-get 'sync 'replace-colorthemes)
-(when (require 'replace-colorthemes nil t)
   (add-to-list 'custom-theme-load-path
          (file-name-as-directory "~/.emacs.d/el-get/replace-colorthemes/"))
-  (load-theme 'desert t nil))
+  ;; (load-theme 'desert t nil)
 
 (el-get 'sync 'railscasts-theme)
 (when (require 'railscasts-theme nil t)
