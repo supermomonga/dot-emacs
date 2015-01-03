@@ -101,9 +101,10 @@ This is my kanari sugoi =benri.el= file (kanari).
         (space-mark 2336 [2340] [95])
         (space-mark 3616 [3620] [95])
         (space-mark 3872 [3876] [95])
-        (space-mark ?\x3000 [?\□]) ;; Zenkaku space
-        (tab-mark 9 [9655 9] [92 9]) ; tab, ▷
+        (space-mark ?\x3000 [?\□]) ;; Zenkaku space [　]
+        (tab-mark ?\t [?\x276F ?\t] [?\\ ?\t]) ; tab, ❯ [	]
         ))
+(global-whitespace-mode 1)
 
 ;; Show trailing whitespaces
 (setq-default show-trailing-whitespace t)
