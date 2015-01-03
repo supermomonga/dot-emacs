@@ -326,6 +326,13 @@ This is my kanari sugoi =benri.el= file (kanari).
 ** org
 #+BEGIN_SRC emacs-lisp
 (setq org-src-fontify-natively t)
+(add-hook 'org-mode-hook
+          (lambda ()
+            (setq-local ac-sources (append my-ac-sources '(
+              ac-source-functions
+              ac-source-symbols
+              ac-source-variables
+            )))))
 #+END_SRC
 
 ** yasnippet
@@ -386,6 +393,7 @@ This is my kanari sugoi =benri.el= file (kanari).
   (add-to-list 'ac-modes 'clojure-mode)
   (add-to-list 'ac-modes 'go-mode)
   (add-to-list 'ac-modes 'ruby-mode)
+  (add-to-list 'ac-modes 'org-mode)
   ;; (print ac-sources)
   ;; (evil-define-key 'normal eshell-mode-map (kbd "C-M-i") 'auto-complete)
   ;; (evil-define-key 'insert eshell-mode-map (kbd "C-M-i") 'auto-complete)
