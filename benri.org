@@ -887,7 +887,9 @@ This is my kanari sugoi =benri.el= file (kanari).
 (el-get 'sync 'powerline)
 
 (when (require 'powerline nil t)
-        (powerline-center-evil-theme))
+        (custom-set-variables '(powerline-default-separator 'slant))
+        (powerline-center-evil-theme)
+)
 #+END_SRC
 
 ** open-junk-file
