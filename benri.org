@@ -886,7 +886,8 @@ This is my kanari sugoi =benri.el= file (kanari).
 (el-get 'sync 'powerline)
 
 (when (require 'powerline nil t)
-        (custom-set-variables '(powerline-default-separator 'slant))
+        ;; (custom-set-variables '(powerline-default-separator 'slant))
+        (custom-set-variables '(powerline-default-separator nil))
         (powerline-center-evil-theme)
 )
 #+END_SRC
