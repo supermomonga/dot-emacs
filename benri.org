@@ -649,13 +649,18 @@ This is my kanari sugoi =benri.el= file (kanari).
 
 #+END_SRC
 
-*** Dont highlight trailing whitespace in eshell
+*** Hook
 
 #+BEGIN_SRC emacs-lisp
 
 (add-hook 'eshell-mode-hook
           (lambda ()
-            (setq-local ac-sources '(ac-source-pcomplete))
+            (setq-local ac-sources '(
+              ac-source-pcomplete
+              ac-source-functions
+              ac-source-symbols
+              ac-source-variables
+            ))
             (setq-local ac-auto-start nil)
             (evil-define-key 'insert ac-mode-map (kbd "TAB") 'auto-complete)
             (setq-local show-trailing-whitespace nil)))
