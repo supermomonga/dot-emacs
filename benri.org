@@ -741,20 +741,20 @@ is closed."
 (setq eshell-command-aliases-list '())
 (add-to-list 'eshell-command-aliases-list (list "op" "open ."))
 (add-to-list 'eshell-command-aliases-list (list "ls" "ls -la"))
-(add-to-list 'eshell-command-aliases-list (list "e" "find-file $1"))
+(add-to-list 'eshell-command-aliases-list (list "e" "find-file $*"))
 ;; Ruby bundler
-(add-to-list 'eshell-command-aliases-list (list "be" "bundle exec $1"))
+(add-to-list 'eshell-command-aliases-list (list "be" "bundle exec $*"))
 (add-to-list 'eshell-command-aliases-list (list "bi" "bundle install"))
 (add-to-list 'eshell-command-aliases-list (list "bu" "bundle update"))
 ;; Git
-(add-to-list 'eshell-command-aliases-list (list "git" "gh $1"))
+(add-to-list 'eshell-command-aliases-list (list "git" "gh $*"))
 (add-to-list 'eshell-command-aliases-list (list "gb" "git browse"))
 (add-to-list 'eshell-command-aliases-list (list "gs" "git status"))
-(add-to-list 'eshell-command-aliases-list (list "ga" "git add $1"))
+(add-to-list 'eshell-command-aliases-list (list "ga" "git add $*"))
 (add-to-list 'eshell-command-aliases-list (list "gd" "git diff"))
-(add-to-list 'eshell-command-aliases-list (list "gc" "git commit $1"))
-(add-to-list 'eshell-command-aliases-list (list "gcm" "git commit -m $1"))
-(add-to-list 'eshell-command-aliases-list (list "gcam" "git commit -am $1"))
+(add-to-list 'eshell-command-aliases-list (list "gc" "git commit $*"))
+(add-to-list 'eshell-command-aliases-list (list "gcm" "git commit -m $*"))
+(add-to-list 'eshell-command-aliases-list (list "gcam" "git commit -am $*"))
 #+END_SRC
 
 *** Prompt
