@@ -323,6 +323,40 @@ This is my kanari sugoi =benri.el= file (kanari).
 )
 #+END_SRC
 
+*** Don't close emacs by q command
+
+#+BEGIN_SRC emacs-lisp
+;; (defadvice evil-quit (around tabclose-or-quit activate)
+;;   (if (> (length (elscreen-get-screen-list)) 1)
+;;       (condition-case nil
+;;           (delete-window)
+;;         (error (evil-tab-close)))
+;;     ad-do-it))
+(evil-define-command my-evil-quit (&optional force)
+  "Closes the current window, current frame, Emacs.
+If the current frame belongs to some client the client connection
+is closed."
+  :repeat nil
+  (interactive "<!>")
+  (condition-case nil
+      (delete-window)
+    (error
+     (if (and (boundp 'server-buffer-clients)
+              (fboundp 'server-edit)
+              (fboundp 'server-buffer-done)
+              server-buffer-clients)
+         (if force
+             (server-buffer-done (current-buffer))
+           (server-edit))
+       (condition-case nil
+           (delete-frame)
+         (error
+          (if force
+            (kill-emacs)
+            (kill-buffer))))))))
+(evil-ex-define-cmd "q[uit]" 'my-evil-quit)
+#+END_SRC
+
 ** org
 #+BEGIN_SRC emacs-lisp
 (setq org-src-fontify-natively t)
