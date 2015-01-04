@@ -326,13 +326,7 @@ This is my kanari sugoi =benri.el= file (kanari).
 *** Don't close emacs by q command
 
 #+BEGIN_SRC emacs-lisp
-;; (defadvice evil-quit (around tabclose-or-quit activate)
-;;   (if (> (length (elscreen-get-screen-list)) 1)
-;;       (condition-case nil
-;;           (delete-window)
-;;         (error (evil-tab-close)))
-;;     ad-do-it))
-(evil-define-command my-evil-quit (&optional force)
+(evil-define-command evil-quit-without-kill (&optional force)
   "Closes the current window, current frame, Emacs.
 If the current frame belongs to some client the client connection
 is closed."
@@ -354,7 +348,7 @@ is closed."
           (if force
             (kill-emacs)
             (kill-buffer))))))))
-(evil-ex-define-cmd "q[uit]" 'my-evil-quit)
+(evil-ex-define-cmd "q[uit]" 'evil-quit-without-kill)
 #+END_SRC
 
 ** org
