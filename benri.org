@@ -503,7 +503,7 @@ is closed."
   (defvar my-tabbar-show-buffers
     '("*Faces*" "*vc-" "*eshell*" "*Lingr Status*"))
   (defvar my-tabbar-hide-buffers
-    '("*" "Lingr["))
+    '("*" "Lingr[" "org-src-fontification:"))
   (defun my-tabbar-buffer-list ()
     ;; (let* ((hides (list ?\  ?\*))
     (let* ((hides (regexp-opt my-tabbar-hide-buffers))
