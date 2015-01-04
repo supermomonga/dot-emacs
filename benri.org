@@ -1096,8 +1096,11 @@ is closed."
 (el-get 'sync 'magit)
 #+END_SRC
 
-*** Misc
+*** Begin magit in fullscreen
 #+BEGIN_SRC emacs-lisp
+(defadvice magit-status (around magit-status-fullscreen activate)
+  ad-do-it
+  (delete-other-windows))
 #+END_SRC
 
 *** Key mappings
