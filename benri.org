@@ -249,6 +249,9 @@ This is my kanari sugoi =benri.el= file (kanari).
       (eval-print-last-sexp)))
     (el-get-elpa-build-local-recipes)
     (el-get-emacswiki-build-local-recipes))
+
+;; Initialize user defined packages
+(setq el-get-sources '())
 #+END_SRC
 
 ** evil
@@ -1008,6 +1011,21 @@ is closed."
 
 ;; Treat Gemfile as ruby script
 (add-to-list 'auto-mode-alist '("Gemfile$" . enh-ruby-mode))
+#+END_SRC
+
+** rake
+
+*** Install
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'el-get-sources '(
+  :name rake
+  :description "rake.el"
+  :website "https://github.com/asok/rake.el"
+  :type github
+  :pkgname "asok/rake.el"
+  :depends (f dash cl-lib)
+))
+(el-get 'sync 'rake)
 #+END_SRC
 
 ** rinari
