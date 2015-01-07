@@ -738,7 +738,7 @@ is closed."
 (setq eshell-command-aliases-list '())
 (add-to-list 'eshell-command-aliases-list (list "op" "open ."))
 (add-to-list 'eshell-command-aliases-list (list "ls" "ls -la"))
-(add-to-list 'eshell-command-aliases-list (list "e" "find-file $*"))
+(add-to-list 'eshell-command-aliases-list (list "e" "find-file $1"))
 ;; Ruby bundler
 (add-to-list 'eshell-command-aliases-list (list "be" "bundle exec $*"))
 (add-to-list 'eshell-command-aliases-list (list "bi" "bundle install"))
