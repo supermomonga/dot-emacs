@@ -980,7 +980,7 @@ is closed."
 (el-get 'sync 'ruby-block)
 
 (when (require 'rbenv nil t)
-   )
+  (global-rbenv-mode))
 
 (when (require 'Enhanced-Ruby-Mode nil t)
   (add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
