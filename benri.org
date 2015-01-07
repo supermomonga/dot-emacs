@@ -1010,6 +1010,25 @@ is closed."
 (add-to-list 'auto-mode-alist '("Gemfile$" . enh-ruby-mode))
 #+END_SRC
 
+** rinari
+*** Install
+#+BEGIN_SRC emacs-lisp
+(el-get 'sync 'rinari)
+#+END_SRC
+
+*** Key mappings
+#+BEGIN_SRC emacs-lisp
+(when (require 'rinari nil t)
+  (evil-define-key 'normal rinari-minor-mode-map (kbd "SPC c f") 'rinari-find-by-context)
+  (evil-define-key 'normal rinari-minor-mode-map (kbd "SPC c m") 'rinari-find-model)
+  (evil-define-key 'normal rinari-minor-mode-map (kbd "SPC c v") 'rinari-find-view)
+  (evil-define-key 'normal rinari-minor-mode-map (kbd "SPC c c") 'rinari-find-controller)
+  (evil-define-key 'normal rinari-minor-mode-map (kbd "SPC c j") 'rinari-find-javascript)
+  (evil-define-key 'normal rinari-minor-mode-map (kbd "SPC c s") 'rinari-find-stylesheet)
+  (evil-define-key 'normal rinari-minor-mode-map (kbd "SPC c r") 'rinari-find-rspec)
+)
+#+END_SRC
+
 ** elisp
 
 #+BEGIN_SRC emacs-lisp
