@@ -1044,8 +1044,67 @@ is closed."
 ;;   (evil-define-key 'normal rinari-minor-mode-map (kbd "SPC c j") 'rinari-find-javascript)
 ;;   (evil-define-key 'normal rinari-minor-mode-map (kbd "SPC c s") 'rinari-find-stylesheet)
 ;;   (evil-define-key 'normal rinari-minor-mode-map (kbd "SPC c r") 'rinari-find-rspec)
+;; )
+#+END_SRC
+
+** projectile
+*** Install
+
+#+BEGIN_SRC emacs-lisp
+(el-get 'sync 'projectile)
+#+END_SRC
+
+*** Enable
+
+#+BEGIN_SRC emacs-lisp
+(when (require 'projectile nil t)
+  (projectile-global-mode))
+#+END_SRC
+
+** projectile-rails
+*** Install
+
+#+BEGIN_SRC emacs-lisp
+(el-get 'sync 'projectile-rails)
+#+END_SRC
+
+*** Enable
+
+#+BEGIN_SRC emacs-lisp
+(when (require 'projectile-rails nil t)
+    )
+;; (add-hook 'ruby-mode-hook 'projectile-mode)
+(add-hook 'projectile-mode-hook 'projectile-rails-on)
+#+END_SRC
+
+*** Key mappings
+
+#+BEGIN_SRC emacs-lisp
+(with-eval-after-load 'projectile-rails
+  (evil-define-key 'normal projectile-rails-mode-map (kbd "SPC c m") 'projectile-rails-find-current-model)
+  (evil-define-key 'normal projectile-rails-mode-map (kbd "SPC c c") 'projectile-rails-find-current-controller)
+  (evil-define-key 'normal projectile-rails-mode-map (kbd "SPC c v") 'projectile-rails-find-current-view)
+  (evil-define-key 'normal projectile-rails-mode-map (kbd "SPC c r") 'projectile-rails-find-current-spec)
+  (evil-define-key 'normal projectile-rails-mode-map (kbd "SPC c j") 'projectile-rails-find-javascript)
+  (evil-define-key 'normal projectile-rails-mode-map (kbd "SPC c s") 'projectile-rails-find-stylesheet)
+  ;; (evil-define-key 'normal projectile-rails-mode-map (kbd "SPC c t") 'projectile-rails-find-rake-task)
+  (evil-define-key 'normal projectile-rails-mode-map (kbd "SPC c i") 'projectile-rails-console)
+  (evil-define-key 'normal projectile-rails-mode-map (kbd "gf") 'projectile-rails-goto-file-at-point)
 )
 #+END_SRC
+
+*** fix above keybind can't be applied til state changes
+
+https://bitbucket.org/lyro/evil/issue/301/evil-define-key-for-minor-mode-does-not
+
+#+BEGIN_SRC emacs-lisp
+(with-eval-after-load 'projectile-rails
+  (add-hook 'find-file-hook
+            #'(lambda ()
+                (when projectile-rails-mode
+                    (evil-normalize-keymaps)))))
+#+END_SRC
+
 
 ** elisp
 
