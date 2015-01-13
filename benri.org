@@ -1189,6 +1189,12 @@ https://bitbucket.org/lyro/evil/issue/301/evil-define-key-for-minor-mode-does-no
 (add-to-list 'auto-mode-alist '("\\.txt$" . markdown-mode))
 #+END_SRC
 
+** docker
+*** Install
+#+BEGIN_SRC emacs-lisp
+(el-get 'sync 'dockerfile-mode)
+(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+#+END_SRC
 ** magit
 
 *** Install
