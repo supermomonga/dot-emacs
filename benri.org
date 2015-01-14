@@ -1456,7 +1456,10 @@ http://k2nr.me/blog/2014/12/22/emacs-magit.html
 (with-eval-after-load "jdunnet"
   (evil-set-initial-state 'dungeon-mode 'insert)
   (evil-set-initial-state 'dun-mode 'insert))
-(defadvice dun-parse (around dun-evil-parse activate)
+(defadvice dun-parse (around my-dun-parse activate)
+  ad-do-it
+  (end-of-buffer))
+(defadvice dun-unix-parse (around my-dun-unix-parse activate)
   ad-do-it
   (end-of-buffer))
 #+END_SRC
