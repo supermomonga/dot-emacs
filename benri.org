@@ -233,8 +233,10 @@ This is my kanari sugoi =benri.el= file (kanari).
 (require 'package)
 
 ;;; Add MELPA repository
+;; (add-to-list 'package-archives
+;;  '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives
- '("melpa" . "http://melpa.milkbox.net/packages/") t)
+             '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 
 ;; Update load-path to load plugins which managed by el-get
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
@@ -265,6 +267,8 @@ This is my kanari sugoi =benri.el= file (kanari).
 (el-get 'sync 'evil)
 (el-get 'sync 'evil-indent-textobject)
 ;; (el-get 'sync 'evil-leader)
+(el-get 'sync 'anzu)
+(el-get 'sync 'evil-anzu)
 (el-get 'sync 'evil-matchit)
 (el-get 'sync 'evil-nerd-commenter)
 (el-get 'sync 'evil-numbers)
@@ -312,6 +316,10 @@ This is my kanari sugoi =benri.el= file (kanari).
       (setq evil-default-cursor t)
       (set-cursor-color "#FFFFFF")
       )
+
+(global-anzu-mode +1)
+(with-eval-after-load 'evil
+  (require 'evil-anzu))
 
 (when (require 'evil-nerd-commenter nil t)
   (define-key evil-normal-state-map (kbd "C-- C--") 'evilnc-comment-or-uncomment-lines))
