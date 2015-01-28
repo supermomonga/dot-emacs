@@ -378,18 +378,21 @@ is closed."
 
 #+BEGIN_SRC emacs-lisp
 (el-get 'sync 'yasnippet)
+(el-get 'sync 'yasnippet-snippets)
 (el-get 'sync 'dropdown-list)
 
 (when (require 'yasnippet nil t)
         (require 'dropdown-list nil t)
         (setq yas-prompt-functions '(yas-dropdown-prompt yas-completing-prompt yas-ido-prompt yas-no-prompt))
         (add-to-list 'yas-snippet-dirs "~/.emacs.d/el-get/yasnippet-golang")
+        (add-to-list 'yas-snippet-dirs "~/.emacs.d/el-get/yasnippet-snippets")
         (yas-global-mode 1))
 #+END_SRC
 ** helm
 
 #+BEGIN_SRC emacs-lisp
 (el-get 'sync 'helm)
+(el-get 'sync 'helm-c-yasnippet)
 (el-get 'sync 'helm-descbinds)
 (el-get 'sync 'helm-swoop)
 (when (require 'helm nil t)
@@ -1168,6 +1171,68 @@ https://bitbucket.org/lyro/evil/issue/301/evil-define-key-for-minor-mode-does-no
         ;;             :weight 'bold)
   (add-hook 'go-mode-hook 'go-eldoc-setup))
 #+END_SRC
+
+** clojure
+
+*** Install
+
+#+begin_src emacs-lisp
+(el-get 'sync 'clojure-mode)
+(el-get 'sync 'cider)
+(el-get 'sync 'ac-cider)
+(el-get 'sync 'clojure-cheatsheet)
+(el-get 'sync 'clojure-test-mode)
+(el-get 'sync 'slamhound)
+#+end_src
+
+*** clojure-mode
+
+#+begin_src emacs-lisp
+(add-hook 'clojure-mode-hook
+          (lambda()
+            (define-clojure-indent
+              (defroutes 'defun)
+              (GET 2)
+              (POST 2)
+              (PUT 2)
+              (DELETE 2)
+              (HEAD 2)
+              (ANY 2)
+              (context 2))))
+#+end_src
+
+*** cider
+
+#+begin_src emacs-lisp
+(add-hook 'clojure-mode-hook 'cider-mode)
+(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+
+(autoload 'ac-cider "ac-cider" nil t)
+(add-hook 'cider-mode-hook 'ac-flyspell-workaround)
+(add-hook 'cider-mode-hook 'ac-cider-setup)
+(add-hook 'cider-repl-mode-hook 'ac-cider-setup)
+(with-eval-after-load "auto-complete"
+  (add-to-list 'ac-modes 'cider-mode)
+  (add-to-list 'ac-modes 'cider-repl-mode))
+#+end_src
+
+** S-expression languages
+
+*** Install
+
+Note that slime needs texinfo version 5 or higher to build.
+
+#+begin_src emacs-lisp
+(el-get 'sync 'slime)
+(el-get 'sync 'smartparens)
+(el-get 'sync 'rainbow-delimiters)
+#+end_src
+
+*** rainbow-delimiters
+
+#+begin_src emacs-lisp
+(add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
+#+end_src
 
 ** coffee_script
 
