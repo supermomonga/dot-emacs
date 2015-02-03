@@ -392,6 +392,7 @@ is closed."
 
 #+BEGIN_SRC emacs-lisp
 (el-get 'sync 'helm)
+(el-get 'sync 'helm-ag)
 (el-get 'sync 'helm-c-yasnippet)
 (el-get 'sync 'helm-descbinds)
 (el-get 'sync 'helm-swoop)
@@ -1253,6 +1254,12 @@ Note that slime needs texinfo version 5 or higher to build.
   (evil-define-key 'normal coffee-mode-map (kbd "SPC r") 'coffee-compile-buffer))
 #+END_SRC
 
+** markup languages
+*** haml
+#+begin_src emacs-lisp
+(el-get 'sync 'haml-mode)
+
+#+end_src
 ** markdown
 
 #+BEGIN_SRC emacs-lisp
