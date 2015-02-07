@@ -987,6 +987,9 @@ is closed."
 (rbenv-use-corresponding)
 ))
 
+;; Indent
+(setq enh-ruby-deep-indent-paren nil)
+
 ;; Improved highlight, indent, and benri features like syntax checker.
 (el-get 'sync 'Enhanced-Ruby-Mode)
 
