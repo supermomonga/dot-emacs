@@ -420,6 +420,7 @@ is closed."
   (setq ac-use-menu-map t)
   (setq ac-menu-height 20)
   (setq ac-auto-start 4)
+  (setq ac-expand-on-auto-complete nil)
   ;; (print ac-modes)
   ;; (set-face-background 'ac-candidate-face "lightgray")
   ;; (set-face-underline 'ac-candidate-face "darkgray")
