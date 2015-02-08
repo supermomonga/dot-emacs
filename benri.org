@@ -979,28 +979,27 @@ is closed."
 
 ** ruby
 
+*** Install
+#+BEGIN_SRC emacs-lisp
+(el-get 'sync 'rbenv)
+(el-get 'sync 'ruby-end)
+(el-get 'sync 'ruby-electric)
+(el-get 'sync 'ruby-block)
+(el-get 'sync 'Enhanced-Ruby-Mode)
+(el-get 'sync 'inf-ruby)
+(el-get 'sync 'inf-ruby-extension)
+#+END_SRC
+
+*** Config
+
 #+BEGIN_SRC emacs-lisp
 ;; Treat rbenv
-(el-get 'sync 'rbenv)
 (setq rbenv-modeline-function 'rbenv--modeline-plain)
 (add-hook 'enh-ruby-mode-hook '(lambda ()
-(rbenv-use-corresponding)
-))
+  (rbenv-use-corresponding)))
 
 ;; Indent
 (setq enh-ruby-deep-indent-paren nil)
-
-;; Improved highlight, indent, and benri features like syntax checker.
-(el-get 'sync 'Enhanced-Ruby-Mode)
-
-;; auto insert `end` for block
-(el-get 'sync 'ruby-end)
-
-;; auto insert `end` for block
-(el-get 'sync 'ruby-electric)
-
-;; Highlight pair blocks
-(el-get 'sync 'ruby-block)
 
 (when (require 'rbenv nil t)
   (global-rbenv-mode))
