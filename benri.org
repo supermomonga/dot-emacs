@@ -426,8 +426,10 @@ is closed."
   ;; (set-face-underline 'ac-candidate-face "darkgray")
   ;; (set-face-background 'ac-selection-face "steelblue")
   ;; (print ac-use-quick-help)
-  ;; (setq ac-quick-help-prefer-x t)
+  (setq ac-quick-help-prefer-x t)
   (setq ac-quick-help-delay 0.0)
+  (el-get 'sync 'pos-tip)
+  (require 'pos-tip)
   ;; ac-sources
   (defvar my-ac-sources
     '(ac-source-yasnippet
@@ -520,11 +522,10 @@ is closed."
   ;; (set-face-attribute 'tabbar-button nil :box nil)
   ;; (set-face-attribute 'tabbar-separator nil :height 1.0 :background "#424242")
   (defvar my-tabbar-show-buffers
-    '("*Faces*" "*vc-" "*eshell*" "*Lingr Status*"))
+    '("*Faces*" "*vc-" "*eshell*" "*Lingr Status*" "*jazzradio*"))
   (defvar my-tabbar-hide-buffers
     '("*" "Lingr[" "org-src-fontification:"))
   (defun my-tabbar-buffer-list ()
-    ;; (let* ((hides (list ?\  ?\*))
     (let* ((hides (regexp-opt my-tabbar-hide-buffers))
      (shows (regexp-opt my-tabbar-show-buffers))
      (cur-buf (current-buffer))
@@ -545,21 +546,23 @@ is closed."
 
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'el-get-sources
-             '(:name railscasts-theme
-                     :type github
-                     :website "https://github.com/itiut/railscasts-theme"
-                     :description "Railscasts color theme for GNU Emacs 24"
-                     :pkgname "itiut/railscasts-theme")
-
-             )
+  '(:name railscasts-theme
+    :type github
+    :website "https://github.com/itiut/railscasts-theme"
+    :description "Railscasts color theme for GNU Emacs 24"
+    :pkgname "itiut/railscasts-theme"))
 (add-to-list 'el-get-sources
-             '(:name replace-colorthemes
-         :type github
-         :website "https://github.com/emacs-jp/replace-colorthemes"
-         :description "Replace color-theme with Emacs theme framework"
-         :pkgname "emacs-jp/replace-colorthemes")
-
-       )
+  '(:name replace-colorthemes
+    :type github
+    :website "https://github.com/emacs-jp/replace-colorthemes"
+    :description "Replace color-theme with Emacs theme framework"
+    :pkgname "emacs-jp/replace-colorthemes"))
+(add-to-list 'el-get-sources
+  '(:name jazzradio
+    :type github
+    :website "https://github.com/syohex/emacs-jazzradio"
+    :description "www.jazzradio.com for Emacs"
+    :pkgname "syohex/emacs-jazzradio"))
 
 
 (when (require 'helm-themes nil t)
@@ -846,11 +849,12 @@ is closed."
 (el-get 'sync 'flycheck-pos-tip)
 
 (when (require 'flycheck nil t)
-  (add-hook 'go-mode-hook 'flycheck-mode))
+  (add-hook 'go-mode-hook 'flycheck-mode)
+  (add-hook 'enh-ruby-mode-hook 'flycheck-mode))
 
 (with-eval-after-load 'flycheck
   (custom-set-variables
-    '(flycheck-display-errors-function 'flycheck-pos-tip-error-messages)))
+    '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)))
 #+END_SRC
 
 ** e2wm
@@ -965,6 +969,7 @@ is closed."
   (popwin-mode 1)
   (push '("helm" :regexp t) popwin:special-display-config)
   (push '("*Help*" :noselect t) popwin:special-display-config)
+  (push '("*jazzradio*" :noselect t) popwin:special-display-config)
   (push '("*ruby*") popwin:special-display-config)
   (push '("*quickrun*") popwin:special-display-config)
   (push '("*twittering-edit*") popwin:special-display-config)
@@ -997,6 +1002,10 @@ is closed."
 (setq rbenv-modeline-function 'rbenv--modeline-plain)
 (add-hook 'enh-ruby-mode-hook '(lambda ()
   (rbenv-use-corresponding)))
+;; flycheck
+(add-hook 'enh-ruby-mode-hook '(lambda ()
+  (setq flycheck-checker 'ruby-rubocop)
+  (flycheck-mode 1)))
 
 ;; Indent
 (setq enh-ruby-deep-indent-paren nil)
@@ -1552,3 +1561,18 @@ http://k2nr.me/blog/2014/12/22/emacs-magit.html
   ad-do-it
   (end-of-buffer))
 #+END_SRC
+** jazzradio
+*** Install
+
+#+begin_src emacs-lisp
+(el-get 'sync 'jazzradio)
+(with-eval-after-load 'jazzradio
+  (evil-define-key 'normal jazzradio-menu-mode-map (kbd "RET") 'jazzradio--play)
+  (evil-define-key 'normal jazzradio-menu-mode-map (kbd "s") 'jazzradio--stop)
+  (evil-define-key 'normal jazzradio-menu-mode-map (kbd "SPC") 'jazzradio--toggle-pause)
+  (evil-define-key 'normal jazzradio-menu-mode-map (kbd "-") 'jazzradio--volume-decrease)
+  (evil-define-key 'normal jazzradio-menu-mode-map (kbd "+") 'jazzradio--volume-increase))
+(add-hook 'jazzradio-menu-mode-hook
+  '(lambda () (setq-local show-trailing-whitespace nil)))
+
+#+end_src
