@@ -522,7 +522,7 @@ is closed."
   ;; (set-face-attribute 'tabbar-button nil :box nil)
   ;; (set-face-attribute 'tabbar-separator nil :height 1.0 :background "#424242")
   (defvar my-tabbar-show-buffers
-    '("*Faces*" "*vc-" "*eshell*" "*Lingr Status*" "*jazzradio*"))
+    '("*Faces*" "*vc-" "*eshell*" "*Lingr Status*"))
   (defvar my-tabbar-hide-buffers
     '("*" "Lingr[" "org-src-fontification:"))
   (defun my-tabbar-buffer-list ()
@@ -969,7 +969,7 @@ is closed."
   (popwin-mode 1)
   (push '("helm" :regexp t) popwin:special-display-config)
   (push '("*Help*" :noselect t) popwin:special-display-config)
-  (push '("*jazzradio*" :noselect t) popwin:special-display-config)
+  (push '("*jazzradio*") popwin:special-display-config)
   (push '("*ruby*") popwin:special-display-config)
   (push '("*quickrun*") popwin:special-display-config)
   (push '("*twittering-edit*") popwin:special-display-config)
