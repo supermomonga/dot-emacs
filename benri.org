@@ -1197,6 +1197,7 @@ https://bitbucket.org/lyro/evil/issue/301/evil-define-key-for-minor-mode-does-no
 (el-get 'sync 'clojure-cheatsheet)
 (el-get 'sync 'clojure-test-mode)
 (el-get 'sync 'slamhound)
+(el-get 'sync '4clojure)
 #+end_src
 
 *** clojure-mode
@@ -1230,6 +1231,15 @@ https://bitbucket.org/lyro/evil/issue/301/evil-define-key-for-minor-mode-does-no
   (add-to-list 'ac-modes 'cider-repl-mode))
 #+end_src
 
+*** 4clojure
+#+begin_src emacs-lisp
+(defadvice 4clojure-open-question (around 4clojure-open-question-around)
+  "Start a cider/nREPL connection if one hasn't already been started when
+opening 4clojure questions"
+  ad-do-it
+  (unless cider-current-clojure-buffer
+    (cider-jack-in)))
+#+end_src
 ** S-expression languages
 
 *** Install
