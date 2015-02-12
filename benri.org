@@ -396,6 +396,7 @@ is closed."
 (el-get 'sync 'helm-c-yasnippet)
 (el-get 'sync 'helm-descbinds)
 (el-get 'sync 'helm-swoop)
+(el-get 'sync 'helm-gist)
 (when (require 'helm nil t)
       (define-key evil-normal-state-map (kbd "SPC f") 'helm-mini)
       (define-key evil-normal-state-map (kbd "SPC b") 'helm-buffers-list)
