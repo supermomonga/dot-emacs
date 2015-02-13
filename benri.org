@@ -450,6 +450,34 @@ is closed."
   )
 #+END_SRC
 
+*** disable while expanding snippet by yasnippet
+
+#+begin_src emacs-lisp
+(defvar ac-yas-expand-autostart-backup nil "backupshelf")
+
+(defun ac-yas-expand-start ()
+  "Disable auto-complete while expanding snippet"
+  (setq ac-yas-expand-autostart-backup ac-auto-start)
+  (setq ac-auto-start nil))
+
+(defun ac-yas-expand-end ()
+  "Re-enable auto-complete after expanding snippet was complete"
+  (setq ac-auto-start ac-yas-expand-autostart-backup))
+
+(defun ac-yas-expand-install ()
+  (interactive)
+  (add-hook 'yas/before-expand-snippet-hook 'ac-yas-expand-start)
+  (add-hook 'yas/after-exit-snippet-hook 'ac-yas-expand-end))
+
+(defun ac-yas-expand-uninstall ()
+  (interactive)
+  (remove-hook 'yas/before-expand-snippet-hook 'ac-yas-expand-start)
+  (remove-hook 'yas/after-exit-snippet-hook 'ac-yas-expand-end))
+
+(ac-yas-expand-install)
+#+end_src
+
+
 ** smartrep
 
 #+BEGIN_SRC emacs-lisp
