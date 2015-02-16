@@ -1306,6 +1306,13 @@ Note that slime needs texinfo version 5 or higher to build.
   (evil-define-key 'normal coffee-mode-map (kbd "SPC r") 'coffee-compile-buffer))
 #+END_SRC
 
+** scss
+
+#+BEGIN_SRC emacs-lisp
+(el-get 'sync 'scss-mode)
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+#+END_SRC
+
 ** markup languages
 *** haml
 #+begin_src emacs-lisp
