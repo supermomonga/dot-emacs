@@ -88,6 +88,8 @@ This is my kanari sugoi =benri.el= file (kanari).
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 (setq auto-save-list-file-prefix nil)
+
+
 #+END_SRC
 
 * Appearance
@@ -168,6 +170,7 @@ This is my kanari sugoi =benri.el= file (kanari).
 (setq require-final-newline t)
 
 ;; Tab width
+(setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 (setq default-tab-width 2)
 (setq tab-stop-list '(2 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60
@@ -183,7 +186,6 @@ This is my kanari sugoi =benri.el= file (kanari).
 ;; Recentf file
 (setq recentf-max-saved-items 100000)
 (setq history-length 100000)
-
 
 ;; auto insert
 (require 'autoinsert nil t)
@@ -1058,6 +1060,16 @@ is closed."
                                  (when (require 'ruby-electric nil t)
                                    (ruby-electric-mode t))
                                  (add-to-list 'ac-sources 'ac-source-yasnippet)))
+
+;; Don't insert magic comment
+;; http://qiita.com/vzvu3k6k/items/acec84d829a3dbe1427a
+(defadvice enh-ruby-mode-set-encoding (around stop-enh-ruby-mode-set-encoding)
+  "If enh-ruby-not-insert-magic-comment is true, stops enh-ruby-mode-set-encoding."
+  (if (and (boundp 'enh-ruby-not-insert-magic-comment)
+           (not enh-ruby-not-insert-magic-comment))
+      ad-do-it))
+(ad-activate 'enh-ruby-mode-set-encoding)
+(setq-default enh-ruby-not-insert-magic-comment t)
 
 
 (when (require 'auto-complete nil t)
