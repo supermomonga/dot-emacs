@@ -266,16 +266,16 @@ This is my kanari sugoi =benri.el= file (kanari).
 ;; Don't use emacs-state in any modes
 (setq evil-emacs-state-modes nil)
 
-(el-get 'sync 'evil)
-(el-get 'sync 'evil-indent-textobject)
-;; (el-get 'sync 'evil-leader)
-(el-get 'sync 'anzu)
-(el-get 'sync 'evil-anzu)
-(el-get 'sync 'evil-matchit)
-(el-get 'sync 'evil-nerd-commenter)
-(el-get 'sync 'evil-numbers)
-(el-get 'sync 'evil-paredit)
-(el-get 'sync 'evil-surround)
+(el-get-bundle evil)
+(el-get-bundle evil-indent-textobject)
+;; (el-get-bundle evil-leader)
+(el-get-bundle anzu)
+(el-get-bundle evil-anzu)
+(el-get-bundle evil-matchit)
+(el-get-bundle evil-nerd-commenter)
+(el-get-bundle evil-numbers)
+(el-get-bundle evil-paredit)
+(el-get-bundle evil-surround)
 
 (when (require 'evil nil t)
       (evil-mode 1)
@@ -379,9 +379,9 @@ is closed."
 ** yasnippet
 
 #+BEGIN_SRC emacs-lisp
-(el-get 'sync 'yasnippet)
-(el-get 'sync 'yasnippet-snippets)
-(el-get 'sync 'dropdown-list)
+(el-get-bundle yasnippet)
+(el-get-bundle yasnippet-snippets)
+(el-get-bundle dropdown-list)
 
 (when (require 'yasnippet nil t)
         (require 'dropdown-list nil t)
@@ -393,13 +393,13 @@ is closed."
 ** helm
 
 #+BEGIN_SRC emacs-lisp
-(el-get 'sync 'helm)
-(el-get 'sync 'helm-ag)
-(el-get 'sync 'helm-c-yasnippet)
-(el-get 'sync 'helm-descbinds)
-(el-get 'sync 'helm-swoop)
-(el-get 'sync 'helm-gist)
-(el-get 'sync 'helm-package)
+(el-get-bundle helm)
+(el-get-bundle helm-ag)
+(el-get-bundle helm-c-yasnippet)
+(el-get-bundle helm-descbinds)
+(el-get-bundle helm-swoop)
+(el-get-bundle helm-gist)
+(el-get-bundle helm-package)
 (when (require 'helm nil t)
       (define-key evil-normal-state-map (kbd "SPC f") 'helm-mini)
       (define-key evil-normal-state-map (kbd "SPC b") 'helm-buffers-list)
@@ -414,7 +414,7 @@ is closed."
 ** auto-complete
 
 #+BEGIN_SRC emacs-lisp
-(el-get 'sync 'auto-complete)
+(el-get-bundle auto-complete)
 
 
 (when (require 'auto-complete nil t)
@@ -432,7 +432,7 @@ is closed."
   ;; (print ac-use-quick-help)
   (setq ac-quick-help-prefer-x t)
   (setq ac-quick-help-delay 0.0)
-  (el-get 'sync 'pos-tip)
+  (el-get-bundle pos-tip)
   (require 'pos-tip)
   ;; ac-sources
   (defvar my-ac-sources
@@ -484,8 +484,8 @@ is closed."
 ** smartrep
 
 #+BEGIN_SRC emacs-lisp
-(el-get 'sync 'smartrep)
-(el-get 'sync 'tabbar)
+(el-get-bundle smartrep)
+(el-get-bundle tabbar)
 
 (defun smart-forward-buffer ()
   (cond ((tabbar-mode-on-p) (tabbar-forward-tab))
@@ -515,7 +515,7 @@ is closed."
 ** tabbar
 
 #+BEGIN_SRC emacs-lisp
-(el-get 'sync 'tabbar)
+(el-get-bundle tabbar)
 
 
 (when (require 'tabbar nil t)
@@ -599,12 +599,12 @@ is closed."
 
 (when (require 'helm-themes nil t)
 )
-(el-get 'sync 'replace-colorthemes)
+(el-get-bundle replace-colorthemes)
   (add-to-list 'custom-theme-load-path
          (file-name-as-directory "~/.emacs.d/el-get/replace-colorthemes/"))
   ;; (load-theme 'desert t nil)
 
-(el-get 'sync 'railscasts-theme)
+(el-get-bundle railscasts-theme)
 (when (require 'railscasts-theme nil t)
   (add-to-list 'custom-theme-load-path
          (file-name-as-directory "~/.emacs.d/el-get/railscasts-theme/"))
@@ -861,7 +861,7 @@ is closed."
 ** quickrun
 
 #+BEGIN_SRC emacs-lisp
-(el-get 'sync 'quickrun)
+(el-get-bundle quickrun)
 
 (when (require 'quickrun nil t)
   (define-key evil-normal-state-map (kbd "SPC r") 'quickrun)
@@ -871,14 +871,14 @@ is closed."
 ** direx
 
 #+BEGIN_SRC emacs-lisp
-(el-get 'sync 'direx)
+(el-get-bundle direx)
 #+END_SRC
 
 ** flycheck
 
 #+BEGIN_SRC emacs-lisp
-(el-get 'sync 'flycheck)
-(el-get 'sync 'flycheck-pos-tip)
+(el-get-bundle flycheck)
+(el-get-bundle flycheck-pos-tip)
 
 (when (require 'flycheck nil t)
   (add-hook 'go-mode-hook 'flycheck-mode)
@@ -892,7 +892,7 @@ is closed."
 ** e2wm
 
 #+BEGIN_SRC emacs-lisp
-(el-get 'sync 'e2wm)
+(el-get-bundle e2wm)
 
 
 (when (require 'e2wm nil t)
@@ -966,7 +966,7 @@ is closed."
 ** powerline
 
 #+BEGIN_SRC emacs-lisp
-(el-get 'sync 'powerline)
+(el-get-bundle powerline)
 
 (when (require 'powerline nil t)
         ;; (custom-set-variables '(powerline-default-separator 'slant))
@@ -978,7 +978,7 @@ is closed."
 ** open-junk-file
 
 #+BEGIN_SRC emacs-lisp
-(el-get 'sync 'open-junk-file)
+(el-get-bundle open-junk-file)
 
 (define-key evil-normal-state-map (kbd "SPC j") 'open-junk-file)
 (setq open-junk-file-format "~/Documents/junk-files/%Y-%m/%Y-%m-%d-%H%M%S.")
@@ -988,7 +988,7 @@ is closed."
 ** gist
 
 #+BEGIN_SRC emacs-lisp
-(el-get 'sync 'gist)
+(el-get-bundle gist)
 (when (require 'gist nil t)
 )
 #+END_SRC
@@ -996,7 +996,7 @@ is closed."
 ** popwin
 
 #+BEGIN_SRC emacs-lisp
-(el-get 'sync 'popwin)
+(el-get-bundle popwin)
 (when (require 'popwin nil t)
   (popwin-mode 1)
   (push '("helm" :regexp t) popwin:special-display-config)
@@ -1018,13 +1018,13 @@ is closed."
 
 *** Install
 #+BEGIN_SRC emacs-lisp
-(el-get 'sync 'rbenv)
-(el-get 'sync 'ruby-end)
-(el-get 'sync 'ruby-electric)
-(el-get 'sync 'ruby-block)
-(el-get 'sync 'Enhanced-Ruby-Mode)
-(el-get 'sync 'inf-ruby)
-(el-get 'sync 'inf-ruby-extension)
+(el-get-bundle rbenv)
+(el-get-bundle ruby-end)
+(el-get-bundle ruby-electric)
+(el-get-bundle ruby-block)
+(el-get-bundle Enhanced-Ruby-Mode)
+(el-get-bundle inf-ruby)
+(el-get-bundle inf-ruby-extension)
 #+END_SRC
 
 *** Config
@@ -1098,13 +1098,13 @@ is closed."
   :pkgname "asok/rake.el"
   :depends (f dash cl-lib)
 ))
-(el-get 'sync 'rake)
+(el-get-bundle rake)
 #+END_SRC
 
 ** rinari
 *** Install
 #+BEGIN_SRC emacs-lisp
-;; (el-get 'sync 'rinari)
+;; (el-get-bundle rinari)
 #+END_SRC
 
 *** Key mappings
@@ -1124,7 +1124,7 @@ is closed."
 *** Install
 
 #+BEGIN_SRC emacs-lisp
-(el-get 'sync 'projectile)
+(el-get-bundle projectile)
 #+END_SRC
 
 *** Enable
@@ -1138,7 +1138,7 @@ is closed."
 *** Install
 
 #+BEGIN_SRC emacs-lisp
-(el-get 'sync 'projectile-rails)
+(el-get-bundle projectile-rails)
 #+END_SRC
 
 *** Enable
@@ -1198,13 +1198,13 @@ https://bitbucket.org/lyro/evil/issue/301/evil-define-key-for-minor-mode-does-no
                      :pkgname "atotto/yasnippet-golang")
              )
 
-(el-get 'sync 'go-mode)
-(el-get 'sync 'go-autocomplete)
+(el-get-bundle go-mode)
+(el-get-bundle go-autocomplete)
 (when (require 'direx nil t)
-  (el-get 'sync 'go-direx))
-(el-get 'sync 'go-def)
-(el-get 'sync 'go-eldoc)
-(el-get 'sync 'yasnippet-golang)
+  (el-get-bundle go-direx))
+(el-get-bundle go-def)
+(el-get-bundle go-eldoc)
+(el-get-bundle yasnippet-golang)
 
 
 ;; yas-snippet-dirs
@@ -1233,13 +1233,13 @@ https://bitbucket.org/lyro/evil/issue/301/evil-define-key-for-minor-mode-does-no
 *** Install
 
 #+begin_src emacs-lisp
-(el-get 'sync 'clojure-mode)
-(el-get 'sync 'cider)
-(el-get 'sync 'ac-cider)
-(el-get 'sync 'clojure-cheatsheet)
-(el-get 'sync 'clojure-test-mode)
-(el-get 'sync 'slamhound)
-(el-get 'sync '4clojure)
+(el-get-bundle clojure-mode)
+(el-get-bundle cider)
+(el-get-bundle ac-cider)
+(el-get-bundle clojure-cheatsheet)
+(el-get-bundle clojure-test-mode)
+(el-get-bundle slamhound)
+(el-get-bundle 4clojure)
 #+end_src
 
 *** clojure-mode
@@ -1289,9 +1289,9 @@ opening 4clojure questions"
 Note that slime needs texinfo version 5 or higher to build.
 
 #+begin_src emacs-lisp
-(el-get 'sync 'slime)
-(el-get 'sync 'smartparens)
-(el-get 'sync 'rainbow-delimiters)
+(el-get-bundle slime)
+(el-get-bundle smartparens)
+(el-get-bundle rainbow-delimiters)
 #+end_src
 
 *** rainbow-delimiters
@@ -1303,8 +1303,8 @@ Note that slime needs texinfo version 5 or higher to build.
 ** coffee_script
 
 #+BEGIN_SRC emacs-lisp
-(el-get 'sync 'coffee-mode)
-(el-get 'sync 'sourcemap)
+(el-get-bundle coffee-mode)
+(el-get-bundle sourcemap)
 
 
 ;; This gives you a tab of 2 spaces
@@ -1322,23 +1322,23 @@ Note that slime needs texinfo version 5 or higher to build.
 ** scss
 
 #+BEGIN_SRC emacs-lisp
-(el-get 'sync 'scss-mode)
+(el-get-bundle scss-mode)
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 #+END_SRC
 
 ** markup languages
 *** haml
 #+begin_src emacs-lisp
-(el-get 'sync 'haml-mode)
+(el-get-bundle haml-mode)
 #+end_src
 *** slim
 #+begin_src emacs-lisp
-(el-get 'sync 'slim-mode)
+(el-get-bundle slim-mode)
 #+end_src
 ** markdown
 
 #+BEGIN_SRC emacs-lisp
-(el-get 'sync 'markdown-mode)
+(el-get-bundle markdown-mode)
 
 (add-to-list 'auto-mode-alist '("\\.mkd$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
@@ -1349,14 +1349,14 @@ Note that slime needs texinfo version 5 or higher to build.
 ** docker
 *** Install
 #+BEGIN_SRC emacs-lisp
-(el-get 'sync 'dockerfile-mode)
+(el-get-bundle dockerfile-mode)
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 #+END_SRC
 ** magit
 
 *** Install
 #+BEGIN_SRC emacs-lisp
-(el-get 'sync 'magit)
+(el-get-bundle magit)
 #+END_SRC
 
 *** Begin magit in fullscreen
@@ -1520,7 +1520,7 @@ http://k2nr.me/blog/2014/12/22/emacs-magit.html
 ** mailer
 
 #+BEGIN_SRC emacs-lisp
-(el-get 'sync 'wanderlust)
+(el-get-bundle wanderlust)
 
 
 (when (require 'wanderlust nil t)
@@ -1530,7 +1530,7 @@ http://k2nr.me/blog/2014/12/22/emacs-magit.html
 ** lingr
 
 #+BEGIN_SRC emacs-lisp
-(el-get 'sync 'lingr)
+(el-get-bundle lingr)
 (when (require 'lingr nil t)
   (setq lingr-username secret-lingr-username
         lingr-password secret-lingr-password
@@ -1588,7 +1588,7 @@ http://k2nr.me/blog/2014/12/22/emacs-magit.html
 (setq twittering-status-format "%i %S(%s), %F  %@ from %f%L%r%R\n%FILL[     ]{%T}\n ")
 (setq twittering-convert-fix-size 36)
 
-(el-get 'sync 'twittering-mode)
+(el-get-bundle twittering-mode)
 (when (require 'twittering-mode nil t)
   (require 'epa-file)
   (setq twittering-use-master-password t)
@@ -1609,7 +1609,7 @@ http://k2nr.me/blog/2014/12/22/emacs-magit.html
                :url "http://www.geocities.co.jp/roomhakase/JDUNNET/jdunnet004a.zip"
              ))
 
-(el-get 'sync 'jdunnet)
+(el-get-bundle jdunnet)
 (with-eval-after-load "jdunnet"
   (evil-set-initial-state 'dungeon-mode 'insert)
   (evil-set-initial-state 'dun-mode 'insert))
@@ -1624,7 +1624,7 @@ http://k2nr.me/blog/2014/12/22/emacs-magit.html
 *** Install
 
 #+begin_src emacs-lisp
-(el-get 'sync 'jazzradio)
+(el-get-bundle jazzradio)
 (with-eval-after-load 'jazzradio
   (evil-define-key 'normal jazzradio-menu-mode-map (kbd "RET") 'jazzradio--play)
   (evil-define-key 'normal jazzradio-menu-mode-map (kbd "s") 'jazzradio--stop)
