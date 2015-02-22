@@ -237,8 +237,8 @@ This is my kanari sugoi =benri.el= file (kanari).
 ;;; Add MELPA repository
 ;; (add-to-list 'package-archives
 ;;  '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(add-to-list 'package-archives
-             '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+; (add-to-list 'package-archives
+;              '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 
 ;; Update load-path to load plugins which managed by el-get
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
