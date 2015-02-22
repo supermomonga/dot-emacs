@@ -399,6 +399,7 @@ is closed."
 (el-get 'sync 'helm-descbinds)
 (el-get 'sync 'helm-swoop)
 (el-get 'sync 'helm-gist)
+(el-get 'sync 'helm-package)
 (when (require 'helm nil t)
       (define-key evil-normal-state-map (kbd "SPC f") 'helm-mini)
       (define-key evil-normal-state-map (kbd "SPC b") 'helm-buffers-list)
@@ -1634,3 +1635,4 @@ http://k2nr.me/blog/2014/12/22/emacs-magit.html
   '(lambda () (setq-local show-trailing-whitespace nil)))
 
 #+end_src
+
