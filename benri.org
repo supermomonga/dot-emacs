@@ -117,13 +117,19 @@ This is my kanari sugoi =benri.el= file (kanari).
 ;; Hide toolbar
 (tool-bar-mode 0)
 
-;; Hide scrollbar
+;; Hide  scrollbar
 (set-scroll-bar-mode nil)
 
 ;; (column-number-mode t)
 
 ;; Show line number
 (global-linum-mode t)
+(defvar linum-exceptional-regexp-list '(" \\*WM:.+" "\\*scratch\\*"))
+
+(defadvice linum-mode (around hoge activate)
+  (when (or (eq linum-mode t)
+            (not (cl-find (buffer-name) linum-exceptional-regexp-list :test (lambda (str rx) (string-match rx str)))))
+    ad-do-it))
 
 ;; Window transparency
 ;; (set-frame-parameter nil 'alpha 97)
@@ -362,6 +368,36 @@ is closed."
             (kill-emacs)
             (kill-buffer))))))))
 (evil-ex-define-cmd "q[uit]" 'evil-quit-without-kill)
+#+END_SRC
+
+
+*** jumer.el - Emacs extension: Jump and marker like in Vim
+
+#+BEGIN_SRC emacs-lisp
+
+(el-get-bundle kenoss/erfi)
+(add-to-list 'load-path "~/.emacs.d/el-get/erfi/lisp")
+(require 'erfi-macros)
+
+(el-get-bundle kenoss/jumar)
+
+(require 'jumar)
+(require 'jumar-dwin)
+
+;; If one needs highlight the line after jump.
+(add-hook 'jumar-post-jump-hook 'jumar-misc-hl-turn-on-until-next-command)
+
+(jumar-dwin-use-preconfigured-scheme 'list+history)
+(jumar-init)
+
+;; (define-key global-map (kbd "C-'")     'jumar-dwin-add-marker)
+;; (define-key global-map (kbd "C-\"")    'jumar-dwin-jump-current)
+(define-key evil-normal-state-map (kbd "C-o")     'jumar-dwin-jump-backward)
+(define-key evil-normal-state-map (kbd "C-i")     'jumar-dwin-jump-forward)
+;; (define-key global-map (kbd "C-x C-'") 'helm-jumar-dwin-jumarkers)
+
+(jumar-dwin-advise-jump-command-to-add-jumarker 'elisp-slime-nav-find-elisp-thing-at-point)
+
 #+END_SRC
 
 ** org
