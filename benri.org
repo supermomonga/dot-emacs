@@ -124,7 +124,7 @@ This is my kanari sugoi =benri.el= file (kanari).
 
 ;; Show line number
 (global-linum-mode t)
-(defvar linum-exceptional-regexp-list '(" \\*WM:.+" "\\*scratch\\*"))
+(defvar linum-exceptional-regexp-list '(" \\*WM:.+" "\\*scratch\\*" ".+helm.+"))
 
 (defadvice linum-mode (around hoge activate)
   (when (or (eq linum-mode t)
@@ -168,35 +168,29 @@ This is my kanari sugoi =benri.el= file (kanari).
 * Edit
 
 #+BEGIN_SRC emacs-lisp
-;; Save cursor position
-(when (require 'saveplace' nil t)
-  (setq-default save-place t))
+  ;; Save cursor position
+  (when (require 'saveplace' nil t)
+    (setq-default save-place t))
 
-;; Automatically insert newline
-(setq require-final-newline t)
+  ;; Automatically insert newline
+  (setq require-final-newline t)
 
-;; Tab width
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 2)
-(setq default-tab-width 2)
-(setq tab-stop-list '(2 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60
-                      64 68 72 76 80 84 88 92 96 100 104 108 112 116 120))
+  ;; Tab width
+  (setq-default indent-tabs-mode nil)
+  (setq-default tab-width 2)
+  (setq default-tab-width 2)
+  (setq tab-stop-list
+        (cl-remove-if-not (lambda (n) (eq 0 (% n tab-width)))
+                          (number-sequence 1 120)))
 
-;; enable eldoc
-(when (require 'eldoc nil t)
-  (eldoc-mode t)
-  (setq eldoc-idle-delay 0.2)
-  (setq eldoc-echo-area-use-multiline-p t))
+  ;; Recentf file
+  (setq recentf-max-saved-items 100000)
+  (setq history-length 100000)
 
-
-;; Recentf file
-(setq recentf-max-saved-items 100000)
-(setq history-length 100000)
-
-;; auto insert
-(require 'autoinsert nil t)
-(auto-insert-mode t)
-(setq auto-insert-directory "~/.emacs.d/templates/")
+  ;; auto insert
+  (require 'autoinsert nil t)
+  (auto-insert-mode t)
+  (setq auto-insert-directory "~/.emacs.d/templates/")
 #+END_SRC
 
 * Font
@@ -265,6 +259,8 @@ This is my kanari sugoi =benri.el= file (kanari).
 #+END_SRC
 
 ** evil
+
+*** evil
 
 #+BEGIN_SRC emacs-lisp
 ;; Behavior
@@ -400,53 +396,71 @@ is closed."
 
 #+END_SRC
 
+*** textobj-entire
+
+#+BEGIN_SRC emacs-lisp
+(el-get-bundle supermomonga/evil-textobj-entire)
+;; (add-to-list 'load-path "~/Develops/evil-textobj-entire")
+(require 'evil-textobj-entire)
+#+END_SRC
+
+*** textobj-multiblock
+
+#+BEGIN_SRC emacs-lisp
+;; (el-get-bundle supermomonga/evil-textobj-entire)
+(add-to-list 'load-path "~/Develops/evil-textobj-multiblock")
+(require 'evil-textobj-multiblock)
+#+END_SRC
+
 ** org
 #+BEGIN_SRC emacs-lisp
-(setq org-src-fontify-natively t)
-(add-hook 'org-mode-hook
-          (lambda ()
-            (setq-local ac-sources (append my-ac-sources '(
-              ac-source-functions
-              ac-source-symbols
-              ac-source-variables
-            )))))
+  (setq org-src-fontify-natively t)
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (eldoc-mode t)
+              (setq org-src-tab-acts-natively t)
+              (setq-local ac-sources
+                          (append my-ac-sources
+                                  '(
+                                    ac-source-functions
+                                    ac-source-symbols
+                                    ac-source-variables
+                                    )))))
 #+END_SRC
 
 ** yasnippet
 
 #+BEGIN_SRC emacs-lisp
-(el-get-bundle yasnippet)
-(el-get-bundle yasnippet-snippets)
-(el-get-bundle dropdown-list)
+  (el-get-bundle yasnippet)
+  (el-get-bundle yasnippet-snippets)
+  (el-get-bundle dropdown-list)
 
-(when (require 'yasnippet nil t)
-        (require 'dropdown-list nil t)
-        (setq yas-prompt-functions '(yas-dropdown-prompt yas-completing-prompt yas-ido-prompt yas-no-prompt))
-        (add-to-list 'yas-snippet-dirs "~/.emacs.d/el-get/yasnippet-golang")
-        (add-to-list 'yas-snippet-dirs "~/.emacs.d/el-get/yasnippet-snippets")
-        (yas-global-mode 1))
+  (when (require 'yasnippet nil t)
+    (require 'dropdown-list nil t)
+    (setq yas-prompt-functions '(yas-dropdown-prompt yas-completing-prompt yas-ido-prompt yas-no-prompt))
+    (add-to-list 'yas-snippet-dirs "~/.emacs.d/el-get/yasnippet-golang")
+    (add-to-list 'yas-snippet-dirs "~/.emacs.d/el-get/yasnippet-snippets")
+    (yas-global-mode 1))
 #+END_SRC
 ** helm
 
-#+BEGIN_SRC emacs-lisp
-(el-get-bundle helm)
-(el-get-bundle helm-ag)
-(el-get-bundle helm-c-yasnippet)
-(el-get-bundle helm-descbinds)
-(el-get-bundle helm-swoop)
-(el-get-bundle helm-gist)
-(el-get-bundle helm-package)
-(when (require 'helm nil t)
-      (define-key evil-normal-state-map (kbd "SPC f") 'helm-mini)
-      (define-key evil-normal-state-map (kbd "SPC b") 'helm-buffers-list)
-      (define-key evil-normal-state-map (kbd "SPC SPC") 'helm-M-x)
-      (define-key evil-normal-state-map (kbd "SPC s") 'helm-yas-complete)
-      (define-key evil-normal-state-map (kbd "SPC g") 'helm-swoop)
-      )
+   #+BEGIN_SRC emacs-lisp
+     (el-get-bundle helm)
+     (el-get-bundle helm-ag)
+     (el-get-bundle helm-c-yasnippet)
+     (el-get-bundle helm-descbinds)
+     (el-get-bundle helm-swoop)
+     (el-get-bundle helm-gist)
+     (el-get-bundle helm-package)
+     (when (require 'helm nil t)
+       (define-key evil-normal-state-map (kbd "SPC f") 'helm-mini)
+       (define-key evil-normal-state-map (kbd "SPC b") 'helm-buffers-list)
+       (define-key evil-normal-state-map (kbd "SPC SPC") 'helm-M-x)
+       (define-key evil-normal-state-map (kbd "SPC s") 'helm-yas-complete)
+       (define-key evil-normal-state-map (kbd "SPC g") 'helm-swoop))
 
-(when (require 'helm-descbinds nil t)
-)
-#+END_SRC
+     (when (require 'helm-descbinds nil t))
+   #+END_SRC
 ** auto-complete
 
 #+BEGIN_SRC emacs-lisp
@@ -468,8 +482,8 @@ is closed."
   ;; (print ac-use-quick-help)
   (setq ac-quick-help-prefer-x t)
   (setq ac-quick-help-delay 0.0)
-  (el-get-bundle pos-tip)
-  (require 'pos-tip)
+  ;; (el-get-bundle pos-tip)
+  ;; (require 'pos-tip)
   ;; ac-sources
   (defvar my-ac-sources
     '(ac-source-yasnippet
@@ -590,7 +604,7 @@ is closed."
   ;; (set-face-attribute 'tabbar-button nil :box nil)
   ;; (set-face-attribute 'tabbar-separator nil :height 1.0 :background "#424242")
   (defvar my-tabbar-show-buffers
-    '("*Faces*" "*vc-" "*eshell*" "*Lingr Status*"))
+    '("*Faces*" "*vc-" "*eshell*" "*Lingr Status*" "*scratch*" "*cider-scratch*"))
   (defvar my-tabbar-hide-buffers
     '("*" "Lingr[" "org-src-fontification:"))
   (defun my-tabbar-buffer-list ()
@@ -904,6 +918,18 @@ is closed."
   )
 #+END_SRC
 
+** eldoc
+
+#+BEGIN_SRC emacs-lisp
+(when (require 'eldoc nil t)
+  (el-get-bundle eldoc-extension)
+  (require 'eldoc-extension nil t)
+  (eldoc-mode t)
+  (setq eldoc-idle-delay 0.2)
+  (setq eldoc-echo-area-use-multiline-p t))
+#+END_SRC
+
+
 ** direx
 
 #+BEGIN_SRC emacs-lisp
@@ -1032,22 +1058,23 @@ is closed."
 ** popwin
 
 #+BEGIN_SRC emacs-lisp
-(el-get-bundle popwin)
-(when (require 'popwin nil t)
-  (popwin-mode 1)
-  (push '("helm" :regexp t) popwin:special-display-config)
-  (push '("*Help*" :noselect t) popwin:special-display-config)
-  (push '("*jazzradio*") popwin:special-display-config)
-  (push '("*ruby*") popwin:special-display-config)
-  (push '("*quickrun*") popwin:special-display-config)
-  (push '("*twittering-edit*") popwin:special-display-config)
-  (push '("*coffee-compiled*" :position right :noselect t :width 0.5) popwin:special-display-config)
-  (push '("*el-get packages*" :height 0.7) popwin:special-display-config)
-  (push '(" *auto-async-byte-compile*" :noselect t :height 10) popwin:special-display-config)
-  (push '("^\*go-direx:" :regexp t :position left :width 30 :dedicated t :stick t)
-        popwin:special-display-config)
-  ;; (evil-define-key 'normal popwin:keymap (kbd "C-q") 'popwin:close-popup-window)
-)
+  (el-get-bundle popwin)
+  (when (require 'popwin nil t)
+    (popwin-mode 1)
+    (push '("cider-repl" :regexp t :noselect t) popwin:special-display-config)
+    (push '("helm" :regexp t) popwin:special-display-config)
+    (push '("*Help*" :noselect t) popwin:special-display-config)
+    (push '("*jazzradio*") popwin:special-display-config)
+    (push '("*ruby*") popwin:special-display-config)
+    (push '("*quickrun*") popwin:special-display-config)
+    (push '("*twittering-edit*") popwin:special-display-config)
+    (push '("*coffee-compiled*" :position right :noselect t :width 0.5) popwin:special-display-config)
+    (push '("*el-get packages*" :height 0.7) popwin:special-display-config)
+    (push '(" *auto-async-byte-compile*" :noselect t :height 10) popwin:special-display-config)
+    (push '("^\*go-direx:" :regexp t :position left :width 30 :dedicated t :stick t)
+          popwin:special-display-config)
+    ;; (evil-define-key 'normal popwin:keymap (kbd "C-q") 'popwin:close-popup-window)
+    )
 #+END_SRC
 
 ** ruby
