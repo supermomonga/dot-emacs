@@ -116,7 +116,7 @@ This is my kanari sugoi =benri.el= file (kanari).
 (setq-default show-trailing-whitespace t)
 
 ;; Transparent window
-;; (set-frame-parameter (selected-frame) 'alpha '(100 100))
+(set-frame-parameter (selected-frame) 'alpha '(88 88))
 
 ;; Hide toolbar
 (tool-bar-mode 0)
