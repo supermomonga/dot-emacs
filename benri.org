@@ -687,15 +687,6 @@ is closed."
 (set-cursor-color "#FFFFFF")
 #+END_SRC
 
-*** crosshairs
-
-#+BEGIN_SRC emacs-lisp
-(el-get-bundle crosshairs)
-(require 'crosshairs)
-(crosshairs-mode t)
-
-#+END_SRC
-
 
 ** eshell
 
