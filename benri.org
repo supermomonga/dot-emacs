@@ -414,6 +414,8 @@ is closed."
 ;; (el-get-bundle supermomonga/evil-textobj-entire)
 (add-to-list 'load-path "~/Develops/evil-textobj-multiblock")
 (require 'evil-textobj-multiblock)
+(define-key evil-outer-text-objects-map evil-textobj-multiblock-outer-key 'evil-multiblock-outer-block)
+(define-key evil-inner-text-objects-map evil-textobj-multiblock-inner-key 'evil-multiblock-inner-block)
 #+END_SRC
 
 ** org
