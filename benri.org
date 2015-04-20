@@ -1050,6 +1050,13 @@ is closed."
 )
 #+END_SRC
 
+** symon
+#+BEGIN_SRC emacs-lisp
+(el-get-bundle zk-phi/symon)
+(require 'symon nil t)
+(symon-mode 1)
+#+END_SRC
+
 ** open-junk-file
 
 #+BEGIN_SRC emacs-lisp
@@ -1605,6 +1612,7 @@ http://k2nr.me/blog/2014/12/22/emacs-magit.html
 
 ** lingr
 
+*** lingr.el
 #+BEGIN_SRC emacs-lisp
 (el-get-bundle lingr)
 (when (require 'lingr nil t)
@@ -1638,6 +1646,18 @@ http://k2nr.me/blog/2014/12/22/emacs-magit.html
   )
 #+END_SRC
 
+
+*** symob-lingr
+
+#+BEGIN_SRC emacs-lisp
+  (el-get-bundle zk-phi/symon-lingr)
+  (require 'symon-lingr nil t)
+  (setq symon-lingr-user-name secret-lingr-username
+        symon-lingr-password  secret-lingr-password
+        symon-lingr-log-file  "~/.emacs.d/symon_lingr")
+  (add-to-list 'symon-monitors 'symon-lingr-monitor t)
+  (symon-mode 1)
+#+END_SRC
 ** twitter
 
 #+BEGIN_SRC emacs-lisp
