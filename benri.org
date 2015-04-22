@@ -304,6 +304,8 @@ This is my kanari sugoi =benri.el= file (kanari).
       (define-key evil-motion-state-map (kbd ";") 'evil-ex)
       (define-key evil-insert-state-map (kbd "C-k") 'kill-line)
       (define-key evil-insert-state-map (kbd "C-e") 'end-of-line)
+      (define-key evil-ex-search-keymap "\C-p" #'previous-complete-history-element)
+      (define-key evil-ex-search-keymap "\C-n" #'next-complete-history-element)
 
       ;;; bind escape key to cancel or go back to normal state
       (defun evil-escape-or-quit (&optional prompt)
