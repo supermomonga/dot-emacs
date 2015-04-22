@@ -1050,6 +1050,14 @@ is closed."
 )
 #+END_SRC
 
+** persistent-scratch
+
+#+BEGIN_SRC emacs-lisp
+(el-get-bundle persistent-scratch)
+(persistent-scratch-setup-default)
+(persistent-scratch-autosave-mode 1)
+#+END_SRC
+
 ** symon
 #+BEGIN_SRC emacs-lisp
 (el-get-bundle zk-phi/symon)
