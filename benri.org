@@ -190,6 +190,7 @@ This is my kanari sugoi =benri.el= file (kanari).
   ;; Recentf file
   (setq recentf-max-saved-items 100000)
   (setq history-length 100000)
+  (savehist-mode t)
 
   ;; auto insert
   (require 'autoinsert nil t)
