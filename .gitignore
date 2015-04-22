@@ -18,3 +18,7 @@ benri.el
 url
 
 projectile-bookmarks.eld
+
+.persistent-scratch
+helm-doc.org
+symon_lingr
