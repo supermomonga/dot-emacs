@@ -9,6 +9,7 @@ This is my kanari sugoi =benri.el= file (kanari).
 
 #+BEGIN_SRC emacs-lisp
 (require 'cl)
+(require 'cl-lib)
 #+END_SRC
 
 * User-defined macro and function
@@ -97,66 +98,73 @@ This is my kanari sugoi =benri.el= file (kanari).
 #+END_SRC
 
 * Appearance
+
+** Don't show menubar
 #+BEGIN_SRC emacs-lisp
-(setq whitespace-style '(spaces tabs space-mark tab-mark))
-(setq whitespace-display-mappings
-      '(
-  ;; (space-mark 32 [183] [46]) ; normal space, ·
-        (space-mark 160 [164] [95])
-        (space-mark 2208 [2212] [95])
-        (space-mark 2336 [2340] [95])
-        (space-mark 3616 [3620] [95])
-        (space-mark 3872 [3876] [95])
-        (space-mark ?\x3000 [?\□]) ;; Zenkaku space [　]
-        (tab-mark ?\t [?\x276F ?\t] [?\\ ?\t]) ; tab, ❯ [	]
-        ))
-(global-whitespace-mode 1)
+(menu-bar-mode 0)
+#+END_SRC
 
-;; Show trailing whitespaces
-(setq-default show-trailing-whitespace t)
+#+BEGIN_SRC emacs-lisp
+  (setq whitespace-style '(spaces tabs space-mark tab-mark))
+  (setq whitespace-display-mappings
+        '(
+    ;; (space-mark 32 [183] [46]) ; normal space, ·
+          (space-mark 160 [164] [95])
+          (space-mark 2208 [2212] [95])
+          (space-mark 2336 [2340] [95])
+          (space-mark 3616 [3620] [95])
+          (space-mark 3872 [3876] [95])
+          (space-mark ?\x3000 [?\□]) ;; Zenkaku space [　]
+          (tab-mark ?\t [?\x276F ?\t] [?\\ ?\t]) ; tab, ❯ [ ]
+          ))
+  (global-whitespace-mode 1)
 
-;; Transparent window
-(set-frame-parameter (selected-frame) 'alpha '(88 88))
+  ;; Show trailing whitespaces
+  (setq-default show-trailing-whitespace t)
 
-;; Hide toolbar
-(tool-bar-mode 0)
+  ;; Transparent window
+  (if window-system
+    (set-frame-parameter (selected-frame) 'alpha '(88 88)))
 
-;; Hide  scrollbar
-(set-scroll-bar-mode nil)
+  ;; Hide toolbar
+  (tool-bar-mode 0)
 
-;; (column-number-mode t)
+  ;; Hide  scrollbar
+  (set-scroll-bar-mode nil)
 
-;; Show line number
-(global-linum-mode t)
-(defvar linum-exceptional-regexp-list '(" \\*WM:.+" "\\*scratch\\*" ".+helm.+"))
+  ;; (column-number-mode t)
 
-(defadvice linum-mode (around hoge activate)
-  (when (or (eq linum-mode t)
-            (not (cl-find (buffer-name) linum-exceptional-regexp-list :test (lambda (str rx) (string-match rx str)))))
-    ad-do-it))
+  ;; Show line number
+  (global-linum-mode t)
+  (defvar linum-exceptional-regexp-list '("*eshell*" " \\*WM:.+" "\\*scratch\\*" ".+helm.+"))
 
-;; Window transparency
-;; (set-frame-parameter nil 'alpha 97)
+  (defadvice linum-mode (around hoge activate)
+    (when (or (eq linum-mode t)
+              (not (cl-find (buffer-name) linum-exceptional-regexp-list :test (lambda (str rx) (string-match rx str)))))
+      ad-do-it))
 
-
-;; hex color
-(defvar hexcolor-keywords
-  '(("#[ABCDEFabcdef0-9]\\{3,6\\}"
-     (0 (put-text-property
-         (match-beginning 0)
-         (match-end 0)
-         'face (list :background
-                     (match-string-no-properties 0)))))))
-
-(defun hexcolor-add-to-font-lock ()
-  (font-lock-add-keywords nil hexcolor-keywords))
-
-(add-hook 'css-mode-hook 'hexcolor-add-to-font-lock)
-(add-hook 'emacs-lisp-mode-hook 'hexcolor-add-to-font-lock)
+  ;; Window transparency
+  ;; (set-frame-parameter nil 'alpha 97)
 
 
-;; Show empty line marker
-(setq indicate-empty-lines t)
+  ;; hex color
+  (defvar hexcolor-keywords
+    '(("#[ABCDEFabcdef0-9]\\{3,6\\}"
+       (0 (put-text-property
+           (match-beginning 0)
+           (match-end 0)
+           'face (list :background
+                       (match-string-no-properties 0)))))))
+
+  (defun hexcolor-add-to-font-lock ()
+    (font-lock-add-keywords nil hexcolor-keywords))
+
+  (add-hook 'css-mode-hook 'hexcolor-add-to-font-lock)
+  (add-hook 'emacs-lisp-mode-hook 'hexcolor-add-to-font-lock)
+
+
+  ;; Show empty line marker
+  (setq indicate-empty-lines t)
 #+END_SRC
 
 * Language
@@ -223,13 +231,13 @@ This is my kanari sugoi =benri.el= file (kanari).
   (global-font-lock-mode t)
   (setq font-lock-support-mode 'jit-lock-mode))
 
-(create-fontset-from-ascii-font "Source Code Pro Light-14:weight=normal:slant=normal" nil "september")
-
-;; Symbola font: http://users.teilar.gr/~g1951d/
-(set-fontset-font "fontset-september" '(#x2700 . #x27BF) (font-spec :family "Symbola" :size 14) nil 'append)
-(set-fontset-font "fontset-september" 'japanese-jisx0208 (font-spec :family "September" :size 14) nil 'append)
-(set-fontset-font "fontset-september" 'katakana-jisx0201 (font-spec :family "September" :size 14) nil 'append) ;; hankaku kana
-(add-to-list 'default-frame-alist '(font . "fontset-september"))
+(when window-system
+  (create-fontset-from-ascii-font "Source Code Pro Light-14:weight=normal:slant=normal" nil "september")
+  ;; Symbola font: http://users.teilar.gr/~g1951d/
+  (set-fontset-font "fontset-september" '(#x2700 . #x27BF) (font-spec :family "Symbola" :size 14) nil 'append)
+  (set-fontset-font "fontset-september" 'japanese-jisx0208 (font-spec :family "September" :size 14) nil 'append)
+  (set-fontset-font "fontset-september" 'katakana-jisx0201 (font-spec :family "September" :size 14) nil 'append) ;; hankaku kana
+  (add-to-list 'default-frame-alist '(font . "fontset-september")))
 #+END_SRC
 
 * Package config
@@ -268,81 +276,134 @@ This is my kanari sugoi =benri.el= file (kanari).
 *** evil
 
 #+BEGIN_SRC emacs-lisp
-;; Behavior
-(setq evil-search-module 'evil-search)
-;; Don't use emacs-state in any modes
-(setq evil-emacs-state-modes nil)
+  ;; Behavior
+  (setq evil-search-module 'evil-search)
+  ;; Don't use emacs-state in any modes
+  (setq evil-emacs-state-modes nil)
 
-(el-get-bundle evil)
-(el-get-bundle evil-indent-textobject)
-;; (el-get-bundle evil-leader)
-(el-get-bundle anzu)
-(el-get-bundle evil-anzu)
-(el-get-bundle evil-matchit)
-(el-get-bundle evil-nerd-commenter)
-(el-get-bundle evil-numbers)
-(el-get-bundle evil-paredit)
-(el-get-bundle evil-surround)
+  (el-get-bundle evil)
+  (el-get-bundle evil-indent-textobject)
+  ;; (el-get-bundle evil-leader)
+  (el-get-bundle anzu)
+  (el-get-bundle evil-anzu)
+  (el-get-bundle evil-matchit)
+  (el-get-bundle evil-nerd-commenter)
+  (el-get-bundle evil-numbers)
+  (el-get-bundle evil-paredit)
+  (el-get-bundle evil-surround)
 
-(when (require 'evil nil t)
-      (evil-mode 1)
-      ;; keymap
-      (define-key evil-normal-state-map (kbd "C-h") #'(lambda ()
-                    (interactive)
-                    (evil-insert-state)
-                    (insert-string " ")
-                    (evil-normal-state)))
-      (define-key evil-normal-state-map (kbd "C-l") #'(lambda ()
-                    (interactive)
-                    (evil-insert-state)
-                    (insert-string " ")
-                    (evil-normal-state)
-                    (evil-forward-char)
-                    ))
-      (define-key evil-normal-state-map (kbd "|") 'evil-window-vsplit)
-      (define-key evil-normal-state-map (kbd "_") 'evil-window-split)
-      (define-key evil-motion-state-map (kbd ";") 'evil-ex)
-      (define-key evil-insert-state-map (kbd "C-k") 'kill-line)
-      (define-key evil-insert-state-map (kbd "C-e") 'end-of-line)
-      (define-key evil-ex-search-keymap "\C-p" #'previous-complete-history-element)
-      (define-key evil-ex-search-keymap "\C-n" #'next-complete-history-element)
+  (when (require 'evil nil t)
+        (evil-mode 1))
+#+END_SRC
 
-      ;;; bind escape key to cancel or go back to normal state
-      (defun evil-escape-or-quit (&optional prompt)
-        (interactive)
-        (cond
-         ((or (evil-normal-state-p) (evil-insert-state-p) (evil-visual-state-p)
-              (evil-replace-state-p) (evil-visual-state-p)) (kbd "<escape>"))
-         (t (kbd "C-g"))))
-      (define-key key-translation-map (kbd "s-w") #'evil-escape-or-quit)
-      (define-key evil-operator-state-map (kbd "s-w") #'evil-escape-or-quit)
+*** key mappings
+
+#+BEGIN_SRC emacs-lisp
+        ;; keymap
+        (define-key evil-normal-state-map (kbd "C-h") #'(lambda ()
+                      (interactive)
+                      (evil-insert-state)
+                      (insert-string " ")
+                      (evil-normal-state)))
+        (define-key evil-normal-state-map (kbd "C-l") #'(lambda ()
+                      (interactive)
+                      (evil-insert-state)
+                      (insert-string " ")
+                      (evil-normal-state)
+                      (evil-forward-char)
+                      ))
+        (define-key evil-normal-state-map (kbd "|") 'evil-window-vsplit)
+        (define-key evil-normal-state-map (kbd "_") 'evil-window-split)
+        (define-key evil-motion-state-map (kbd ";") 'evil-ex)
+        (define-key evil-insert-state-map (kbd "C-k") 'kill-line)
+        (define-key evil-insert-state-map (kbd "C-e") 'end-of-line)
+        (define-key evil-ex-search-keymap "\C-p" #'previous-complete-history-element)
+        (define-key evil-ex-search-keymap "\C-n" #'next-complete-history-element)
+#+END_SRC
+
+*** Smart cancel
+
+#+BEGIN_SRC emacs-lisp
+  ;;; bind escape key to cancel or go back to normal state
+  (defun evil-escape-or-quit (&optional prompt)
+    (interactive)
+    (cond
+     ((or (evil-normal-state-p) (evil-insert-state-p) (evil-visual-state-p)
+          (evil-replace-state-p) (evil-visual-state-p))
+      (kbd "<escape>"))
+     (t (kbd "C-g"))))
+
+#+END_SRC
+
+*** Treat C-[ as ESC
+#+BEGIN_SRC emacs-lisp
+  ;; Use unused key (in this case, <s-w>.) to avoid to use <C-[> keycode,
+  ;; because <ESC> is used in many case so I can't remap it.
+  (define-key key-translation-map (kbd "s-w") #'evil-escape-or-quit)
+  (define-key evil-operator-state-map (kbd "s-w") #'evil-escape-or-quit)
+
+  (if window-system
       (keyboard-translate ?\e ?\s-w)
-      ;; (define-key key-translation-map (kbd "ESC") #'evil-escape-or-quit)
-      ;; (define-key evil-operator-state-map (kbd "ESC") #'evil-escape-or-quit)
+    ;; To avoid ope help window in terminal,
+    ;; execute this after terminal setup finished
+    (add-hook 'term-setup-hook
+              (lambda ()
+                (keyboard-translate ?\e ?\s-w))))
+  ;; (define-key key-translation-map (kbd "ESC") #'evil-escape-or-quit)
+  ;; (define-key evil-operator-state-map (kbd "ESC") #'evil-escape-or-quit)
 
 
-      ;; specific mode
-      ;; (evil-set-initial-state 'eshell-mode 'emacs)
-      ;; Fix cursor color
-      (setq evil-default-cursor t)
-      (set-cursor-color "#FFFFFF")
-      )
+  ;; specific mode
+  ;; (evil-set-initial-state 'eshell-mode 'emacs)
+  ;; Fix cursor color
+#+END_SRC
 
-(global-anzu-mode +1)
-(with-eval-after-load 'evil
-  (require 'evil-anzu))
+*** Cursor color
 
-(when (require 'evil-nerd-commenter nil t)
-  (define-key evil-normal-state-map (kbd "C-- C--") 'evilnc-comment-or-uncomment-lines))
+#+BEGIN_SRC emacs-lisp
+        (setq evil-default-cursor t)
+        (set-cursor-color "#FFFFFF")
+#+END_SRC
 
-(when (require 'surround nil t)
-      (global-surround-mode 1))
 
-(when (require 'evil-matchit nil t)
-  (global-evil-matchit-mode 1))
+*** anzu
 
-(when (require 'evil-elscreen nil t)
-)
+#+BEGIN_SRC emacs-lisp
+  (global-anzu-mode +1)
+  (with-eval-after-load 'evil
+    (require 'evil-anzu))
+
+#+END_SRC
+
+*** evil-nerd-commenter
+
+#+BEGIN_SRC emacs-lisp
+  (when (require 'evil-nerd-commenter nil t)
+    (define-key evil-normal-state-map (kbd "C-- C--") 'evilnc-comment-or-uncomment-lines))
+
+#+END_SRC
+
+*** evil-surround
+
+#+BEGIN_SRC emacs-lisp
+  (when (require 'surround nil t)
+        (global-surround-mode 1))
+
+#+END_SRC
+
+*** evil-matchit
+
+#+BEGIN_SRC emacs-lisp
+  (when (require 'evil-matchit nil t)
+    (global-evil-matchit-mode 1))
+
+#+END_SRC
+
+*** evil-elscreen
+
+#+BEGIN_SRC emacs-lisp
+  (when (require 'evil-elscreen nil t)
+  )
 #+END_SRC
 
 *** Don't close emacs by q command
@@ -466,9 +527,9 @@ is closed."
        (define-key evil-normal-state-map (kbd "SPC f") 'helm-mini)
        (define-key evil-normal-state-map (kbd "SPC b") 'helm-buffers-list)
        (define-key evil-normal-state-map (kbd "SPC SPC") 'helm-M-x)
-       (define-key evil-normal-state-map (kbd "SPC s") 'helm-yas-complete)
-       (define-key evil-normal-state-map (kbd "SPC g") 'helm-ag)
-       (define-key evil-normal-state-map (kbd "/") 'helm-swoop))
+       (define-key evil-normal-state-map (kbd "SPC y") 'helm-yas-complete)
+       (define-key evil-normal-state-map (kbd "SPC s") 'helm-swoop)
+       (define-key evil-normal-state-map (kbd "SPC g") 'helm-ag))
 
      (when (require 'helm-descbinds nil t))
    #+END_SRC
@@ -606,13 +667,13 @@ is closed."
    ;; If you edit it by hand, you could mess it up, so be careful.
    ;; Your init file should contain only one such instance.
    ;; If there is more than one, they won't work right.
-   '(tabbar-default ((t (:background "#424242" :foreground "#999" :height 0.9))))
-   '(tabbar-unselected ((t (:background "#424242" :foreground "#999" :height 0.9))))
-   '(tabbar-selected ((t (:background "#424242" :foreground "#fff" :height 0.9))))
-   '(tabbar-button ((t (:background "#424242" :foreground "#999"))))
-   '(tabbar-button-highlight ((t (:background "#424242" :foreground "#999"))))
-   '(tabbar-modified ((t (:background "#424242" :foreground "#999" :height 0.9))))
-   '(tabbar-separator ((t (:background "#424242" :height 1.0)))))
+   '(tabbar-button-highlight ((t (:background "#424242" :underline nil :foreground "#999"))))
+   '(tabbar-default          ((t (:background "#424242" :underline nil :foreground "#999" :height 0.9))))
+   '(tabbar-unselected       ((t (:background "#424242" :underline nil :foreground "#999" :height 0.9))))
+   '(tabbar-selected         ((t (:background "#424242" :underline nil :foreground "#fff" :height 0.9))))
+   '(tabbar-button           ((t (:background "#424242" :underline nil :foreground "#999"))))
+   '(tabbar-modified         ((t (:background "#424242" :underline nil :foreground "#999" :height 0.9))))
+   '(tabbar-separator        ((t (:background "#424242" :underline nil :height 1.0)))))
   ;;;
   ;; (set-face-attribute 'tabbar-default    nil :background "#323232" :foreground "#999999" :family "September" :height 0.9 :box nil)
   ;; (set-face-attribute 'tabbar-default    nil :background "#323232" :foreground "#999999" :height 0.9 :box nil)
@@ -972,75 +1033,75 @@ is closed."
 ** e2wm
 
 #+BEGIN_SRC emacs-lisp
-(el-get-bundle e2wm)
+  (el-get-bundle e2wm)
 
 
-(when (require 'e2wm nil t)
-        ;; keybinds
-        ;;; Toggle e2wm
-        (define-key evil-normal-state-map (kbd "SPC m")
-          #'(lambda ()
-              (interactive)
-              (if (e2wm:managed-p)
-                  (e2wm:stop-management)
-                  (e2wm:start-management))))
-        (evil-define-key nil e2wm:pst-minor-mode-keymap (kbd "<M-left>") 'e2wm:dp-code)
-        (evil-define-key nil e2wm:pst-minor-mode-keymap (kbd "<M-right>") 'e2wm:dp-two)
-        (evil-define-key nil e2wm:pst-minor-mode-keymap (kbd "<M-up>") 'e2wm:dp-dashboard)
-        (evil-define-key nil e2wm:pst-minor-mode-keymap (kbd "<M-down>") 'e2wm:dp-doc)
+  (when (require 'e2wm nil t)
+    ;; keybinds
+          ;;; Toggle e2wm
+    (define-key evil-normal-state-map (kbd "SPC m")
+      #'(lambda ()
+          (interactive)
+          (if (e2wm:managed-p)
+              (e2wm:stop-management)
+            (e2wm:start-management))))
+    (evil-define-key nil e2wm:pst-minor-mode-keymap (kbd "<M-left>") 'e2wm:dp-code)
+    (evil-define-key nil e2wm:pst-minor-mode-keymap (kbd "<M-right>") 'e2wm:dp-two)
+    (evil-define-key nil e2wm:pst-minor-mode-keymap (kbd "<M-up>") 'e2wm:dp-dashboard)
+    (evil-define-key nil e2wm:pst-minor-mode-keymap (kbd "<M-down>") 'e2wm:dp-doc)
 
 
-;; its 80 chars
-; ------------------------------------------------------------------------------
-        (setq e2wm:c-code-recipe
-              '(| (:left-max-size 30)
-                  (- (:upper-size-ratio 0.7) files history)
-                  (- (:upper-size-ratio 0.7)
-                     (| (:right-max-size 35) main imenu)
-                     sub)))
-        (add-hook 'e2wm:def-plugin-files-mode-hook '(lambda ()
-                                                      (buffer-face-set (font-face-attributes "Source Code Pro Light-12:weight=normal:slant=normal"))
-                                                      ))
-        (add-hook 'e2wm:def-plugin-imenu-mode-hook '(lambda ()
-                                                      (buffer-face-set (font-face-attributes "Source Code Pro Light-12:weight=normal:slant=normal"))
-                                                      ))
+    ;; its 80 chars
+  ; ------------------------------------------------------------------------------
+    (setq e2wm:c-code-recipe
+          '(| (:left-max-size 30)
+              (- (:upper-size-ratio 0.7) files history)
+              (- (:upper-size-ratio 0.7)
+                 (| (:right-max-size 35) main imenu)
+                 sub)))
+    (add-hook 'e2wm:def-plugin-files-mode-hook '(lambda ()
+                                                  (when window-system
+                                                      (buffer-face-set (font-face-attributes "Source Code Pro Light-12:weight=normal:slant=normal")))))
+    (add-hook 'e2wm:def-plugin-imenu-mode-hook '(lambda ()
+                                                  (when window-system
+                                                      (buffer-face-set (font-face-attributes "Source Code Pro Light-12:weight=normal:slant=normal")))))
 
-        (add-hook 'e2wm:pre-start-hook '(lambda () (tabbar-mode 0)))
-        (add-hook 'e2wm:post-stop-hook '(lambda () (tabbar-mode t)))
+    (add-hook 'e2wm:pre-start-hook '(lambda () (tabbar-mode 0)))
+    (add-hook 'e2wm:post-stop-hook '(lambda () (tabbar-mode t)))
 
-        ;;; Plugin: Files
-        ;;; e2wm:def-plugin-files-mode-map
-        (evil-define-key 'normal e2wm:def-plugin-files-mode-map
-          (kbd "RET") 'e2wm:def-plugin-files-select-command)
-        (evil-define-key 'normal e2wm:def-plugin-files-mode-map
-          (kbd "SPC") 'e2wm:def-plugin-files-show-command)
-        (evil-define-key 'normal e2wm:def-plugin-files-mode-map
-          (kbd "+") 'e2wm:def-plugin-files-mkdir-command)
-        (evil-define-key 'normal e2wm:def-plugin-files-mode-map
-          (kbd "D") 'e2wm:def-plugin-files-open-dired-command)
-        (evil-define-key 'normal e2wm:def-plugin-files-mode-map
-          (kbd "^") 'e2wm:def-plugin-files-updir-command)
-        (evil-define-key 'normal e2wm:def-plugin-files-mode-map
-          (kbd "d") 'e2wm:def-plugin-files-delete-command)
-        (evil-define-key 'normal e2wm:def-plugin-files-mode-map
-          (kbd "g") 'e2wm:def-plugin-files-update-by-command)
-        (evil-define-key 'normal e2wm:def-plugin-files-mode-map
-          (kbd "h") 'e2wm:def-plugin-files-toggle-hidden-files-command)
-        (evil-define-key 'normal e2wm:def-plugin-files-mode-map
-          (kbd "r") 'e2wm:def-plugin-files-rename-command)
-        (evil-define-key 'normal e2wm:def-plugin-files-mode-map
-          (kbd "s") 'e2wm:def-plugin-files-sort-name-command)
-        (evil-define-key 'normal e2wm:def-plugin-files-mode-map
-          (kbd "t") 'e2wm:def-plugin-files-sort-time-command)
-        (evil-define-key 'normal e2wm:def-plugin-files-mode-map
-          (kbd "z") 'e2wm:def-plugin-files-sort-size-command)
-        ;;; e2wm:def-plugin-imenu-mode-map
-        (evil-define-key 'normal e2wm:def-plugin-imenu-mode-map
-          (kbd "RET") 'e2wm:def-plugin-imenu-jump-command)
-        (evil-define-key 'normal e2wm:def-plugin-imenu-mode-map
-          (kbd "SPC") 'e2wm:def-plugin-imenu-show-command)
-        ;;; (print e2wm:def-plugin-history-list-mode-map)
-)
+          ;;; Plugin: Files
+          ;;; e2wm:def-plugin-files-mode-map
+    (evil-define-key 'normal e2wm:def-plugin-files-mode-map
+      (kbd "RET") 'e2wm:def-plugin-files-select-command)
+    (evil-define-key 'normal e2wm:def-plugin-files-mode-map
+      (kbd "SPC") 'e2wm:def-plugin-files-show-command)
+    (evil-define-key 'normal e2wm:def-plugin-files-mode-map
+      (kbd "+") 'e2wm:def-plugin-files-mkdir-command)
+    (evil-define-key 'normal e2wm:def-plugin-files-mode-map
+      (kbd "D") 'e2wm:def-plugin-files-open-dired-command)
+    (evil-define-key 'normal e2wm:def-plugin-files-mode-map
+      (kbd "^") 'e2wm:def-plugin-files-updir-command)
+    (evil-define-key 'normal e2wm:def-plugin-files-mode-map
+      (kbd "d") 'e2wm:def-plugin-files-delete-command)
+    (evil-define-key 'normal e2wm:def-plugin-files-mode-map
+      (kbd "g") 'e2wm:def-plugin-files-update-by-command)
+    (evil-define-key 'normal e2wm:def-plugin-files-mode-map
+      (kbd "h") 'e2wm:def-plugin-files-toggle-hidden-files-command)
+    (evil-define-key 'normal e2wm:def-plugin-files-mode-map
+      (kbd "r") 'e2wm:def-plugin-files-rename-command)
+    (evil-define-key 'normal e2wm:def-plugin-files-mode-map
+      (kbd "s") 'e2wm:def-plugin-files-sort-name-command)
+    (evil-define-key 'normal e2wm:def-plugin-files-mode-map
+      (kbd "t") 'e2wm:def-plugin-files-sort-time-command)
+    (evil-define-key 'normal e2wm:def-plugin-files-mode-map
+      (kbd "z") 'e2wm:def-plugin-files-sort-size-command)
+          ;;; e2wm:def-plugin-imenu-mode-map
+    (evil-define-key 'normal e2wm:def-plugin-imenu-mode-map
+      (kbd "RET") 'e2wm:def-plugin-imenu-jump-command)
+    (evil-define-key 'normal e2wm:def-plugin-imenu-mode-map
+      (kbd "SPC") 'e2wm:def-plugin-imenu-show-command)
+          ;;; (print e2wm:def-plugin-history-list-mode-map)
+    )
 #+END_SRC
 
 ** powerline
@@ -1388,6 +1449,16 @@ Note that slime needs texinfo version 5 or higher to build.
 (el-get-bundle slime)
 (el-get-bundle smartparens)
 (el-get-bundle rainbow-delimiters)
+(require 'rainbow-delimiters nil t)
+(require 'color)
+(defun rainbow-delimiters-using-stronger-colors ()
+  (interactive)
+  (cl-loop
+   for index from 1 to rainbow-delimiters-max-face-count
+   do
+   (let ((face (intern (format "rainbow-delimiters-depth-%d-face" index))))
+    (cl-callf color-saturate-name (face-foreground face) 30))))
+(add-hook 'emacs-startup-hook 'rainbow-delimiters-using-stronger-colors)
 #+end_src
 
 *** rainbow-delimiters
@@ -1744,4 +1815,7 @@ http://k2nr.me/blog/2014/12/22/emacs-magit.html
   '(lambda () (setq-local show-trailing-whitespace nil)))
 
 #+end_src
+
+
+
 
