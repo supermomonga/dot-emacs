@@ -348,7 +348,8 @@ This is my kanari sugoi =benri.el= file (kanari).
     ;; execute this after terminal setup finished
     (add-hook 'term-setup-hook
               (lambda ()
-                (keyboard-translate ?\e ?\s-w))))
+                ;; (keyboard-translate ?\e ?\s-w)
+               )))
   ;; (define-key key-translation-map (kbd "ESC") #'evil-escape-or-quit)
   ;; (define-key evil-operator-state-map (kbd "ESC") #'evil-escape-or-quit)
 
