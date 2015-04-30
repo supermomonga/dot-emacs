@@ -1391,6 +1391,7 @@ https://bitbucket.org/lyro/evil/issue/301/evil-define-key-for-minor-mode-does-no
 (el-get-bundle clojure-test-mode)
 (el-get-bundle slamhound)
 (el-get-bundle 4clojure)
+(el-get-bundle prepor/helm-clojure)
 #+end_src
 
 *** clojure-mode
@@ -1413,7 +1414,8 @@ https://bitbucket.org/lyro/evil/issue/301/evil-define-key-for-minor-mode-does-no
 
 #+begin_src emacs-lisp
 (add-hook 'clojure-mode-hook 'cider-mode)
-(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+(add-hook 'cider-mode-hook #'eldoc-mode)
+(evil-define-key 'normal cider-mode-map (kbd "SPC d") 'ac-cider-popup-doc)
 
 (autoload 'ac-cider "ac-cider" nil t)
 (add-hook 'cider-mode-hook 'ac-flyspell-workaround)
@@ -1422,6 +1424,12 @@ https://bitbucket.org/lyro/evil/issue/301/evil-define-key-for-minor-mode-does-no
 (with-eval-after-load "auto-complete"
   (add-to-list 'ac-modes 'cider-mode)
   (add-to-list 'ac-modes 'cider-repl-mode))
+
+(defun set-auto-complete-as-completion-at-point-function ()
+  (setq completion-at-point-functions '(auto-complete)))
+
+(add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
+(add-hook 'cider-mode-hook 'set-auto-complete-as-completion-at-point-function)
 #+end_src
 
 *** 4clojure
@@ -1463,7 +1471,7 @@ Note that slime needs texinfo version 5 or higher to build.
 
 *** smartparens
 #+BEGIN_SRC emacs-lisp
-
+(require 'smartparens-config)
 (add-hook 'clojure-mode-hook
           (lambda()
             (smartparens-mode t)))
