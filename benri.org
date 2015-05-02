@@ -1435,6 +1435,23 @@ https://bitbucket.org/lyro/evil/issue/301/evil-define-key-for-minor-mode-does-no
 (add-hook 'cider-mode-hook 'set-auto-complete-as-completion-at-point-function)
 #+end_src
 
+*** helm-clojure
+#+begin_src emacs-lisp
+  (with-eval-after-load 'helm-clojure
+    (setq helm-source-clojure
+          `((name . "Clojure")
+            (init . helm-clojure-inject)
+            (candidates . helm-clojure-candidates)
+            (action . (("Show doc" . helm-clojure-doc)
+                       ("Go to definition" . helm-clojure-jump)
+                       ("Insert" . helm-clojure-insert)))
+            (requires-pattern . 1)
+            (persistent-action . helm-clojure-persistent)
+            (persistent-help . ,helm-clojure-persistent-help1)
+            (volatile . t)
+            (keymap . ,helm-clojure-map))))
+#+end_src
+
 *** 4clojure
 #+begin_src emacs-lisp
 (defadvice 4clojure-open-question (around 4clojure-open-question-around)
