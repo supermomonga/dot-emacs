@@ -452,16 +452,16 @@ is closed."
 ;; If one needs highlight the line after jump.
 (add-hook 'jumar-post-jump-hook 'jumar-misc-hl-turn-on-until-next-command)
 
-(jumar-dwin-use-preconfigured-scheme 'list+history)
+(jumar-dwim-use-preconfigured-scheme 'list+history)
 (jumar-init)
 
-;; (define-key global-map (kbd "C-'")     'jumar-dwin-add-marker)
-;; (define-key global-map (kbd "C-\"")    'jumar-dwin-jump-current)
-(define-key evil-normal-state-map (kbd "C-o")     'jumar-dwin-jump-backward)
-(define-key evil-normal-state-map (kbd "C-i")     'jumar-dwin-jump-forward)
-;; (define-key global-map (kbd "C-x C-'") 'helm-jumar-dwin-jumarkers)
+;; (define-key global-map (kbd "C-'")     'jumar-dwim-add-marker)
+;; (define-key global-map (kbd "C-\"")    'jumar-dwim-jump-current)
+(define-key evil-normal-state-map (kbd "C-o")     'jumar-dwim-jump-backward)
+(define-key evil-normal-state-map (kbd "C-i")     'jumar-dwim-jump-forward)
+;; (define-key global-map (kbd "C-x C-'") 'helm-jumar-dwim-jumarkers)
 
-(jumar-dwin-advise-jump-command-to-add-jumarker 'elisp-slime-nav-find-elisp-thing-at-point)
+(jumar-dwim-advise-jump-command-to-add-jumarker 'elisp-slime-nav-find-elisp-thing-at-point)
 
 #+END_SRC
 
