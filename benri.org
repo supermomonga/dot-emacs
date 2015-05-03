@@ -705,34 +705,15 @@ is closed."
 ** theme
 
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'el-get-sources
-  '(:name railscasts-theme
-    :type github
-    :website "https://github.com/itiut/railscasts-theme"
-    :description "Railscasts color theme for GNU Emacs 24"
-    :pkgname "itiut/railscasts-theme"))
-(add-to-list 'el-get-sources
-  '(:name replace-colorthemes
-    :type github
-    :website "https://github.com/emacs-jp/replace-colorthemes"
-    :description "Replace color-theme with Emacs theme framework"
-    :pkgname "emacs-jp/replace-colorthemes"))
-(add-to-list 'el-get-sources
-  '(:name jazzradio
-    :type github
-    :website "https://github.com/syohex/emacs-jazzradio"
-    :description "www.jazzradio.com for Emacs"
-    :pkgname "syohex/emacs-jazzradio"))
-
 
 (when (require 'helm-themes nil t)
 )
-(el-get-bundle replace-colorthemes)
+(el-get-bundle emacs-jp/replace-colorthemes)
   (add-to-list 'custom-theme-load-path
          (file-name-as-directory "~/.emacs.d/el-get/replace-colorthemes/"))
   ;; (load-theme 'desert t nil)
 
-(el-get-bundle railscasts-theme)
+(el-get-bundle itiut/railscasts-theme)
 (when (require 'railscasts-theme nil t)
   (add-to-list 'custom-theme-load-path
          (file-name-as-directory "~/.emacs.d/el-get/railscasts-theme/"))
@@ -1822,7 +1803,7 @@ http://k2nr.me/blog/2014/12/22/emacs-magit.html
 *** Install
 
 #+begin_src emacs-lisp
-(el-get-bundle jazzradio)
+(el-get-bundle syohex/emacs-jazzradio)
 (with-eval-after-load 'jazzradio
   (evil-define-key 'normal jazzradio-menu-mode-map (kbd "RET") 'jazzradio--play)
   (evil-define-key 'normal jazzradio-menu-mode-map (kbd "s") 'jazzradio--stop)
