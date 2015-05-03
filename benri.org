@@ -289,7 +289,6 @@ This is my kanari sugoi =benri.el= file (kanari).
   (el-get-bundle evil-matchit)
   (el-get-bundle evil-nerd-commenter)
   (el-get-bundle evil-numbers)
-  (el-get-bundle evil-paredit)
   (el-get-bundle evil-surround)
 
   (when (require 'evil nil t)
