@@ -447,7 +447,7 @@ is closed."
 (el-get-bundle kenoss/jumar)
 
 (require 'jumar)
-(require 'jumar-dwin)
+(require 'jumar-dwim)
 
 ;; If one needs highlight the line after jump.
 (add-hook 'jumar-post-jump-hook 'jumar-misc-hl-turn-on-until-next-command)
