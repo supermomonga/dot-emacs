@@ -1734,15 +1734,8 @@ http://k2nr.me/blog/2014/12/22/emacs-magit.html
 
 ** jdunnet
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'el-get-sources
-             '(:name jdunnet
-               :type http-zip
-               :website "http://www.geocities.co.jp/roomhakase/JDUNNET/jdunnet.html"
-               :description "Japanese version of dunnet"
-               :url "http://www.geocities.co.jp/roomhakase/JDUNNET/jdunnet004a.zip"
-             ))
-
-(el-get-bundle jdunnet)
+(el-get-bundle http-zip:jdunnet
+  :url "http://www.geocities.co.jp/roomhakase/JDUNNET/jdunnet004a.zip")
 (with-eval-after-load "jdunnet"
   (evil-set-initial-state 'dungeon-mode 'insert)
   (evil-set-initial-state 'dun-mode 'insert))
