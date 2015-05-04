@@ -1195,15 +1195,7 @@ is closed."
 
 *** Install
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'el-get-sources '(
-  :name rake
-  :description "rake.el"
-  :website "https://github.com/asok/rake.el"
-  :type github
-  :pkgname "asok/rake.el"
-  :depends (f dash cl-lib)
-))
-(el-get-bundle rake)
+(el-get-bundle asok/rake.el)
 #+END_SRC
 
 ** rinari
@@ -1294,21 +1286,13 @@ https://bitbucket.org/lyro/evil/issue/301/evil-define-key-for-minor-mode-does-no
 ** golang
 
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'el-get-sources
-             '(
-               :name yasnippet-golang
-                     :type github
-                     :website "https://github.com/atotto/yasnippet-golang"
-                     :description "emacs snippet (yasnippets) for golang"
-                     :pkgname "atotto/yasnippet-golang")
-             )
 
 (el-get-bundle go-mode)
 (el-get-bundle go-autocomplete)
 (when (require 'direx nil t)
   (el-get-bundle go-direx))
 (el-get-bundle go-eldoc)
-(el-get-bundle yasnippet-golang)
+(el-get-bundle atotto/yasnippet-golang)
 
 
 ;; yas-snippet-dirs
