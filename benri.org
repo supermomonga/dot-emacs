@@ -1336,7 +1336,6 @@ https://bitbucket.org/lyro/evil/issue/301/evil-define-key-for-minor-mode-does-no
 (el-get-bundle go-autocomplete)
 (when (require 'direx nil t)
   (el-get-bundle go-direx))
-(el-get-bundle go-def)
 (el-get-bundle go-eldoc)
 (el-get-bundle yasnippet-golang)
 
