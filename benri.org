@@ -124,7 +124,7 @@ This is my kanari sugoi =benri.el= file (kanari).
 
   ;; Transparent window
   (if window-system
-    (set-frame-parameter (selected-frame) 'alpha '(88 88)))
+    (set-frame-parameter (selected-frame) 'alpha '(97 97)))
 
   ;; Hide toolbar
   (tool-bar-mode 0)
@@ -298,32 +298,32 @@ This is my kanari sugoi =benri.el= file (kanari).
 *** key mappings
 
 #+BEGIN_SRC emacs-lisp
-        ;; keymap
-        (define-key evil-normal-state-map (kbd "C-h") #'(lambda ()
-                      (interactive)
-                      (evil-insert-state)
-                      (insert-string " ")
-                      (evil-normal-state)))
-        (define-key evil-normal-state-map (kbd "C-l") #'(lambda ()
-                      (interactive)
-                      (evil-insert-state)
-                      (insert-string " ")
-                      (evil-normal-state)
-                      (evil-forward-char)
-                      ))
-        (define-key evil-normal-state-map (kbd "|") 'evil-window-vsplit)
-        (define-key evil-normal-state-map (kbd "_") 'evil-window-split)
-        (define-key evil-motion-state-map (kbd ";") 'evil-ex)
-        (define-key evil-insert-state-map (kbd "C-k") 'kill-line)
-        (define-key evil-insert-state-map (kbd "C-e") 'end-of-line)
-        (define-key evil-ex-search-keymap "\C-p" #'previous-complete-history-element)
-        (define-key evil-ex-search-keymap "\C-n" #'next-complete-history-element)
+  ;; keymap
+  (define-key evil-normal-state-map (kbd "C-h") #'(lambda ()
+                                                    (interactive)
+                                                    (evil-insert-state)
+                                                    (insert-string " ")
+                                                    (evil-normal-state)))
+  (define-key evil-normal-state-map (kbd "C-l") #'(lambda ()
+                                                    (interactive)
+                                                    (evil-insert-state)
+                                                    (insert-string " ")
+                                                    (evil-normal-state)
+                                                    (evil-forward-char)
+                                                    ))
+  (define-key evil-normal-state-map (kbd "|") 'evil-window-vsplit)
+  (define-key evil-normal-state-map (kbd "_") 'evil-window-split)
+  (define-key evil-motion-state-map (kbd ";") 'evil-ex)
+  (define-key evil-insert-state-map (kbd "C-k") 'kill-line)
+  (define-key evil-insert-state-map (kbd "C-e") 'end-of-line)
+  (define-key evil-ex-search-keymap "\C-p" #'previous-complete-history-element)
+  (define-key evil-ex-search-keymap "\C-n" #'next-complete-history-element)
+  (define-key evil-normal-state-map (kbd "C-p") nil)
+  (define-key evil-normal-state-map (kbd "C-n") nil)
 #+END_SRC
 
-*** Smart cancel
-
+*** Smartcancel
 #+BEGIN_SRC emacs-lisp
-  ;;; bind escape key to cancel or go back to normal state
   (defun evil-escape-or-quit (&optional prompt)
     (interactive)
     (cond
@@ -331,15 +331,12 @@ This is my kanari sugoi =benri.el= file (kanari).
           (evil-replace-state-p) (evil-visual-state-p))
       (kbd "<escape>"))
      (t (kbd "C-g"))))
-
-#+END_SRC
-
-*** Treat C-[ as ESC
-#+BEGIN_SRC emacs-lisp
+      ;; (kbd "<escape>"))
   ;; Use unused key (in this case, <s-w>.) to avoid to use <C-[> keycode,
   ;; because <ESC> is used in many case so I can't remap it.
   (define-key key-translation-map (kbd "s-w") #'evil-escape-or-quit)
-  (define-key evil-operator-state-map (kbd "s-w") #'evil-escape-or-quit)
+  ;; (define-key key-translation-map (kbd "ESC") #'evil-escape-or-quit)
+  ;; (define-key evil-operator-state-map (kbd "s-w") #'evil-escape-or-quit)
 
   (if window-system
       (keyboard-translate ?\e ?\s-w)
@@ -652,9 +649,9 @@ is closed."
   ;; (set-face-attribute 'tabbar-selected   nil :background "#424242" :foreground "#ffffff" :box nil)
   ;; (set-face-attribute 'tabbar-button nil :box nil)
   ;; (set-face-attribute 'tabbar-separator nil :height 1.0 :background "#424242")
-  (defvar my-tabbar-show-buffers
-    '("*Faces*" "*vc-" "*eshell*" "*Lingr Status*" "*scratch*" "*cider-scratch*"))
-  (defvar my-tabbar-hide-buffers
+  (setq my-tabbar-show-buffers
+    '("*Faces*" "*vc-" "*eshell*" "*Lingr Status*" "*scratch*" "*cider-scratch*" "*cider-repl "))
+  (setq my-tabbar-hide-buffers
     '("*" "Lingr[" "org-src-fontification:"))
   (defun my-tabbar-buffer-list ()
     (let* ((hides (regexp-opt my-tabbar-hide-buffers))
@@ -1125,7 +1122,8 @@ is closed."
 #+BEGIN_SRC emacs-lisp
 (el-get-bundle rbenv)
 (el-get-bundle ruby-end)
-(el-get-bundle ruby-electric)
+(el-get-bundle ruby-electric
+  (require 'ruby-electric))
 (el-get-bundle ruby-block)
 (el-get-bundle Enhanced-Ruby-Mode)
 (el-get-bundle inf-ruby)
@@ -1330,6 +1328,20 @@ https://bitbucket.org/lyro/evil/issue/301/evil-define-key-for-minor-mode-does-no
 (el-get-bundle 4clojure)
 (el-get-bundle prepor/helm-clojure)
 #+end_src
+
+#+begin_src emacs-lisp
+(evil-define-key 'normal cider-repl-mode-map (kbd "C-p") 'cider-repl-previous-prompt)
+(evil-define-key 'normal cider-repl-mode-map (kbd "C-n") 'cider-repl-next-prompt)
+(evil-define-key 'insert cider-repl-mode-map (kbd "C-p") 'cider-repl-previous-input)
+(evil-define-key 'insert cider-repl-mode-map (kbd "C-n") 'cider-repl-next-input)
+(add-hook 'cider-repl-mode-hook
+          (lambda ()
+            (setq-local show-trailing-whitespace nil)))
+(defun cider-repl-default-prompt (namespace)
+  "Return a prompt string that mentions NAMESPACE."
+  (format "%s ❯ " namespace))
+#+end_src
+
 
 *** clojure-mode
 
