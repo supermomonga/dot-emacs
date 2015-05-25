@@ -1365,6 +1365,7 @@ https://bitbucket.org/lyro/evil/issue/301/evil-define-key-for-minor-mode-does-no
 (add-hook 'clojure-mode-hook 'cider-mode)
 (add-hook 'cider-mode-hook #'eldoc-mode)
 (evil-define-key 'normal cider-mode-map (kbd "SPC d") 'ac-cider-popup-doc)
+(evil-define-key 'normal cider-repl-mode-map (kbd "SPC d") 'ac-cider-popup-doc)
 (setq cider-test-show-report-on-success t)
 
 (autoload 'ac-cider "ac-cider" nil t)
