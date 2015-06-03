@@ -1410,6 +1410,13 @@ opening 4clojure questions"
   (unless cider-current-clojure-buffer
     (cider-jack-in)))
 #+end_src
+** Elixir
+
+#+begin_src emacs-lisp
+(el-get-bundle elixir-mode)
+#+end_src
+
+
 ** S-expression languages
 
 *** Install
