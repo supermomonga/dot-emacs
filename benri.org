@@ -1482,6 +1482,7 @@ Note that slime needs texinfo version 5 or higher to build.
 *** haml
 #+begin_src emacs-lisp
 (el-get-bundle haml-mode)
+(require 'haml-mode)
 #+end_src
 *** slim
 #+begin_src emacs-lisp
