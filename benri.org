@@ -1337,6 +1337,7 @@ https://bitbucket.org/lyro/evil/issue/301/evil-define-key-for-minor-mode-does-no
 (add-hook 'cider-repl-mode-hook
           (lambda ()
             (setq-local show-trailing-whitespace nil)))
+(require 'cider)
 (defun cider-repl-default-prompt (namespace)
   "Return a prompt string that mentions NAMESPACE."
   (format "%s ❯ " namespace))
