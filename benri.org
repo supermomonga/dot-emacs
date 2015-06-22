@@ -108,7 +108,7 @@ This is my kanari sugoi =benri.el= file (kanari).
   (setq whitespace-style '(spaces tabs space-mark tab-mark))
   (setq whitespace-display-mappings
         '(
-    ;; (space-mark 32 [183] [46]) ; normal space, ·
+          ;; (space-mark 32 [183] [46]) ; normal space, ·
           (space-mark 160 [164] [95])
           (space-mark 2208 [2212] [95])
           (space-mark 2336 [2340] [95])
@@ -119,12 +119,16 @@ This is my kanari sugoi =benri.el= file (kanari).
           ))
   (global-whitespace-mode 1)
 
+  (set-face-attribute 'whitespace-tab nil
+                      :foreground "LightSkyBlue"
+                      :underline t)
+
   ;; Show trailing whitespaces
   (setq-default show-trailing-whitespace t)
 
   ;; Transparent window
   (if window-system
-    (set-frame-parameter (selected-frame) 'alpha '(97 97)))
+      (set-frame-parameter (selected-frame) 'alpha '(97 97)))
 
   ;; Hide toolbar
   (tool-bar-mode 0)
@@ -969,6 +973,7 @@ is closed."
 #+BEGIN_SRC emacs-lisp
 (el-get-bundle flycheck)
 (el-get-bundle flycheck-pos-tip)
+(require 'flycheck-pos-tip)
 
 (when (require 'flycheck nil t)
   (add-hook 'go-mode-hook 'flycheck-mode)
@@ -1285,33 +1290,44 @@ https://bitbucket.org/lyro/evil/issue/301/evil-define-key-for-minor-mode-does-no
 
 #+BEGIN_SRC emacs-lisp
 
-(el-get-bundle go-mode)
-(el-get-bundle go-autocomplete)
-(when (require 'direx nil t)
-  (el-get-bundle go-direx))
-(el-get-bundle go-eldoc)
-(el-get-bundle atotto/yasnippet-golang)
+  (el-get-bundle go-mode)
+  (el-get-bundle go-autocomplete)
+  (when (require 'direx nil t)
+    (el-get-bundle go-direx))
+  (el-get-bundle go-eldoc)
+  (el-get-bundle atotto/yasnippet-golang)
 
 
-;; yas-snippet-dirs
+  ;; yas-snippet-dirs
 
-(when (require 'auto-complete nil t)
-  (add-to-list 'ac-modes 'go-mode))
+  (when (require 'auto-complete nil t)
+    (add-to-list 'ac-modes 'go-mode))
 
-(add-hook 'go-mode-hook '(lambda ()
-                           (add-to-list 'ac-sources 'ac-source-yasnippet)
-                           (setq tab-width 2)))
+  (add-hook 'go-mode-hook '(lambda ()
+                             (add-to-list 'ac-sources 'ac-source-yasnippet)
+                             (setq tab-width 2)
+                             (setq-local whitespace-display-mappings
+                                   '(
+                                     ;; (space-mark 32 [183] [46]) ; normal space, ·
+                                     (space-mark 160 [164] [95])
+                                     (space-mark 2208 [2212] [95])
+                                     (space-mark 2336 [2340] [95])
+                                     (space-mark 3616 [3620] [95])
+                                     (space-mark 3872 [3876] [95])
+                                     (space-mark ?\x3000 [?\□]) ;; Zenkaku space [　]
+                                     (tab-mark ?\t [?\x276F ?\t] [?\\ ?\t]) ; tab, ❯ [	]
+                                     ))))
 
-(add-hook 'before-save-hook 'gofmt-before-save)
+  (add-hook 'before-save-hook 'gofmt-before-save)
 
-(when (require 'go-direx nil t)
-  (evil-define-key 'normal go-mode-map (kbd "SPC e") 'go-direx-pop-to-buffer))
+  (when (require 'go-direx nil t)
+    (evil-define-key 'normal go-mode-map (kbd "SPC e") 'go-direx-pop-to-buffer))
 
-(when (require 'go-eldoc nil t)
-  ;; (set-face-attribute 'eldoc-highlight-function-argument nil
-        ;;             :underline t :foreground "green"
-        ;;             :weight 'bold)
-  (add-hook 'go-mode-hook 'go-eldoc-setup))
+  (when (require 'go-eldoc nil t)
+    ;; (set-face-attribute 'eldoc-highlight-function-argument nil
+    ;;             :underline t :foreground "green"
+    ;;             :weight 'bold)
+    (add-hook 'go-mode-hook 'go-eldoc-setup))
 #+END_SRC
 
 ** clojure
