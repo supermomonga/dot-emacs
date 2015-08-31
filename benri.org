@@ -63,7 +63,8 @@ This is my kanari sugoi =benri.el= file (kanari).
 
 * Set environment variables
 #+BEGIN_SRC emacs-lisp
-(setenv "GIT_EDITOR" "emacs")
+(setenv "GIT_EDITOR" "emacsclient")
+(setenv "EDITOR" "emacsclient")
 #+END_SRC
 * Load secret settings
 #+BEGIN_SRC emacs-lisp
@@ -241,7 +242,10 @@ This is my kanari sugoi =benri.el= file (kanari).
   (set-fontset-font "fontset-september" '(#x2700 . #x27BF) (font-spec :family "Symbola" :size 14) nil 'append)
   (set-fontset-font "fontset-september" 'japanese-jisx0208 (font-spec :family "September" :size 14) nil 'append)
   (set-fontset-font "fontset-september" 'katakana-jisx0201 (font-spec :family "September" :size 14) nil 'append) ;; hankaku kana
-  (add-to-list 'default-frame-alist '(font . "fontset-september")))
+  (add-to-list 'default-frame-alist '(font . "fontset-september"))
+  (global-set-key (kbd "s-+") (lambda () (interactive) (text-scale-increase 1)))
+  (global-set-key (kbd "s--") (lambda () (interactive) (text-scale-decrease 1)))
+  (global-set-key (kbd "s-0") (lambda () (interactive) (text-scale-increase 0))))
 #+END_SRC
 
 * Package config
@@ -1108,7 +1112,6 @@ is closed."
     (push '("*cider-doc*" :noselect t) popwin:special-display-config)
     (push '("*cider-error*" :noselect t) popwin:special-display-config)
     (push '("*cider-repl" :noselect t) popwin:special-display-config)
-    (push '("*jazzradio*") popwin:special-display-config)
     (push '("*ruby*") popwin:special-display-config)
     (push '("*quickrun*") popwin:special-display-config)
     (push '("*twittering-edit*") popwin:special-display-config)
@@ -1696,6 +1699,11 @@ http://k2nr.me/blog/2014/12/22/emacs-magit.html
 )
 #+END_SRC
 
+** restclient
+#+begin_src emacs-lisp
+(el-get-bundle restclient)
+#+end_src
+
 ** lingr
 
 *** lingr.el
@@ -1788,4 +1796,32 @@ http://k2nr.me/blog/2014/12/22/emacs-magit.html
 
 
 
+
+
+** libraries
+#+begin_src emacs-lisp
+(el-get-bundle mustache)
+(el-get-bundle ht)
+(el-get-bundle dash)
+(el-get-bundle s)
+(el-get-bundle f)
+(require 'mustache nil t)
+(require 'ht nil t)
+(require 'dash nil t)
+(require 's nil t)
+(require 'f nil t)
+
+#+end_src
+
+
+* Emacs server
+
+#+begin_src emacs-lisp
+  (defun server-eval-last-sexp ()
+    (interactive)
+    (save-excursion
+      (message "%s" (server-eval-at "emacs_server" (preceding-sexp)))))
+
+  (evil-define-key 'normal emacs-lisp-mode-map (kbd "SPC e") 'server-eval-last-sexp)
+#+end_src
 
