@@ -1,4 +1,0 @@
-# dot-emacs
-
-Emacs is benri.
-
