@@ -78,6 +78,10 @@ is closed."
 (define-key evil-normal-state-map (kbd "C-n") nil)
 
 
+(el-get-bundle! supermomonga/evil-textobj-entire)
+(el-get-bundle! supermomonga/evil-textobj-multiblock
+  (define-key evil-outer-text-objects-map evil-textobj-multiblock-outer-key 'evil-multiblock-outer-block)
+  (define-key evil-inner-text-objects-map evil-textobj-multiblock-inner-key 'evil-multiblock-inner-block))
 
 
 ;; To use ESC and Ctrl-[ like C-g
@@ -91,3 +95,4 @@ is closed."
 (define-key key-translation-map (kbd "s-w") #'evil-escape-or-quit)
 (if window-system
     (keyboard-translate ?\e ?\s-w))
+

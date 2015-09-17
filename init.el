@@ -7,7 +7,8 @@
 ;;------------------------------------------------------------------------------
 ;; Setup package manager
 ;;------------------------------------------------------------------------------
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+(add-to-list 'load-path
+             (locate-user-emacs-file "el-get/el-get"))
 
 ;; Install el-get if not installed
 (unless (require 'el-get nil 'noerror)
@@ -27,23 +28,24 @@
              (locate-user-emacs-file "el-get-user-recipes"))
 
 ;;------------------------------------------------------------------------------
-;; Packages
+;; Muanual init Loader
 ;;------------------------------------------------------------------------------
 ;; Avoid compile error
 (el-get-bundle tarao/with-eval-after-load-feature-el)
-;; Prevent critical error in start up process.
-(setq milo-raise-error nil)
 
 ;; init-loader
-(el-get-bundle! kenoss/manual-init-loader)
+(el-get-bundle! kenoss/manual-init-loader
+  (setq milo-raise-error nil))
 (milo-load user-emacs-directory
            '(config "appearance.el"
-                    "theme.el"
                     "behavior.el"
+                    "theme.el"
                     "evil.el"
                     "helm.el"
                     "auto-complete.el"
                     "eshell.el"
+                    "tabbar.el"
+                    "smartrep.el"
                     "misc.el"))
 
 
