@@ -1,6 +1,7 @@
 
 (el-get-bundle popup)
 (el-get-bundle! auto-complete
+  (setq ac-comphist-file (locate-user-emacs-file "cache/auto-complete/ac-comphist.dat"))
   (with-eval-after-load-feature 'eshell
     (evil-define-key 'insert eshell-mode-map (kbd "C-i") 'auto-complete)
     (evil-define-key 'insert eshell-mode-map (kbd "<tab>") 'auto-complete)))
@@ -9,8 +10,8 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
 (setq ac-use-menu-map t)
-(setq ac-menu-height 20)
-(setq ac-auto-start 4)
+(setq ac-menu-height 23)
+(setq ac-auto-start 3)
 (setq ac-expand-on-auto-complete nil)
 ;; (print ac-modes)
 ;; (set-face-background 'ac-candidate-face "lightgray")
@@ -32,7 +33,7 @@
 (add-to-list 'ac-modes 'coffee-mode)
 (add-to-list 'ac-modes 'clojure-mode)
 (add-to-list 'ac-modes 'go-mode)
-(add-to-list 'ac-modes 'ruby-mode)
+(add-to-list 'ac-modes 'enh-ruby-mode)
 (add-to-list 'ac-modes 'org-mode)
 
 (require 'pcomplete)

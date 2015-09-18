@@ -1,7 +1,8 @@
-(add-hook 'after-init-hook (lambda() (eshell)))
 
-(defun add-pcomplete-to-capf ()
-  (add-hook 'completion-at-point-functions 'pcomplete-completions-at-point nil t))
+(setq eshell-directory-name (locate-user-emacs-file "cache/eshell/"))
+(setq eshell-history-size 100000)
+
+;;(add-hook 'after-init-hook (lambda() (eshell)))
 
 (defun my/eshell-mode-hook ()
   (setq-local ac-sources

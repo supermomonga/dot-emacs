@@ -5,21 +5,18 @@
 *#
 
 secret.*
-ac-comphist.dat
 tramp
 
-eshell/
 elpa/
 el-get/
 games/
 var
+cache/
 
-benri.el
 url
 
 projectile-bookmarks.eld
 
 .persistent-scratch
 helm-doc.org
-symon_lingr
 history

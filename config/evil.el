@@ -22,6 +22,15 @@ is closed."
          (error (if force (kill-emacs) (kill-buffer))))))))
 (evil-ex-define-cmd "q[uit]" 'evil-quit-without-kill)
 
+;; Comint
+;;; reset keymap
+;;(setq comint-mode-map (make-keymap))
+;;; set evil keymap
+;;(evil-define-key 'insert comint-mode-map (kbd "RET") 'comint-exec)
+;;(evil-define-key 'insert comint-mode-map (kbd "C-a") 'comint-bol)
+;;(evil-define-key 'insert comint-mode-map (kbd "C-n") 'comint-next-matching-input-from-input)
+;;(evil-define-key 'insert comint-mode-map (kbd "C-p") 'comint-previous-matching-input-from-input)
+
 ;; for eshell
 (with-eval-after-load 'eshell
   (evil-define-key 'insert eshell-mode-map (kbd "C-i")   'company-complete)
@@ -78,7 +87,9 @@ is closed."
 (define-key evil-normal-state-map (kbd "C-n") nil)
 
 
-(el-get-bundle! supermomonga/evil-textobj-entire)
+(el-get-bundle! supermomonga/evil-textobj-entire
+  (define-key evil-outer-text-objects-map evil-textobj-entire-key 'evil-entire-entire-buffer)
+  (define-key evil-inner-text-objects-map evil-textobj-entire-key 'evil-entire-entire-buffer))
 (el-get-bundle! supermomonga/evil-textobj-multiblock
   (define-key evil-outer-text-objects-map evil-textobj-multiblock-outer-key 'evil-multiblock-outer-block)
   (define-key evil-inner-text-objects-map evil-textobj-multiblock-inner-key 'evil-multiblock-inner-block))

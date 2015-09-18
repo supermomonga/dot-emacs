@@ -4,6 +4,11 @@
 (tabbar-mwheel-mode -1)
 (setq tabbar-buffer-groups-function nil)
 
+(setq my-tabbar-show-buffers
+      '("*Faces*" "*vc-" "*eshell*" "*Lingr Status*" "*scratch*" "*cider-scratch*" "*cider-repl " "*rails*" "*pry*"))
+(setq my-tabbar-hide-buffers
+      '("*" "Lingr[" "org-src-fontification:"))
+
 (dolist (btn '(tabbar-buffer-home-button tabbar-scroll-left-button tabbar-scroll-right-button))
   (set btn (cons (cons "" nil) (cons "" nil))))
 ;; (setq tabbar-auto-scroll-flag nil)
@@ -35,10 +40,7 @@
 ;; (set-face-attribute 'tabbar-selected   nil :background "#424242" :foreground "#ffffff" :box nil)
 ;; (set-face-attribute 'tabbar-button nil :box nil)
 ;; (set-face-attribute 'tabbar-separator nil :height 1.0 :background "#424242")
-(setq my-tabbar-show-buffers
-      '("*Faces*" "*vc-" "*eshell*" "*Lingr Status*" "*scratch*" "*cider-scratch*" "*cider-repl "))
-(setq my-tabbar-hide-buffers
-      '("*" "Lingr[" "org-src-fontification:"))
+
 (defun my-tabbar-buffer-list ()
   (let* ((hides (regexp-opt my-tabbar-hide-buffers))
          (shows (regexp-opt my-tabbar-show-buffers))

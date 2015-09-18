@@ -35,10 +35,11 @@
 
 ;; init-loader
 (el-get-bundle! kenoss/manual-init-loader
-  (setq milo-raise-error nil))
+  (setq milo-raise-error t))
 (milo-load user-emacs-directory
            '(config "appearance.el"
                     "behavior.el"
+                    "libraries.el"
                     "theme.el"
                     "evil.el"
                     "helm.el"
@@ -46,6 +47,15 @@
                     "eshell.el"
                     "tabbar.el"
                     "smartrep.el"
+                    "haml.el"
+                    "slim.el"
+                    (ruby "enh-ruby.el"
+                          "rbenv.el"
+                          "inf-ruby.el"
+                          "robe.el")
+                    "smartparens.el"
+                    "open-junk-file.el"
+                    "persistent-scratch.el"
                     "misc.el"))
 
 
