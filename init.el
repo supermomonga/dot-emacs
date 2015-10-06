@@ -1,8 +1,14 @@
+;;------------------------------------------------------------------------------
+;; Language environment
+;;------------------------------------------------------------------------------
+(set-language-environment "Japanese")
+
 
 ;;------------------------------------------------------------------------------
 ;; Enable Common Lisp features
 ;;------------------------------------------------------------------------------
 (require 'cl-lib)
+(require 'color)
 
 ;;------------------------------------------------------------------------------
 ;; Setup package manager
@@ -37,10 +43,13 @@
 (el-get-bundle! kenoss/manual-init-loader
   (setq milo-raise-error t))
 (milo-load user-emacs-directory
-           '(config "appearance.el"
+           '(config "font.el"
+                    "appearance.el"
                     "behavior.el"
+                    "environment.el"
                     "libraries.el"
                     "theme.el"
+                    "undo-tree.el"
                     "evil.el"
                     "helm.el"
                     "auto-complete.el"
@@ -53,9 +62,17 @@
                           "rbenv.el"
                           "inf-ruby.el"
                           "robe.el")
+                    (lisp "rainbow-delimiters.el")
+                    (clojure "clojure.el"
+                             "cider.el")
+                    "markdown.el"
+                    "quickrun.el"
                     "smartparens.el"
                     "open-junk-file.el"
                     "persistent-scratch.el"
+                    "server.el"
+                    "epub.el"
+                    "popwin.el"
+                    "jazzradio.el"
                     "misc.el"))
-
 

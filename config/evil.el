@@ -1,6 +1,11 @@
 
 (el-get-bundle! elpa:evil)
 
+;; to use redo with C-r
+;;(el-get-bundle undo-tree)
+;;(require 'undo-tree nil 'noerror)
+;;(global-undo-tree-mode)
+
 ;; enable evil
 (evil-mode t)
 (setq evil-emacs-state-modes nil)
@@ -44,6 +49,13 @@ is closed."
   (evil-define-key 'insert eshell-mode-map (kbd "C-p") 'eshell-previous-matching-input-from-input)
   (evil-define-key 'insert eshell-mode-map (kbd "C-n") 'eshell-next-matching-input-from-input))
 
+;; for emacs-lisp mode
+(evil-define-key 'normal lisp-interaction-mode-map (kbd ")") 'sp-up-sexp)
+(evil-define-key 'normal lisp-interaction-mode-map (kbd "(") 'sp-down-sexp)
+(evil-define-key 'normal emacs-lisp-mode-map (kbd ")") 'sp-up-sexp)
+(evil-define-key 'normal emacs-lisp-mode-map (kbd "(") 'sp-down-sexp)
+
+
 ;; surround
 (el-get-bundle! elpa:evil-surround
   (global-evil-surround-mode 1))
@@ -76,8 +88,10 @@ is closed."
       (evil-normal-state)
       (evil-forward-char)
       ))
-(define-key evil-normal-state-map (kbd "|") 'evil-window-vsplit)
+(define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
+(define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 (define-key evil-normal-state-map (kbd "_") 'evil-window-split)
+(define-key evil-normal-state-map (kbd "|") 'evil-window-vsplit)
 (define-key evil-motion-state-map (kbd ";") 'evil-ex)
 (define-key evil-insert-state-map (kbd "C-k") 'kill-line)
 (define-key evil-insert-state-map (kbd "C-e") 'end-of-line)
@@ -106,4 +120,5 @@ is closed."
 (define-key key-translation-map (kbd "s-w") #'evil-escape-or-quit)
 (if window-system
     (keyboard-translate ?\e ?\s-w))
+
 

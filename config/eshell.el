@@ -16,7 +16,6 @@
   (evil-define-key 'insert ac-mode-map (kbd "TAB") 'auto-complete)
   (setq-local show-trailing-whitespace nil))
 
-(add-hook 'eshell-mode-hook 'add-pcomplete-to-capf)
 (add-hook 'eshell-mode-hook 'my/eshell-mode-hook)
 
 (setq eshell-command-aliases-list '())
@@ -42,3 +41,5 @@
              (concat
         (abbreviate-file-name (eshell/pwd))
         " ❯ ")))
+
+(add-hook 'after-init-hook 'eshell)

@@ -1,21 +1,3 @@
-;;; Font
-(when (fboundp 'global-font-lock-mode)
-  (global-font-lock-mode t)
-  (setq font-lock-support-mode 'jit-lock-mode))
-
-(when window-system
-  (create-fontset-from-ascii-font "Source Code Pro Light-14:weight=normal:slant=normal" nil "september")
-  ;; Symbola font: http://users.teilar.gr/~g1951d/
-  (set-fontset-font "fontset-september" '(#x2700 . #x27BF) (font-spec :family "Symbola" :size 14) nil 'append)
-  (set-fontset-font "fontset-september" 'japanese-jisx0208 (font-spec :family "September" :size 14) nil 'append)
-  (set-fontset-font "fontset-september" 'katakana-jisx0201 (font-spec :family "September" :size 14) nil 'append) ;; hankaku kana
-  (add-to-list 'default-frame-alist '(font . "fontset-september"))
-  (global-set-key (kbd "s-+") (lambda () (interactive) (text-scale-increase 1)))
-  (global-set-key (kbd "s--") (lambda () (interactive) (text-scale-decrease 1)))
-  (global-set-key (kbd "s-0") (lambda () (interactive) (text-scale-increase 0))))
-
-
-
 ;;; Highlight current line
 (global-hl-line-mode 1)
 
@@ -74,5 +56,8 @@
     ad-do-it))
 
 ;;; Always truncate lines
-(setq-default global-visual-line-mode t)
+(global-visual-line-mode)
 
+
+;; Highlight respond parent
+(show-paren-mode t)
