@@ -19,11 +19,11 @@
 (menu-bar-mode 0)
 
 ;;; Hide toolbar
-(tool-bar-mode 0)
+(if window-system
+    (tool-bar-mode 0))
 
 ;;; Hide scrollbar
-(if window-system
-    (set-scroll-bar-mode nil))
+(set-scroll-bar-mode nil)
 
 
 ;;; Whitespace
