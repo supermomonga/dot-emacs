@@ -9,4 +9,4 @@
   (save-excursion
     (message "%s" (server-eval-at "emacs_server" (preceding-sexp)))))
 
-(evil-define-key 'normal emacs-lisp-mode-map (kbd "SPC e") 'server-eval-last-sexp)
+;; (evil-define-key 'normal emacs-lisp-mode-map (kbd "SPC e") 'server-eval-last-sexp)

@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: validates_boolean_of
+# key: validates_boolean_of
+# --
+validates :${1:property_name}, inclusion: {in: [true, false]}

@@ -21,6 +21,9 @@
 ;; PATHs
 ;;------------------------------------------------------------------------------
 
+;; .NET
+(append-path "/usr/local/share/dotnet/")
+
 ;; rbenv
 (append-path "~/.rbenv/bin/")
 (append-path "~/.rbenv/shims/")
@@ -35,6 +38,9 @@
 ;; Enable emacsclient to use itself via eshell
 (setenv "GIT_EDITOR" "emacsclient")
 (setenv "EDITOR" "emacsclient")
+
+;; LANG
+(setenv "LANG" "ja_JP.UTF-8")
 
 ;; Pager
 (setenv "PAGER" "")

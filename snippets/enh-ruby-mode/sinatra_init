@@ -1,0 +1,12 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: sinatra_init
+# key: sinatra_init
+# binding: direct-keybinding
+# --
+require 'sinatra/base'
+
+class App < Sinatra::Base
+  $0
+end
+
+App.run!

@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: validates_confirmation_of
+# key: validates_confirmation_of
+# --
+validates :${1:attribute}, confirmation: true

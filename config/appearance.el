@@ -49,10 +49,16 @@
 ;;; Show line number
 (global-linum-mode t)
 (defvar linum-exceptional-regexp-list '("\\*cider-.+\\*" "\\*eshell\\*" " \\*WM:.+" "\\*scratch\\*" ".+helm.+"))
+(defvar linum-exceptional-mode-list '(direx:direx-mode))
 
 (defadvice linum-mode (around hoge activate)
   (when (or (eq linum-mode t)
-            (not (cl-find (buffer-name) linum-exceptional-regexp-list :test (lambda (str rx) (string-match rx str)))))
+            (and (not (cl-find
+                       (buffer-name)
+                       linum-exceptional-regexp-list :test (lambda (str rx) (string-match rx str))))
+                 (not (cl-find
+                       major-mode
+                       linum-exceptional-mode-list :test (lambda (buf-mode mode) (eq buf-mode mode))))))
     ad-do-it))
 
 ;;; Always truncate lines

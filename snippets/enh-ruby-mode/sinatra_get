@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: sinatra_get
+# key: sinatra_get
+# binding: direct-keybinding
+# --
+get '/' do
+  $0
+end

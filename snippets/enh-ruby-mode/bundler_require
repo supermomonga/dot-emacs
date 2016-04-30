@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: require 'bundler' ...
+# key: bundler_require
+# binding: direct-keybinding
+# --
+require 'bundler'
+Bundler.require

@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: validates_uniqueness_of
+# key: validates_uniqueness_of
+# --
+validates :${1:attribute}, uniqueness: true

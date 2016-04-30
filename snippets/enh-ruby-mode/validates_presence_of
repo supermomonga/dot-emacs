@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: validates_presence_of
+# key: validates_presence_of
+# --
+validates :${1:attribute}, presence: true

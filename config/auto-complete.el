@@ -9,11 +9,13 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
+(setq ac-use-fuzzy nil)
 (setq ac-use-menu-map t)
-(setq ac-menu-height 23)
-(setq ac-quick-help-delay 0.3)
-(setq ac-delay 0.0)
-(setq ac-auto-start 3)
+(setq ac-menu-height 15)
+(setq ac-quick-help-delay 0.4)
+(setq ac-delay 0.3)
+(setq ac-auto-start 0)
+(setq ac-candidate-limit 80)
 (setq ac-expand-on-auto-complete t)
 ;; (print ac-modes)
 ;; (set-face-background 'ac-candidate-face "lightgray")
@@ -24,18 +26,25 @@
 ;; (el-get-bundle pos-tip)
 ;; (require 'pos-tip)
 ;; ac-sources
-(defvar my-ac-sources
-  '(ac-source-yasnippet
-    ac-source-abbrev
-    ac-source-dictionary
-    ac-source-words-in-same-mode-buffers))
-(add-to-list 'ac-sources 'ac-source-yasnippet)
+;; (defvar my-ac-sources
+;;   '(ac-source-yasnippet
+;;     ac-source-abbrev
+;;     ac-source-dictionary
+;;     ;; ac-source-words-in-same-mode-buffers
+;;     ))
+;; (set-default 'ac-sources my-ac-sources)
+(add-hook 'auto-complete-mode-hook
+          (lambda ()
+            (add-to-list 'ac-sources 'ac-source-yasnippet)))
+;; (add-to-list 'ac-sources 'ac-source-yasnippet)
 (add-to-list 'ac-modes 'eshell-mode)
 (add-to-list 'ac-modes 'coffee-mode)
 (add-to-list 'ac-modes 'clojure-mode)
 (add-to-list 'ac-modes 'go-mode)
 (add-to-list 'ac-modes 'enh-ruby-mode)
+(add-to-list 'ac-modes 'slim-mode)
 (add-to-list 'ac-modes 'org-mode)
+(add-to-list 'ac-modes 'csharp-mode)
 
 (require 'pcomplete)
 (defun ac-pcomplete ()

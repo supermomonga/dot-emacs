@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: validates_length_of
+# key: validates_length_of
+# --
+validates :${1:attribute}, length: { in: ${2:# :minimum}..${3:# :maximum} }

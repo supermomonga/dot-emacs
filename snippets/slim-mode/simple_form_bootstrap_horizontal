@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: simple_form_bootstrap_horizontal
+# key: simple_form_bootstrap_horizontal
+# --
+simple_form_for(${1:@model}, html: { class: '${2:form-horizontal}' }) do |form|

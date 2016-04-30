@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: urlencode
+# key: urlencode
+# binding: direct-keybinding
+# --
+ERB::Util.url_encode $0

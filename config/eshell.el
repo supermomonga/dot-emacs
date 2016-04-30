@@ -36,6 +36,9 @@
 (add-to-list 'eshell-command-aliases-list (list "gcm" "git commit -m $*"))
 (add-to-list 'eshell-command-aliases-list (list "gcam" "git commit -am $*"))
 
+(add-to-list 'eshell-command-aliases-list (list "clear" "(eshell/clear)"))
+(add-to-list 'eshell-command-aliases-list (list "cl" "clear"))
+
 (setq eshell-prompt-regexp "^[~/].* ❯ ")
 (setq eshell-prompt-function (lambda ()
              (concat
@@ -43,3 +46,21 @@
         " ❯ ")))
 
 (add-hook 'after-init-hook 'eshell)
+
+(defun eshell/clear ()
+(let ((inhibit-read-only t))
+  (erase-buffer)))
+
+
+;; for eshell
+(with-eval-after-load 'evil
+  (evil-define-key 'insert eshell-mode-map (kbd "C-i")   'auto-complete)
+  (evil-define-key 'insert eshell-mode-map (kbd "<tab>") 'auto-complete)
+  (evil-define-key 'normal eshell-mode-map (kbd "C-k") 'eshell-previous-prompt)
+  (evil-define-key 'normal eshell-mode-map (kbd "C-j") 'eshell-next-prompt)
+  (evil-define-key 'normal eshell-mode-map (kbd "C-p") 'eshell-previous-prompt)
+  (evil-define-key 'normal eshell-mode-map (kbd "C-n") 'eshell-next-prompt)
+  (evil-define-key 'normal eshell-mode-map (kbd "0") 'eshell-bol)
+  (evil-define-key 'insert eshell-mode-map (kbd "C-a") 'eshell-bol)
+  (evil-define-key 'insert eshell-mode-map (kbd "C-p") 'eshell-previous-matching-input-from-input)
+  (evil-define-key 'insert eshell-mode-map (kbd "C-n") 'eshell-next-matching-input-from-input))

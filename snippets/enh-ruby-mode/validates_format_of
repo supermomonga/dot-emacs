@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: validates_format_of
+# key: validates_format_of
+# --
+validates :${1:attribute}, format: { with: /${2:# :pattern}/ }

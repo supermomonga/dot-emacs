@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: println
+# key: println
+# contributor : @supermomonga
+# --
+fmt.Println($1)

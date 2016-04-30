@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: strftime_0000年00月00日_00時00分00秒
+# key: strftime_0000年00月00日_00時00分00秒
+# binding: direct-keybinding
+# --
+strftime("%Y年%m月%d日 %H時%M分%S秒")

@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: strftime_0000/00/00_00:00:00
+# key: strftime_0000/00/00_00:00:00
+# binding: direct-keybinding
+# --
+strftime("%Y/%m/%d %H:%M:%S")

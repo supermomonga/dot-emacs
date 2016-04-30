@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: validates_numericality_of
+# key: validates_numericality_of
+# --
+validates :${1:attribute}, numericality: true

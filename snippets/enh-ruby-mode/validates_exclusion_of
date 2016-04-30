@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: validates_exclusion_of
+# key: validates_exclusion_of
+# --
+validates :${1:attribute}, exclusion: { in: %w(${2:# :exclusions}) }

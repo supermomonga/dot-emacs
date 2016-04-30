@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: delegate
+# key: delegate
+# --
+delegate :${1:property_name}, to: ${2:to_model}

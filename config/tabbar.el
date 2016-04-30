@@ -4,10 +4,17 @@
 (tabbar-mwheel-mode -1)
 (setq tabbar-buffer-groups-function nil)
 
-(setq my-tabbar-show-buffers
-      '("*Faces*" "*vc-" "*eshell*" "*Lingr Status*" "*scratch*" "*cider-scratch*" "*cider-repl " "*rails*" "*pry*"))
-(setq my-tabbar-hide-buffers
-      '("*" "Lingr[" "org-src-fontification:"))
+(setq my-tabbar-show-buffer-names
+      '("*trace-output*" "*Faces*" "*vc-" "*eshell*" "*Lingr Status*" "*scratch*" "*cider-scratch*" "*cider-repl " "*rails*" "*pry*"))
+
+(setq my-tabbar-hide-buffer-names
+      '("*" "Omni-Server" "Lingr[" "org-src-fontification:"))
+
+(setq my-tabbar-show-buffer-modes
+      '())
+
+(setq my-tabbar-hide-buffer-modes
+      '(direx:direx-mode))
 
 (dolist (btn '(tabbar-buffer-home-button tabbar-scroll-left-button tabbar-scroll-right-button))
   (set btn (cons (cons "" nil) (cons "" nil))))
@@ -41,18 +48,32 @@
 ;; (set-face-attribute 'tabbar-button nil :box nil)
 ;; (set-face-attribute 'tabbar-separator nil :height 1.0 :background "#424242")
 
+(defun my-tabbar-visible-buffer-name? (show-names hide-names buf)
+  (let ((name (buffer-name buf)))
+    (or (string-match show-names name)
+        (not (string-match hide-names name)))))
+
+(defun my-tabbar-visible-buffer-mode? (show-modes hide-modes buf)
+  (let ((buf-mode (with-current-buffer buf major-mode)))
+    (or (cl-find buf-mode show-modes)
+        (not (cl-find buf-mode hide-modes)))))
+
+(defun my-tabbar-visible-buffer? (buf)
+  (when (and
+         (my-tabbar-visible-buffer-name? show-names hide-names buf)
+         (my-tabbar-visible-buffer-mode? my-tabbar-show-buffer-modes my-tabbar-hide-buffer-modes buf)) buf))
+
 (defun my-tabbar-buffer-list ()
-  (let* ((hides (regexp-opt my-tabbar-hide-buffers))
-         (shows (regexp-opt my-tabbar-show-buffers))
+  (let* ((hide-names (regexp-opt my-tabbar-hide-buffer-names))
+         (show-names (regexp-opt my-tabbar-show-buffer-names))
          (cur-buf (current-buffer))
          (tabs (delq
                 nil
-                (mapcar (lambda (buf)
-                          (let ((name (buffer-name buf)))
-                            (when (or (string-match shows name)
-                                      (not (string-match hides name)))
-                              buf)))
+                (mapcar 'my-tabbar-visible-buffer?
                         (buffer-list)))))
-    (if (memq cur-buf tabs) tabs (cons cur-buf tabs))))
+    (if (memq cur-buf tabs)
+        tabs
+      (cons cur-buf tabs))))
+
 (setq tabbar-buffer-list-function 'my-tabbar-buffer-list)
 

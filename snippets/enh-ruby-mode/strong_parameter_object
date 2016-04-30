@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: ActionController::Parameters ...
+# key: strong_parameter_object
+# binding: direct-keybinding
+# --
+ActionController::Parameters.new(${1:model}: { ${2:fields} })

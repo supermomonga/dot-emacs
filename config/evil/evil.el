@@ -36,19 +36,6 @@ is closed."
 ;;(evil-define-key 'insert comint-mode-map (kbd "C-n") 'comint-next-matching-input-from-input)
 ;;(evil-define-key 'insert comint-mode-map (kbd "C-p") 'comint-previous-matching-input-from-input)
 
-;; for eshell
-(with-eval-after-load 'eshell
-  (evil-define-key 'insert eshell-mode-map (kbd "C-i")   'company-complete)
-  (evil-define-key 'insert eshell-mode-map (kbd "<tab>") 'company-complete)
-  (evil-define-key 'normal eshell-mode-map (kbd "C-k") 'eshell-previous-prompt)
-  (evil-define-key 'normal eshell-mode-map (kbd "C-j") 'eshell-next-prompt)
-  (evil-define-key 'normal eshell-mode-map (kbd "C-p") 'eshell-previous-prompt)
-  (evil-define-key 'normal eshell-mode-map (kbd "C-n") 'eshell-next-prompt)
-  (evil-define-key 'normal eshell-mode-map (kbd "0") 'eshell-bol)
-  (evil-define-key 'insert eshell-mode-map (kbd "C-a") 'eshell-bol)
-  (evil-define-key 'insert eshell-mode-map (kbd "C-p") 'eshell-previous-matching-input-from-input)
-  (evil-define-key 'insert eshell-mode-map (kbd "C-n") 'eshell-next-matching-input-from-input))
-
 ;; for emacs-lisp mode
 (evil-define-key 'normal lisp-interaction-mode-map (kbd ")") 'sp-up-sexp)
 (evil-define-key 'normal lisp-interaction-mode-map (kbd "(") 'sp-down-sexp)
@@ -72,7 +59,6 @@ is closed."
 (global-unset-key (kbd "C-x C-b"))
 ;; (global-unset-key (kbd "C-x C-c"))
 (global-unset-key (kbd "C-x C-f"))
-(global-unset-key (kbd "M-x"))
 
 (define-key evil-normal-state-map (kbd "C-h")
   #'(lambda ()

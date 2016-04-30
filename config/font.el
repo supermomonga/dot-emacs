@@ -8,6 +8,7 @@
 (concat
  " あいうえお かきくけこ あいうえお かきくけこ あいうえお かきくけこ あいうえお かきくけこ "
  " AABBCCDDEE FFGGHHIIJJ AABBCCDDEE FFGGHHIIJJ AABBCCDDEE FFGGHHIIJJ AABBCCDDEE FFGGHHIIJJ "
+ " 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 "
  " 幸福な人生 幸福な人生 幸福な人生 幸福な人生 幸福な人生 幸福な人生 幸福な人生 幸福な人生 "
  " ｱｲｳｴｵｶｷｸｹｺ ｱｲｳｴｵｶｷｸｹｺ ｱｲｳｴｵｶｷｸｹｺ ｱｲｳｴｵｶｷｸｹｺ ｱｲｳｴｵｶｷｸｹｺ ｱｲｳｴｵｶｷｸｹｺ ｱｲｳｴｵｶｷｸｹｺ ｱｲｳｴｵｶｷｸｹｺ ")
 
@@ -34,7 +35,7 @@
              ((minusp text-scale-mode-amount)
               (format "%s" text-scale-mode-amount))
              ((zerop text-scale-mode-amount)
-              (format "ordinary")))))
+              "ordinary"))))
       (popup-tip (format "Font scale: %s " scale)
                  :point (point)))))
 

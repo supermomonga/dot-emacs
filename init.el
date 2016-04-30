@@ -1,7 +1,8 @@
 ;;------------------------------------------------------------------------------
 ;; Language environment
 ;;------------------------------------------------------------------------------
-(set-language-environment "Japanese")
+;; (set-language-environment "Japanese")
+(prefer-coding-system 'utf-8)
 
 
 ;;------------------------------------------------------------------------------
@@ -50,22 +51,61 @@
                     "libraries.el"
                     "theme.el"
                     "undo-tree.el"
-                    "evil.el"
-                    "helm.el"
+                    "diff.el"
+                    "tramp.el"
+                    (evil
+                     "evil.el"
+                     "nerd-commenter.el")
+                    (util
+                     "repository-root.el")
+                    (helm
+                     "helm.el"
+                     "helm-c-yasnippet.el")
+                    (yasnippet
+                     "yasnippet.el")
                     "auto-complete.el"
                     "eshell.el"
                     "tabbar.el"
                     "smartrep.el"
                     "haml.el"
                     "slim.el"
-                    (ruby "enh-ruby.el"
-                          "rbenv.el"
-                          "inf-ruby.el"
-                          "robe.el")
-                    (lisp "rainbow-delimiters.el")
-                    (clojure "clojure.el"
-                             "cider.el")
+                    "direx.el"
+                    (ruby
+                     "enh-ruby.el"
+                     "rbenv.el"
+                     "inf-ruby.el"
+                     "robe.el"
+                     "rspec-mode.el")
+                    (elisp
+                     "lispxmp.el"
+                     "misc.el")
+                    (lisp
+                     "rainbow-delimiters.el")
+                    (clojure
+                     "clojure.el"
+                     "cider.el")
+                    (coffee
+                     "coffee.el")
+                    (javascript
+                     "javascript.el"
+                     "js2-mode.el"
+                     "tern-mode.el")
+                    (common-lisp
+                     "common-lisp.el"
+                     "slime.el"
+                     "slime-annot.el")
+                    (golang
+                     "go.el")
+                    (scss
+                     "scss.el")
+                    (docker
+                     "dockerfile.el")
+                    (csharp
+                     "csharp.el"
+                     "omnisharp-roslyn.el")
                     "markdown.el"
+                    "yaml.el"
+                    "toml.el"
                     "quickrun.el"
                     "smartparens.el"
                     "open-junk-file.el"
@@ -74,5 +114,18 @@
                     "epub.el"
                     "popwin.el"
                     "jazzradio.el"
+                    "gist.el"
+                    ;; "magit.el"
+                    (php
+                     "php.el"
+                     "web-mode.el")
+                    (flycheck
+                     "flycheck.el")
+                    (eldoc
+                     "eldoc.el")
+                    (org
+                     "agenda.el"
+                     "ioslide.el"
+                     "gfm.el")
                     "misc.el"))
 

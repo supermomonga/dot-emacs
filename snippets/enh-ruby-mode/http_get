@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: http_get
+# key: http_get
+# binding: direct-keybinding
+# --
+Net::HTTP.get(URI.parse($0))
