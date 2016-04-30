@@ -23,7 +23,8 @@
     (tool-bar-mode 0))
 
 ;;; Hide scrollbar
-(set-scroll-bar-mode nil)
+(if window-system
+    (set-scroll-bar-mode nil))
 
 
 ;;; Whitespace
