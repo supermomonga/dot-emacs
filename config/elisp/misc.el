@@ -1,6 +1,6 @@
 
 
 (setq find-function-C-source-directory
-      (case (user-original-login-name)
-        "momonga" "/Users/momonga/Develops/sources/emacs-24.5/src"
-        "fax" "~/dev/emacs/src"))
+      (file-truename (case system-type
+                       ('darwin  "~/momonga/Develops/sources/emacs-24.5/src")
+                       ('gnu/linux "~/dev/emacs/src"))))
