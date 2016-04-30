@@ -1,5 +1,10 @@
 ;;; Code:
-(load (expand-file-name "~/.roswell/impls/ALL/ALL/quicklisp/slime-helper.el"))
+(if (file-exists-p (expand-file-name "~/.roswell/impls/ALL/ALL/quicklisp/slime-helper.el"))
+    (load (expand-file-name "~/.roswell/impls/ALL/ALL/quicklisp/slime-helper.el")))
+
+(if (file-exists-p (expand-file-name "~/.roswell/lisp/quicklisp/slime-helper.el"))
+    (load (expand-file-name "~/.roswell/lisp/quicklisp/slime-helper.el")))
+
 (setq inferior-lisp-program "ros -L sbcl -Q run")
 
 (add-to-list 'auto-mode-alist '("\\.ros$" . lisp-mode))
