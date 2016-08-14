@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: thor_option
+# key: thor_option
+# --
+option :${1:name}, required: ${2:$$(yas-choose-value '("true" "false"))}, type: ${3:$$(yas-choose-value '(":boolean" ":string" ":numeric" ":array" ":hash"))}, aliases: '-${4:o}'$0

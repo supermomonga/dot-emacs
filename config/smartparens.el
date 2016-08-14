@@ -12,7 +12,8 @@
         lisp-interaction-mode-hook
         clojure-mode-hook
         js2-mode-hook
-        enh-ruby-mode-hook))
+        enh-ruby-mode-hook
+        go-mode-hook))
 
 (setq my-smartparens-strict-modes
       '(eshell-mode

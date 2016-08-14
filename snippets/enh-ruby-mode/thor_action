@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: thor_action
+# key: thor_action
+# --
+desc '${1:Short desc}', '${2:Full desc}'
+def ${3:action}()
+  $0
+end

@@ -1,0 +1,13 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: thor_init
+# key: thor_init
+# --
+require 'thor'
+require 'thor/actions'
+
+class ${1:App} < Thor
+  include Thor::Actions
+  $0
+end
+
+App.start(ARGV)

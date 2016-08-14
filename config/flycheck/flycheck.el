@@ -12,6 +12,7 @@
                 (append flycheck-disabled-checkers
                         '(javascript-jshint
                           json-jsonlist
+                          html-tidy
                           emacs-lisp-checkdoc))))
 
 (setq flycheck-idle-change-delay 2)

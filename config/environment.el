@@ -47,3 +47,12 @@
 
 ;; Term
 (setenv "TERM" "xterm-256color")
+
+
+;;------------------------------------------------------------------------------
+;; File encoding system
+;;------------------------------------------------------------------------------
+
+(prefer-coding-system 'utf-8)
+(setq coding-system-for-read 'utf-8)
+(setq coding-system-for-write 'utf-8)

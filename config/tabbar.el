@@ -5,13 +5,13 @@
 (setq tabbar-buffer-groups-function nil)
 
 (setq my-tabbar-show-buffer-names
-      '("*trace-output*" "*Faces*" "*vc-" "*eshell*" "*Lingr Status*" "*scratch*" "*cider-scratch*" "*cider-repl " "*rails*" "*pry*"))
+      '("*trace-output*" "*Faces*" "*vc-" "*eshell*" "*Lingr Status*" "*scratch*" "*cider-scratch*" "*cider-repl " "*rails*" "*pry*" "*Slack"))
 
 (setq my-tabbar-hide-buffer-names
       '("*" "Omni-Server" "Lingr[" "org-src-fontification:"))
 
 (setq my-tabbar-show-buffer-modes
-      '())
+      '(slack-mode))
 
 (setq my-tabbar-hide-buffer-modes
       '(direx:direx-mode))

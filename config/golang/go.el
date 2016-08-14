@@ -18,6 +18,9 @@
 
 (let ((gopath (expand-file-name "~/.go")))
   (setenv "GOPATH" gopath)
+  (setenv "GOPATH" (concat (getenv "GOPATH")
+                           ":"
+                           (expand-file-name "~/")))
   (append-path (concat gopath "/bin"))
   (apply-path))
 

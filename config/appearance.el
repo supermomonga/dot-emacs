@@ -26,6 +26,8 @@
 (if window-system
     (set-scroll-bar-mode nil))
 
+;;; Tab width
+(setq default-tab-width 4)
 
 ;;; Whitespace
 (setq whitespace-style '(spaces tabs space-mark tab-mark))
@@ -51,7 +53,7 @@
 ;;; Show line number
 (global-linum-mode t)
 (defvar linum-exceptional-regexp-list '("\\*cider-.+\\*" "\\*eshell\\*" " \\*WM:.+" "\\*scratch\\*" ".+helm.+"))
-(defvar linum-exceptional-mode-list '(direx:direx-mode))
+(defvar linum-exceptional-mode-list '(direx:direx-mode slack-mode))
 
 (defadvice linum-mode (around hoge activate)
   (when (or (eq linum-mode t)

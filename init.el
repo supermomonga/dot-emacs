@@ -40,6 +40,9 @@
 ;; Avoid compile error
 (el-get-bundle tarao/with-eval-after-load-feature-el)
 
+;; Use Package
+(el-get-bundle! use-package)
+
 ;; init-loader
 (el-get-bundle! kenoss/manual-init-loader
   (setq milo-raise-error t))
@@ -60,7 +63,8 @@
                      "repository-root.el")
                     (helm
                      "helm.el"
-                     "helm-c-yasnippet.el")
+                     "helm-c-yasnippet.el"
+                     "fontawesome.el")
                     (yasnippet
                      "yasnippet.el")
                     "auto-complete.el"
@@ -119,6 +123,8 @@
                     (php
                      "php.el"
                      "web-mode.el")
+                    (e2wm
+                     "e2wm.el")
                     (flycheck
                      "flycheck.el")
                     (eldoc
@@ -127,5 +133,9 @@
                      "agenda.el"
                      "ioslide.el"
                      "gfm.el")
+                    (csv
+                     "csv.el")
+                    (irc
+                     "weechat.el")
                     "misc.el"))
 
