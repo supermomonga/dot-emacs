@@ -9,7 +9,7 @@
 (push '("*cider-error*" :noselect t) popwin:special-display-config)
 (push '("*cider-repl" :noselect t) popwin:special-display-config)
 (push '("*ruby*") popwin:special-display-config)
-(push '("*quickrun*") popwin:special-display-config)
+(push '("*quickrun*" :height 0.5) popwin:special-display-config)
 (push '("*twittering-edit*") popwin:special-display-config)
 (push '("*coffee-compiled*" :position right :noselect t :width 0.5) popwin:special-display-config)
 (push '("*el-get packages*" :height 0.7) popwin:special-display-config)

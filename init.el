@@ -51,6 +51,7 @@
                     "appearance.el"
                     "behavior.el"
                     "environment.el"
+                    "document.el"
                     "libraries.el"
                     "theme.el"
                     "undo-tree.el"
