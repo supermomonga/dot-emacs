@@ -1,5 +1,5 @@
 
-(el-get-bundle! elpa:evil)
+(el-get-bundle! evil)
 
 ;; to use redo with C-r
 ;;(el-get-bundle undo-tree)
