@@ -43,7 +43,9 @@
 ;;(fboundp 'describe-function)
 ;;(documentation-property 'ac-use-quick-help 'variable-documentation t)
 
-(evil-define-key 'normal emacs-lisp-mode-map (kbd "SPC d") 'document-at-point)
+;; (evil-define-key 'normal emacs-lisp-mode-map (kbd "SPC d") 'document-at-point)
+(evil-define-key 'normal eshell-mode-map (kbd "SPC d") 'help-at-point)
+(evil-define-key 'normal emacs-lisp-mode-map (kbd "SPC d") 'help-at-point)
 (evil-define-key 'normal emacs-lisp-mode-map (kbd "SPC h") 'help-at-point)
 (evil-define-key 'normal lisp-interaction-mode-map (kbd "SPC d") 'document-at-point)
 

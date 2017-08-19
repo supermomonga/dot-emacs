@@ -5,7 +5,7 @@
 (setq tabbar-buffer-groups-function nil)
 
 (setq my-tabbar-show-buffer-names
-      '("*trace-output*" "*Faces*" "*vc-" "*eshell*" "*Lingr Status*" "*scratch*" "*cider-scratch*" "*cider-repl " "*rails*" "*pry*" "*Slack"))
+      '("*trace-output*" "*Faces*" "*vc-" "*eshell*" "*Lingr Status*" "*scratch*" "*cider-scratch*" "*cider-repl " "*rails*" "*pry*" "*Slack" "*github" "*Async Shell Command*"))
 
 (setq my-tabbar-hide-buffer-names
       '("*" "Omni-Server" "Lingr[" "org-src-fontification:"))

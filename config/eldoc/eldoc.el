@@ -2,7 +2,7 @@
 ;;; Code:
 (require 'eldoc)
 
-(setq eldoc-idle-delay 1.0)
+(setq eldoc-idle-delay 0.3)
 
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'lisp-mode-hook 'turn-on-eldoc-mode)

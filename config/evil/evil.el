@@ -1,4 +1,8 @@
 
+(setq evil-emacs-state-modes nil
+      evil-search-module 'evil-search
+      evil-ex-search-vim-style-regexp t)
+
 (el-get-bundle! evil)
 
 ;; to use redo with C-r
@@ -8,7 +12,6 @@
 
 ;; enable evil
 (evil-mode t)
-(setq evil-emacs-state-modes nil)
 
 (evil-define-command evil-quit-without-kill (&optional force)
   "Closes the current window, current frame, Emacs.
@@ -44,12 +47,12 @@ is closed."
 
 
 ;; surround
-(el-get-bundle! elpa:evil-surround
+(el-get-bundle! evil-surround
   (global-evil-surround-mode 1))
 
 ;; anzu
-(el-get-bundle elpa:evil-anzu)
-(el-get-bundle! elpa:anzu
+(el-get-bundle evil-anzu)
+(el-get-bundle! anzu
   (with-eval-after-load 'evil
     (require 'evil-anzu))
   (global-anzu-mode +1))
@@ -81,8 +84,8 @@ is closed."
 (define-key evil-motion-state-map (kbd ";") 'evil-ex)
 (define-key evil-insert-state-map (kbd "C-k") 'kill-line)
 (define-key evil-insert-state-map (kbd "C-e") 'end-of-line)
-(define-key evil-ex-search-keymap "\C-p" #'previous-complete-history-element)
-(define-key evil-ex-search-keymap "\C-n" #'next-complete-history-element)
+(define-key evil-ex-search-keymap (kbd "C-p") 'previous-complete-history-element)
+(define-key evil-ex-search-keymap (kbd "C-n") 'next-complete-history-element)
 (define-key evil-normal-state-map (kbd "C-p") nil)
 (define-key evil-normal-state-map (kbd "C-n") nil)
 

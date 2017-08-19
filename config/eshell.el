@@ -22,10 +22,12 @@
 (add-to-list 'eshell-command-aliases-list (list "op" "open ."))
 (add-to-list 'eshell-command-aliases-list (list "ls" "ls -la"))
 (add-to-list 'eshell-command-aliases-list (list "e" "find-file $1"))
+(add-to-list 'eshell-command-aliases-list (list "run" "(call-interactively 'async-shell-command)"))
 ;; Ruby bundler
 (add-to-list 'eshell-command-aliases-list (list "be" "bundle exec $*"))
 (add-to-list 'eshell-command-aliases-list (list "bi" "bundle install"))
 (add-to-list 'eshell-command-aliases-list (list "bu" "bundle update"))
+(add-to-list 'eshell-command-aliases-list (list "fr" "foreman run bundle exec $*"))
 ;; Git
 (add-to-list 'eshell-command-aliases-list (list "git" "gh $*"))
 (add-to-list 'eshell-command-aliases-list (list "gb" "git browse"))
@@ -40,27 +42,40 @@
 (add-to-list 'eshell-command-aliases-list (list "cl" "clear"))
 
 (setq eshell-prompt-regexp "^[~/].* ❯ ")
+(setq eshell-prompt-regexp "^.* ❯ ")
 (setq eshell-prompt-function (lambda ()
-             (concat
-        (abbreviate-file-name (eshell/pwd))
-        " ❯ ")))
+                               (concat
+                                (abbreviate-file-name (eshell/pwd))
+                                " ❯ ")))
 
 (add-hook 'after-init-hook 'eshell)
 
 (defun eshell/clear ()
-(let ((inhibit-read-only t))
-  (erase-buffer)))
+  (let ((inhibit-read-only t))
+    (erase-buffer)))
 
 
 ;; for eshell
 (with-eval-after-load 'evil
-  (evil-define-key 'insert eshell-mode-map (kbd "C-i")   'auto-complete)
-  (evil-define-key 'insert eshell-mode-map (kbd "<tab>") 'auto-complete)
-  (evil-define-key 'normal eshell-mode-map (kbd "C-k") 'eshell-previous-prompt)
-  (evil-define-key 'normal eshell-mode-map (kbd "C-j") 'eshell-next-prompt)
-  (evil-define-key 'normal eshell-mode-map (kbd "C-p") 'eshell-previous-prompt)
-  (evil-define-key 'normal eshell-mode-map (kbd "C-n") 'eshell-next-prompt)
-  (evil-define-key 'normal eshell-mode-map (kbd "0") 'eshell-bol)
-  (evil-define-key 'insert eshell-mode-map (kbd "C-a") 'eshell-bol)
-  (evil-define-key 'insert eshell-mode-map (kbd "C-p") 'eshell-previous-matching-input-from-input)
-  (evil-define-key 'insert eshell-mode-map (kbd "C-n") 'eshell-next-matching-input-from-input))
+  (defun my-eshell-mode-hook ()
+    (evil-define-key 'normal eshell-mode-map
+      (kbd "C-k") 'eshell-previous-prompt
+      (kbd "C-j") 'eshell-next-prompt
+      (kbd "C-p") 'eshell-previous-prompt
+      (kbd "C-n") 'eshell-next-prompt
+      (kbd "0") 'eshell-bol)
+    (evil-define-key 'insert eshell-mode-map
+      (kbd "C-i")   'auto-complete
+      (kbd "<tab>") 'auto-complete
+      (kbd "C-a") 'eshell-bol
+      (kbd "C-p") 'eshell-previous-matching-input-from-input
+      (kbd "C-n") 'eshell-next-matching-input-from-input))
+  (add-hook 'eshell-mode-hook 'my-eshell-mode-hook))
+
+
+;; for shell-mode
+
+(defun my/shell-mode-hook ()
+  (setq-local show-trailing-whitespace nil))
+
+(add-hook 'shell-mode-hook 'my/shell-mode-hook)

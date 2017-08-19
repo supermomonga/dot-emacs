@@ -1,0 +1,6 @@
+
+(setq dired-mode-map '())
+
+
+
+

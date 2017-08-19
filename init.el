@@ -3,12 +3,6 @@
 ;;------------------------------------------------------------------------------
 ;; (set-language-environment "Japanese")
 
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
-
 (prefer-coding-system 'utf-8)
 
 
@@ -67,7 +61,10 @@
                     (evil
                      "evil.el"
                      "nerd-commenter.el")
+                    (projectile
+                     "projectile.el")
                     (util
+                     "pcre2el"
                      "repository-root.el")
                     (helm
                      "helm.el"
@@ -98,10 +95,14 @@
                      "cider.el")
                     (coffee
                      "coffee.el")
+                    (vue
+                     "vue-mode.el")
                     (javascript
                      "javascript.el"
                      "js2-mode.el"
                      "tern-mode.el")
+                    (typescript
+                     "typescript.el")
                     (common-lisp
                      "common-lisp.el"
                      "slime.el"
@@ -127,6 +128,7 @@
                     "popwin.el"
                     "jazzradio.el"
                     "gist.el"
+                    "auto-revert-tail-mode.el"
                     ;; "magit.el"
                     (php
                      "php.el"
@@ -138,6 +140,7 @@
                     (eldoc
                      "eldoc.el")
                     (org
+                     "org.el"
                      "agenda.el"
                      "ioslide.el"
                      "gfm.el")
@@ -147,3 +150,49 @@
                      "weechat.el")
                     "misc.el"))
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(ansi-color-names-vector
+   ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
+ '(custom-safe-themes
+   (quote
+    ("2cf7f9d1d8e4d735ba53facdc3c6f3271086b6906c4165b12e4fd8e3865469a6" "8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" default)))
+ '(fci-rule-color "#f8fce8" t)
+ '(hl-paren-background-colors (quote ("#e8fce8" "#c1e7f8" "#f8e8e8")) t)
+ '(hl-paren-colors (quote ("#40883f" "#0287c8" "#b85c57")) t)
+ '(package-selected-packages
+   (quote
+    (srefactor plan9-theme load-theme-buffer-local inflections ssass-mode vue-mode vue-html-mode oauth2 csv-mode persistent-scratch queue robe osx-plist)))
+ '(sml/active-background-color "#98ece8" t)
+ '(sml/active-foreground-color "#424242" t)
+ '(sml/inactive-background-color "#4fa8a8" t)
+ '(sml/inactive-foreground-color "#424242" t)
+ '(tabbar-background-color "#323232")
+ '(tabbar-cycle-scope (quote tabs))
+ '(vue-modes
+   (quote
+    ((:type template :name html :mode vue-html-mode)
+     (:type script :name js :mode js-mode)
+     (:type style :name css :mode css-mode)
+     (:type style :name scss :mode scss-mode))) t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(eshell-prompt ((t (:foreground "#CC7833" :weight normal))))
+ '(tabbar-button ((t (:background "#424242" :underline nil :foreground "#999"))))
+ '(tabbar-button-highlight ((t (:background "#424242" :underline nil :foreground "#999"))))
+ '(tabbar-default ((t (:background "#424242" :underline nil :foreground "#999" :height 0.9))))
+ '(tabbar-modified ((t (:background "#424242" :underline nil :foreground "#999" :height 0.9))))
+ '(tabbar-selected ((t (:background "#424242" :underline nil :foreground "#fff" :height 0.9))))
+ '(tabbar-separator ((t (:background "#424242" :underline nil :height 1.0))))
+ '(tabbar-unselected ((t (:background "#424242" :underline nil :foreground "#999" :height 0.9)))))
+
+
+(package-initialize)

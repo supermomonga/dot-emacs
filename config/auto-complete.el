@@ -6,6 +6,37 @@
     (evil-define-key 'insert eshell-mode-map (kbd "C-i") 'auto-complete)
     (evil-define-key 'insert eshell-mode-map (kbd "<tab>") 'auto-complete)))
 
+;; (popup-menu* '("aaa" "bbb" "ccc" "ddd" "aaa" "bbb" "ccc" "ddd" "aaa" "bbb" "ccc" "ddd" "aaa" "bbb" "ccc" "ddd" "aaa" "bbb" "ccc" "ddd"))
+;; (symbol-function 'popup-select)
+;; (defun popup-next (popup)
+;;   "Select the next item of POPUP and draw."
+;;   (let ((height (popup-height popup))
+;;         (cursor (1+ (popup-cursor popup)))
+;;         (scroll-top (popup-scroll-top popup))
+;;         (length (length (popup-list popup))))
+;;     (message (format "cursor: %d" cursor))
+;;     (cond
+;;      ((>= cursor length)
+;;       ;; Back to first page
+;;       (setq cursor 0
+;;             scroll-top 0))
+;;      ((= cursor (+ scroll-top height))
+;;       ;; Go to next page
+;;       (setq scroll-top (min (1+ scroll-top) (max (- length height) 0)))))
+;;     (setf (popup-cursor popup) cursor
+;;           (popup-scroll-top popup) scroll-top)
+;;     (popup-draw popup)))
+
+;; (defun popup-select (popup i)
+;;   "Select the item at I of POPUP and draw."
+;;   ;; (setq i (+ i (popup-offset popup)))
+;;   (message (format "%d" 1))
+;;   ;; (when (and (<= 0 i) (< i (popup-height popup)))
+;;     ;; (setf (popup-cursor popup) i)
+;;     ;; (popup-draw popup)
+;;   ;; t)
+;;   )
+
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
@@ -13,7 +44,7 @@
 (setq ac-use-menu-map t)
 (setq ac-menu-height 15)
 (setq ac-quick-help-delay 0.4)
-(setq ac-delay 0.3)
+(setq ac-delay 0.5)
 (setq ac-auto-start 0)
 (setq ac-candidate-limit 80)
 (setq ac-expand-on-auto-complete t)
@@ -45,6 +76,10 @@
 (add-to-list 'ac-modes 'slim-mode)
 (add-to-list 'ac-modes 'org-mode)
 (add-to-list 'ac-modes 'csharp-mode)
+(add-to-list 'ac-modes 'typescript-mode)
+
+(defun remote-directory-p (dir)
+  (s-matches? "\/scp:" dir))
 
 (require 'pcomplete)
 (defun ac-pcomplete ()
@@ -52,7 +87,9 @@
   ;; can be found, but this must not happen as auto-complete source
   (flet ((insert-and-inherit (&rest args)))
     ;; this code is stolen from `pcomplete' in pcomplete.el
-    (let* (tramp-mode ;; do not automatically complete remote stuff
+    (let* (
+           ;; tramp-mode ;; do not automatically complete remote stuff
+           (tramp-mode (if (remote-directory-p default-directory) t nil))
            (pcomplete-stub)
            (pcomplete-show-list t) ;; inhibit patterns like * being deleted
            pcomplete-seen pcomplete-norm-func

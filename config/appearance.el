@@ -1,6 +1,12 @@
 ;;; Highlight current line
 (global-hl-line-mode 1)
 
+;; Set margin to zero
+(setq-default left-margin-width 0 right-margin-width 0)
+(set-window-buffer nil (current-buffer))
+
+;; (set-frame-parameter nil 'internal-border-width 0)
+
 ;;; Disable startup message
 (setq inhibit-startup-message t)
 
@@ -52,8 +58,8 @@
 
 ;;; Show line number
 (global-linum-mode t)
-(defvar linum-exceptional-regexp-list '("\\*cider-.+\\*" "\\*eshell\\*" " \\*WM:.+" "\\*scratch\\*" ".+helm.+"))
-(defvar linum-exceptional-mode-list '(direx:direx-mode slack-mode))
+(defvar linum-exceptional-regexp-list '("\\*cider-.+\\*" "\\*eshell\\*" " \\*WM:.+" "\\*scratch\\*" ".+helm.+" "\\*Async Shell Command\\*"))
+(defvar linum-exceptional-mode-list '(direx:direx-mode slack-mode help-mode))
 
 (defadvice linum-mode (around hoge activate)
   (when (or (eq linum-mode t)

@@ -1,5 +1,5 @@
 
-(el-get-bundle elpa:clojure-mode)
+(el-get-bundle clojure-mode)
 
 (add-hook 'clojure-mode-hook
           (lambda()

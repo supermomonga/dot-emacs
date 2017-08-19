@@ -7,7 +7,7 @@
           (- (:upper-size-ratio 0.75)
              tree history)
           (- (:lower-max-size 150)
-             (| (:right-max-size 30)
+             (| (:right-max-size 50)
                 main imenu)
              sub)))
 
@@ -17,6 +17,15 @@
         (:name history :plugin history-list)
         (:name imenu   :plugin imenu :default-hide nil)
         (:name sub     :buffer "*info*" :default-hide t)))
+
+(defun my-wm-submode-hook ()
+  ;; (load-theme-buffer-local 'plan9 (current-buffer))
+  (setq-local show-trailing-whitespace nil)
+  (face-remap-add-relative 'default :height 130))
+
+(add-hook 'direx:direx-mode-hook 'my-wm-submode-hook)
+(add-hook 'e2wm:def-plugin-imenu-mode-hook 'my-wm-submode-hook)
+(add-hook 'e2wm:def-plugin-history--mode-hook 'my-wm-submode-hook)
 
 (defun disable-tabbar (&rest args)
   (tabbar-mode 0))

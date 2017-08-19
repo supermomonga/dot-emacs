@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: property
+# key: property
+# --
+${1:$$(yas-choose-value '("public" "private" "protected"))} ${2:type} ${3:name} ${4:{ get; set; }}$0;

@@ -1,6 +1,6 @@
 
-(el-get-bundle elpa:cider)
-(el-get-bundle elpa:ac-cider)
+(el-get-bundle cider)
+(el-get-bundle ac-cider)
 
 (evil-define-key 'normal cider-mode-map (kbd "SPC d") 'ac-cider-popup-doc)
 

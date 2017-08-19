@@ -1,11 +1,14 @@
 
 
 ;; dependency
-(el-get-bundle NicolasPetton/seq.el)
+;; (el-get-bundle NicolasPetton/seq.el)
 
-(el-get-bundle flycheck
-  (add-hook 'after-init-hook #'global-flycheck-mode))
+;; (el-get-bundle flycheck
+;;   (add-hook 'after-init-hook #'global-flycheck-mode))
 
+(el-get-bundle flycheck)
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 (with-eval-after-load 'flycheck
   (setq-default flycheck-disabled-checkers

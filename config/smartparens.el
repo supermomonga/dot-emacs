@@ -1,5 +1,5 @@
 
-(el-get-bundle! elpa:smartparens)
+(el-get-bundle! smartparens)
 ;;(require 'smartparens nil t)
 ;; (smartparens-global-strict-mode t)
 

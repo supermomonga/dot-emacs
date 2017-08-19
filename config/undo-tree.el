@@ -1,2 +1,2 @@
 
-(el-get-bundle! elpa:undo-tree)
+(el-get-bundle! undo-tree)

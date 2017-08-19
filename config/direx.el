@@ -3,7 +3,13 @@
 
 (el-get-bundle direx)
 
+;; (make-face 'direx-face)
+;; (set-face-font 'direx-face "fontset-wanpakuruikamini")
 
+(defun my-direx-mode-hook ()
+  (face-remap-add-relative 'default :height 130))
+
+(add-hook 'direx:direx-mode-hook 'my-direx-mode-hook)
 
 
 (evil-define-key 'normal direx:direx-mode-map (kbd "D") 'direx:do-delete-files)
@@ -14,6 +20,8 @@
 (evil-define-key 'normal direx:direx-mode-map (kbd "C-k") 'direx:previous-sibling-item)
 (evil-define-key 'normal direx:direx-mode-map (kbd "SPC") 'direx:toggle-item)
 (evil-define-key 'normal direx:direx-mode-map (kbd "RET") 'direx:find-item)
+
+(setq find-directory-functions '(direx:find-directory-other-window cvs-dired-noselect dired-noselect))
 
 
 (defun chomp (str)

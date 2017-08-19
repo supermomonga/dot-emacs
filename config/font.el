@@ -17,6 +17,11 @@
   (set-fontset-font "fontset-wanpakuruika" '(#x2500 . #x257F) (font-spec :family "Symbola" :size 14) nil 'append)
   (set-fontset-font "fontset-wanpakuruika" '(#x2700 . #x27BF) (font-spec :family "Symbola" :size 14) nil 'append)
   (add-to-list 'default-frame-alist '(font . "fontset-wanpakuruika"))
+
+  (create-fontset-from-ascii-font "WanpakuRuikaMono-13:weight=thin:slant=normal" nil "wanpakuruikamini")
+  (set-fontset-font "fontset-wanpakuruikamini" '(#x2500 . #x257F) (font-spec :family "Symbola" :size 13) nil 'append)
+  (set-fontset-font "fontset-wanpakuruikamini" '(#x2700 . #x27BF) (font-spec :family "Symbola" :size 13) nil 'append)
+  ;; (add-to-list 'default-frame-alist '(font . "fontset-wanpakuruikamini"))
   ;; -*-wanpakuruikamono-thin-normal-normal-*-*-140-*-*-m-0-fontset-wanpakuruika
   ;; -*-WanpakuRuikaMono-thin-normal-normal-*-*-   -*-*-m-0-iso10646-1
   ;; -*-WanpakuRuikaMono-thin-normal-normal-*-*-*-*-*-m-0-iso10646-1

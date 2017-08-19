@@ -4,6 +4,9 @@
 *.elc
 *#
 
+.cache
+.cask
+
 secret.*
 tramp
 
@@ -20,3 +23,5 @@ projectile-bookmarks.eld
 .persistent-scratch
 helm-doc.org
 history
+network-security.data
+srecode-map.el

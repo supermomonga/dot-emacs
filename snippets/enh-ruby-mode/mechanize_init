@@ -1,6 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: mechanize_init
-# key: mechanize_init
+# name: mechanize_agent
+# key: mechanize_agent
 # --
 ${1:@agent} = Mechanize.new
 $1.verify_mode = OpenSSL::SSL::VERIFY_NONE
