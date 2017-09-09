@@ -7,9 +7,29 @@
 ;; (set-face-font 'direx-face "fontset-wanpakuruikamini")
 
 (defun my-direx-mode-hook ()
-  (face-remap-add-relative 'default :height 130))
+  (emojify-mode t)
+  (when (tabbar-mode-on-p)
+    (tabbar-local-mode nil)))
 
 (add-hook 'direx:direx-mode-hook 'my-direx-mode-hook)
+
+;; TODO: Make it works
+(add-to-list 'completion-ignored-extensions ".DS_Store")
+(setq direx:ignored-files-regexp (concat "\\(?:" (regexp-opt completion-ignored-extensions) "\\|#\\)$"))
+
+
+(setq direx:leaf-icon   ":1: "
+      direx:open-icon   ":2: "
+      direx:closed-icon ":3: ")
+
+(defun direx:item-icon-part-offset (item)
+  (* (direx:item-depth item) 2))
+
+;; TODO: use icon determined by item extension
+(defun direx:item-render-icon-part (item)
+  (if (direx:item-leaf-p item)
+      direx:leaf-icon
+    direx:closed-icon))
 
 
 (evil-define-key 'normal direx:direx-mode-map (kbd "D") 'direx:do-delete-files)

@@ -8,7 +8,9 @@
   )
 
 ;; (setq omnisharp-server-executable-path "/usr/local/bin/omnisharp")
-(setq omnisharp-server-executable-path (expand-file-name "~/.emacs.d/.cache/omnisharp/server/v1.22.0/omnisharp"))
+(setq omnisharp-expected-server-version "1.23.2")
+(setq omnisharp-debug t)
+;; (setq omnisharp-server-executable-path (expand-file-name "~/.emacs.d/.cache/omnisharp/server/v1.23.2/omnisharp"))
 
 
 (defun my-csharp-mode-hook ()

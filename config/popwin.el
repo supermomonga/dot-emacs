@@ -5,9 +5,9 @@
 (push '("cider-repl"
         :regexp t :noselect t)
       popwin:special-display-config)
-;; (push '("*Help*"
-;;         :position right :width 0.5 :noselect t)
-;;       popwin:special-display-config)
+(push '("*Help*"
+        :position right :width 0.5)
+      popwin:special-display-config)
 (push '("*cider-doc*"
         :noselect t)
       popwin:special-display-config)

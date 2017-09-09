@@ -1,5 +1,68 @@
 ;; document-at-point
 
+
+(defun mou-get-symbol-document (symbol)
+  (cond ((fboundp symbol)
+         (function-documentation symbol))
+        ((boundp symbol)
+         (variable-documentation symbol))))
+
+(functionp (lambda ()))
+
+(setq mou-smart-menu-menus
+      `((enh-ruby-mode
+         . (
+            ,(popup-make-item "Find Model" :value #'projectile-rails-find-model)
+            ,(popup-make-item "Find Controller" :value #'projectile-rails-find-controller)
+            ,(popup-make-item "Find View" :value #'projectile-rails-find-view)
+            ,(popup-make-item "Find Spec" :value #'projectile-rails-find-spec)
+            ,(popup-make-item "Goto Gemfile" :value #'projectile-rails-goto-gemfile)
+            ;; ,(popup-make-item "Execute rake db:migrate" :value  #'projectile-rails-rake)
+            ,(popup-make-item "Execute rails generate" :value #'projectile-rails-generate)
+            ))))
+
+(setq mou-smart-menu-at-point-menus
+      `((emacs-lisp-mode
+         . (
+            (popup-make-item "Show help" :value #'help-at-point :document
+                             (lambda (_) (mou-get-symbol-document (intern (thing-at-point 'symbol)))))
+            ,(popup-make-item "Go to definition" :value #'find-function-at-point)
+            ))
+        (enh-ruby-mode
+         . (
+            ,(popup-make-item "Go to Model" :value #'projectile-rails-find-current-model)
+            ,(popup-make-item "Go to Controller" :value #'projectile-rails-find-current-controller)
+            ,(popup-make-item "Go to View" :value #'projectile-rails-find-current-view)
+            ,(popup-make-item "Go to Spec" :value #'projectile-rails-find-current-spec)
+            ))))
+
+(defun mou-smart-menu-menu-names ()
+  `(,major-mode
+    ,@minor-mode-list
+    ))
+
+(defun mou-smart-menu-get-menu (menu-name)
+  ;; List all major-mode and minor-modes
+  (loop for item in (cdr (assoc menu-name mou-smart-menu-menus))
+        if (listp item) collect (eval item)
+        else collect item
+        ))
+
+
+(defun mou-smart-menu ()
+  (interactive)
+  (let* ((menu-names (mou-smart-menu-menu-names))
+         (menus (loop for name in menu-names
+                      append (mou-smart-menu-get-menu name)))
+         (func (popup-menu* menus :help-delay 0.1)))
+    (if (functionp func)
+        (funcall func))))
+
+(defun mou-smart-menu-at-point ()
+  (interactive)
+  (let ((mou-smart-menu-menus mou-smart-menu-at-point-menus))
+    (mou-smart-menu)))
+
 (defun variable-documentation (symbol)
   (let* ((file-path (ac-symbol-file symbol 'defvar))
          (file-name (if (eq file-path 'C-source)
@@ -44,10 +107,10 @@
 ;;(documentation-property 'ac-use-quick-help 'variable-documentation t)
 
 ;; (evil-define-key 'normal emacs-lisp-mode-map (kbd "SPC d") 'document-at-point)
-(evil-define-key 'normal eshell-mode-map (kbd "SPC d") 'help-at-point)
-(evil-define-key 'normal emacs-lisp-mode-map (kbd "SPC d") 'help-at-point)
-(evil-define-key 'normal emacs-lisp-mode-map (kbd "SPC h") 'help-at-point)
-(evil-define-key 'normal lisp-interaction-mode-map (kbd "SPC d") 'document-at-point)
+(evil-define-key 'normal eshell-mode-map (kbd "SPC d") 'mou-smart-menu-at-point)
+(evil-define-key 'normal emacs-lisp-mode-map (kbd "SPC d") 'mou-smart-menu-at-point)
+(evil-define-key 'normal emacs-lisp-mode-map (kbd "SPC h") 'mou-smart-menu-at-point)
+(evil-define-key 'normal lisp-interaction-mode-map (kbd "SPC d") 'mou-smart-menu-at-point)
 
 ;;(evil-define-key 'normal emacs-lisp-mode-map (kbd "SPC h") 'kef-show-help-emacs-lisp-symbol)
 ;;

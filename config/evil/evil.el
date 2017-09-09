@@ -19,15 +19,20 @@ If the current frame belongs to some client the client connection
 is closed."
   :repeat nil
   (interactive "<!>")
-  (condition-case nil (delete-window)
+  (condition-case nil
+      (if (e2wm:managed-p) (kill-buffer) (delete-window))
     (error
      (if (and (boundp 'server-buffer-clients)
               (fboundp 'server-edit)
               (fboundp 'server-buffer-done)
               server-buffer-clients)
-         (if force (server-buffer-done (current-buffer)) (server-edit))
+         (if force
+             (server-buffer-done (current-buffer))
+           (server-edit))
        (condition-case nil (delete-frame)
-         (error (if force (kill-emacs) (kill-buffer))))))))
+         (error (if force
+                    (if nil (kill-emacs))
+                  (kill-buffer))))))))
 (evil-ex-define-cmd "q[uit]" 'evil-quit-without-kill)
 
 ;; Comint

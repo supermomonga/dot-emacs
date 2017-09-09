@@ -24,3 +24,6 @@
                         (:exec . ,(concat
                                    "%c -fd %s:"
                                    (number-to-string line)))))))
+
+(evil-define-key 'normal enh-ruby-mode-map (kbd "SPC d") 'mou-smart-menu-at-point)
+(evil-define-key 'normal enh-ruby-mode-map (kbd "SPC SPC") 'mou-smart-menu)

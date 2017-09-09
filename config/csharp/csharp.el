@@ -10,6 +10,7 @@
   (c-set-offset 'arglist-close 0))
 
 (add-to-list 'auto-mode-alist '("\\.cake$" . csharp-mode))
+(add-to-list 'auto-mode-alist '("\\.csx$" . csharp-mode))
 (add-to-list 'auto-mode-alist '("\\.csproj$" . xml-mode))
 (add-to-list 'auto-mode-alist '("\\.sln$" . xml-mode))
 

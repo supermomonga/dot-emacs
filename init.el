@@ -54,6 +54,7 @@
                     "environment.el"
                     "document.el"
                     "libraries.el"
+                    "emoji.el"
                     "theme.el"
                     "undo-tree.el"
                     "diff.el"
@@ -62,9 +63,10 @@
                      "evil.el"
                      "nerd-commenter.el")
                     (projectile
-                     "projectile.el")
+                     "projectile.el"
+                     "projectile-rails.el")
                     (util
-                     "pcre2el"
+                     "pcre2el.el"
                      "repository-root.el")
                     (helm
                      "helm.el"
@@ -148,6 +150,9 @@
                      "csv.el")
                     (irc
                      "weechat.el")
+                    "term-run.el"
+                    (test
+                     "test.el")
                     "misc.el"))
 
 (custom-set-variables
@@ -167,7 +172,7 @@
  '(hl-paren-colors (quote ("#40883f" "#0287c8" "#b85c57")) t)
  '(package-selected-packages
    (quote
-    (srefactor plan9-theme load-theme-buffer-local inflections ssass-mode vue-mode vue-html-mode oauth2 csv-mode persistent-scratch queue robe osx-plist)))
+    (term-run srefactor plan9-theme load-theme-buffer-local inflections ssass-mode vue-mode vue-html-mode oauth2 csv-mode persistent-scratch queue robe osx-plist)))
  '(sml/active-background-color "#98ece8" t)
  '(sml/active-foreground-color "#424242" t)
  '(sml/inactive-background-color "#4fa8a8" t)

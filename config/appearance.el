@@ -58,7 +58,7 @@
 
 ;;; Show line number
 (global-linum-mode t)
-(defvar linum-exceptional-regexp-list '("\\*cider-.+\\*" "\\*eshell\\*" " \\*WM:.+" "\\*scratch\\*" ".+helm.+" "\\*Async Shell Command\\*"))
+(setq linum-exceptional-regexp-list '("\\*cider-.+\\*" "\\*eshell\\*" " \\*WM:.+" "\\*scratch\\*" ".+helm.+" "\\*Async Shell Command\\*" "Term-Run"))
 (defvar linum-exceptional-mode-list '(direx:direx-mode slack-mode help-mode))
 
 (defadvice linum-mode (around hoge activate)

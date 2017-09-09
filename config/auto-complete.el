@@ -88,7 +88,7 @@
   (flet ((insert-and-inherit (&rest args)))
     ;; this code is stolen from `pcomplete' in pcomplete.el
     (let* (
-           ;; tramp-mode ;; do not automatically complete remote stuff
+           ;; Automatically complete remote stuff if in remote dir
            (tramp-mode (if (remote-directory-p default-directory) t nil))
            (pcomplete-stub)
            (pcomplete-show-list t) ;; inhibit patterns like * being deleted

@@ -10,18 +10,23 @@
 (el-get-bundle! smartrep
   (define-key evil-normal-state-map (kbd "C-,") (lambda () (interactive) (smart-backward-buffer)))
   (define-key evil-normal-state-map (kbd "C-.") (lambda () (interactive) (smart-forward-buffer)))
+  (define-key evil-motion-state-map (kbd "C-,") (lambda () (interactive) (smart-backward-buffer)))
+  (define-key evil-motion-state-map (kbd "C-.") (lambda () (interactive) (smart-forward-buffer)))
   (define-key evil-insert-state-map (kbd "C-,") (lambda () (interactive) (smart-backward-buffer)))
   (define-key evil-insert-state-map (kbd "C-.") (lambda () (interactive) (smart-forward-buffer)))
   (smartrep-define-key evil-normal-state-map "C-w"
-                       '((">" . 'evil-window-increase-width)
-                         ("<" . 'evil-window-decrease-width)
-                         ("+" . 'evil-window-increase-height)
-                         ("-" . 'evil-window-decrease-height)))
+    '((">" . 'evil-window-increase-width)
+      ("<" . 'evil-window-decrease-width)
+      ("+" . 'evil-window-increase-height)
+      ("-" . 'evil-window-decrease-height)))
   (smartrep-define-key evil-normal-state-map "C-c"
-                       '(("+" . 'evil-numbers/inc-at-pt)
-                         ("-" . 'evil-numbers/dec-at-pt)))
+    '(("+" . 'evil-numbers/inc-at-pt)
+      ("-" . 'evil-numbers/dec-at-pt)))
   (smartrep-define-key evil-normal-state-map "g"
-                       '(("t" . 'smart-forward-buffer)
-                         ("T" . 'smart-backward-buffer))))
+    '(("t" . 'smart-forward-buffer)
+      ("T" . 'smart-backward-buffer)))
+  (smartrep-define-key evil-motion-state-map "g"
+    '(("t" . 'smart-forward-buffer)
+      ("T" . 'smart-backward-buffer))))
 
 
